@@ -82,7 +82,7 @@ const config: Config = {
         },
         {
           href: 'https://github.com/linancn/tiangong-lca-next',
-          label: 'GitHub',
+          className: 'header-github-link',
           position: 'right',
         },
       ],
