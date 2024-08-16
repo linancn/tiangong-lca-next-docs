@@ -2,46 +2,135 @@
 sidebar_position: 1
 ---
 
-# 教程介绍
+# 简介
 
-Let's discover **Docusaurus in less than 5 minutes**.
+TianGong LCA 是团队自主研发的先进的生命周期评估(LCA)数据录入平台,专为环境影响分析和可持续发展研究而设计。该平台融合了最新的LCA方法学和信息技术,为用户提供全面而高效的数据管理和分析工具。
 
-## 第一步
+TianGong LCA的核心功能包括:
 
-Get started by **creating a new site**.
+直观的用户界面: 设计精良的界面简化了数据录入过程，使LCA新手也能轻松上手。
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+灵活的建模能力: 允许用户构建复杂的产品系统模型。
 
-### 必备环节
+先进的计算引擎: 采用高效算法,能够快速处理大规模数据集并进行环境影响评估。
+
+协作功能: 支持多用户协作,便于团队共同完成大型LCA项目。
+
+数据安全保障: 采用先进的加密技术和访问控制机制,确保敏感数据的安全性。
+
+持续更新: 定期更新数据库和方法学,确保用户始终使用最新的LCA标准和数据。
+
+TianGong LCA不仅适用于学术研究，还能满足企业需求。通过提供全面、准确且易于理解的生命周期评估结果，TianGong LCA助力用户做出更明智的环境决策，推动可持续发展实践。
+
+无论是进行单一产品的环境足迹分析，还是复杂系统的比较性LCA研究，TianGong LCA都能提供强有力的支持，帮助用户深入理解产品全生命周期的环境影响，为构建更可持续的未来贡献力量。
+
+## 快速开始
+
+  **首次登录TianGong LCA**：了解登录与注册过程，并熟悉主页面导航及主要功能。
+
+  **数据集的搜索、查看与下载**：提供在TianGong LCA平台上搜索、查看和下载数据集的具体方法。
+
+  **示例数据集与操作演示**：通过示例数据集展示平台的使用流程。
+<!-- Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**. -->
+
+<!-- ### 必备环节
 
 - [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+  - When installing Node.js, you are recommended to check all checkboxes related to dependencies. -->
 
-## Generate a new site
+## 使用说明
 
-Generate a new Docusaurus site using the **classic template**.
+TianGong LCA系统由三大模块构成：我的数据、天工数据、个人页
 
-The classic template will automatically be added to your project after you run the command:
+### 我的数据
+
+**我的数据**模块由单元过程、流、流属性、单位、数据源、联系人六部分构成，用户可以根据需要自主构建数据。
+
+-**单元过程**
+
+  -用户可以通过点击页面上的“+”来创建新的单元过程，
+
+  -在输入输出流部分，用户可以通过点击“+”来添加相关的输入输出流。
+
+-**流**
+
+  -用户可以通过点击“+”来创建新流，
+
+  -成功创建新流后，可在右侧构建“模型”，
+
+  -进入模型构建页面后，通过点击“+”创建并编辑模型，
+
+  -在模型编辑页面，用户可以通过点击“+”添加节点，并通过拖拽节点方框的边缘点来调整方向；点击右侧的“i”可以添加模型的基本信息，
+
+  -点击箭头符号并选择“交换关系”来添加交换关系，选择源输出流和目标输入流。
+
+-**流属性**
+
+  -用户可以通过点击“+”来创建新的流属性。
+
+-**单位**
+
+  -用户可以通过点击“+”来创建新的单位。
 
 ```bash
-npm init docusaurus@latest my-website classic
+天工数据的单位模块已按照国际标准构建，用户可直接引用。
 ```
+-**数据源**
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+  -用户可以通过点击“+”来创建数据源，并可添加相关数据文件的电子文档。
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+-**联系人**
 
-## Start your site
+  -用户可以通过点击“+”来创建联系人，允许用户录入个人信息及团队信息。
 
-Run the development server:
+### 天工数据
 
-```bash
-cd my-website
-npm run start
-```
+**天工数据**模块由单元过程、流、流属性、单位、数据源、联系人六部分构成，用户可以查看天工数据库中数据.
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+-**数据集信息**
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+  -包含地理位置（链接一份完整的地域缩写表）、时间段、系统边界描述、输入输出
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+  -覆盖.....等行业，
+
+  -每个行业一句话或者一段话介绍其具体内容，包括但不限于行业介绍、数据集内容、数据提供者（链接到相应网站）
+
+-**数据集特点**
+
+  -可追溯、
+
+-**系统模型**
+
+-**影响评估**
+
+-**数据版本发布说明**
+
+### 个人页
+
+**个人页**模块由账户、密码管理两部分构成，用户可以在此修改账户信息。
+
+## 常见问题（FAQ）
+
+### 系统建模问题
+
+如何在系统中构建模型？
+
+TianGong LCA 与 SimaPro、GaBi、Umberto、openLCA 等平台有何不同？
+
+### 数据来源和引用问题
+
+如何确保数据的溯源和透明度？
+
+如何正确引用数据？
+
+## 资源与支持
+
+TianGong LCA平台为用户提供了全面的资源和支持,以确保您能够高效地使用该系统并充分发挥其潜力。我们提供各种学习材料和技术支持,帮助您快速上手并解决使用过程中可能遇到的问题。
+
+### 学习资源
+
+操作视频（按知识模块分类）
+
+### 相关标准
+
+ISO、GHGH、EPD、ILCD等标准概述
