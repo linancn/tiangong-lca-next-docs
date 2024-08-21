@@ -4,119 +4,58 @@ sidebar_position: 1
 
 # Introduction
 
-**TianGong LCA** is an advanced Life Cycle Assessment (LCA) data entry platform independently developed by our team. It is specifically designed for environmental impact analysis and 
-sustainability research. This platform integrates the latest LCA methodologies and information technologies, providing users with comprehensive and efficient tools for data management and analysis.
+**TianGong LCA** is an advanced, self-developed platform for life cycle assessment (LCA) data entry, designed to accurately quantify environmental impacts and promote sustainability research.
 
-The core features of TianGong LCA include:
+The TianGong LCA platform supports the following key functions:
 
-Intuitive User Interface: The well-designed interface simplifies the data entry process, making it easy for LCA novices to get started.
-Flexible Modeling Capabilities: Allows users to construct complex product system models.
-Advanced Computational Engine: Utilizes efficient algorithms to rapidly process large datasets and perform environmental impact assessments.
-Collaboration Features: Supports multi-user collaboration, facilitating team efforts on large-scale LCA projects.
-Data Security Assurance: Employs advanced encryption technologies and access control mechanisms to ensure the security of sensitive data.
-Continuous Updates: Regularly updates databases and methodologies, ensuring users always have access to the latest LCA standards and data.
-TianGong LCA is not only suitable for academic research but also meets the needs of enterprises. By providing comprehensive, accurate, and easy-to-understand life cycle assessment results, TianGong LCA helps users make more informed environmental decisions, driving sustainable development practices. Whether for analyzing the environmental footprint of a single product or conducting comparative LCA studies on complex systems, TianGong LCA offers robust support, helping users gain a deep understanding of the environmental impacts across a product's entire life cycle, contributing to the creation of a more sustainable future.
+  **Creation**: Build and manage your life cycle inventory (LCI) data using the TianGong LCA platform, including unit processes, flows, and flow properties, ensuring data accuracy and completeness.
+
+  **Reference**: Access and utilize standardized LCI datasets from the TianGong database, ensuring data consistency and traceability.
+
+  **Collaboration**: Leverage the platform's multi-user collaboration features to enable team members to work together on complex LCA projects, facilitating efficient project management and transparent communication.
+
+  **Security**: Protect your sensitive data with advanced encryption technology and access control mechanisms, ensuring data integrity and security.
+
+  **Updates**: Benefit from regular database and methodology updates, ensuring that you are always working with the latest LCA standards and industry best practices.
+
+The TianGong LCA platform provides comprehensive support for your LCA data management and environmental impact assessment, helping you achieve more accurate results in sustainability research. 
 
 ## Quick Start
 
-**First Login to TianGong LCA**: Understand the login and registration process, and become familiar with the main page navigation and key features.
+The **Quick Start** module is designed to help you quickly get started with the TianGong LCA platform by completing essential initial operations:
 
-**Searching, Viewing, and Downloading Datasets**: Provides specific methods for searching, viewing, and downloading datasets on the TianGong LCA platform.
+  **First-Time Login and Registration**: Learn how to create an account, log in to the platform, and familiarize yourself with the basic layout of the main interface to quickly locate the tools you need.
 
-**Sample Datasets and Demonstrations**: Demonstrates the platform's usage process through sample datasets.
+  **Dataset Search and Download**: Master the basics of searching for and downloading LCA datasets on the platform, ensuring you can quickly access the data you need.
+
+  **Demonstration**: Understand the core functions of the platform through example operations, such as basic dataset download or data browsing. This will help you become familiar with the platform's essential features.
 
 ## User Guide
 
-The TianGong LCA system consists of three main modules: My Data, TianGong Data, and Personal Page.
+The **User Guide** module provides detailed instructions on the key features of the TianGong LCA platform, helping you fully understand how to use it effectively:
 
-### My Data
+  **My Data**: Learn how to create, edit, and manage unit processes, flows, flow properties, as well as associated contacts and data sources, ensuring data accuracy and completeness.
 
-The **My Data** module is composed of six sections: Unit Process, Flow, Flow Property, Unit, Data Source, and Contact, allowing users to build data as needed.
+  **TianGong Data**: Explore the standardized LCI datasets provided by the platform, and learn how to browse, reference, and manage these datasets to ensure consistency and traceability.
 
--**Unit Process**
+  **Personal Page**: Discover how to manage your account information, configure security settings, and customize your platform experience to ensure your data and account security.
 
-  -Users can create a new unit process by clicking the "+" button on the page.
+## FAQ
 
-  -In the Input/Output Flow section, users can add related input/output flows by clicking the "+" button.
+The **FAQ** module helps you quickly find answers related to the TianGong LCA platform. Below are the main categories of questions covered; click the relevant links to view detailed answers:
 
--**Flow**
+  **System Modeling Issues**: Learn how to create and manage models, including unit processes, flows, and flow properties, with common questions and solutions.
 
-  -Users can create a new flow by clicking the "+" button.
+  **Data Source and Citation Issues**: Find answers to questions about dataset sources, citation guidelines, and how to ensure data reliability.
 
-  -After successfully creating a new flow, a "Model" can be built on the right side.
-
-  -In the model-building page, users can create and edit models by clicking the "+" button.
-
-  -In the model editing page, users can add nodes by clicking the "+", adjust directions by dragging the edges of the node boxes, and add basic model information by clicking the "i" on the right.
-
-  -Click the directional arrow and select "Exchange Relationship" to add exchange relationships by choosing the source output flow and target input flow.
-
--**Flow Property**
-
-  -Users can create new flow properties by clicking the "+" button.
-
--**Unit**
-
-  -Users can create new units by clicking the "+" button.
-
-```bash
-The Unit module in TianGong Data is constructed according to international standards and can be directly referenced by users.
-```
--**Data Source**
-
-  -Users can create new data sources by clicking the "+" button and add electronic documents related to data files.
-
--**Contact**
-
-  -Users can create new contacts by clicking the "+" button, allowing them to input personal and team information.
-
-### TianGong Data
-
-The **TianGong Data** module comprises six sections: Unit Process, Flow, Flow Property, Unit, Data Source, and Contact, where users can view data within the TianGong database.
-
--**Dataset Information**
-
-  -Includes geographical location (with a link to a comprehensive list of regional abbreviations), time period, system boundary descriptions, and input/output data.
-
-  -Covers various industries, with each industry briefly introduced, including but not limited to industry background, dataset content, and data providers (with a link to the relevant website).
-
--**Dataset Features**
-
-  -Traceability ...
-
--**System Model**
-
--**Impact Assessment**
-
--**Data Version Release Notes**
-
-### Personal Page
-
-The **Personal Page** module consists of account and password management, where users can modify their account information.
-
-## Frequently Asked Questions (FAQ)
-
-### System Modeling Issues
-
-TianGong LCA 与 SimaPro、GaBi、Umberto、openLHow do I build models in the system?
-
-What are the differences between TianGong LCA and platforms like SimaPro, GaBi, Umberto, and openLCA?
-
-### Data Source and Citation Issues
-
-How can data traceability and transparency be ensured?
-
-How to correctly cite data?
+  **More questions**: Visit the full FAQ page for detailed answers to all frequently asked questions.
 
 ## Resources and Support
 
-The TianGong LCA platform provides comprehensive resources and support to ensure that you can use the system efficiently and maximize its potential. We offer a variety of learning 
-materials and technical support to help you quickly get started and resolve any issues you may encounter during use.
+The TianGong LCA platform provides extensive resources and support to ensure you can use the platform efficiently and resolve any issues you may encounter. 
 
-### Learning Resources
+  **Learning Resources**: Access operation videos and tutorials categorized by knowledge modules, helping you systematically learn the functions of TianGong LCA and gradually master both basic and advanced operations.
 
-Operation videos (categorized by knowledge modules)
+  **Relevant Standards**: Get an overview and application guide for key standards such as ISO, GHG, EPD, and ILCD. These resources help you understand and adhere to relevant standards, improving the accuracy and compliance of your life cycle assessments (LCA).
 
-### Relevant Standards
-
-Overview of ISO, GHG, EPD, ILCD, and other standards.
+  **More support**: Visit the Resources & Support page for detailed learning materials and technical support information.
