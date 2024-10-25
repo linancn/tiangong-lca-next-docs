@@ -2,22 +2,47 @@
 sidebar_position: 1
 ---
 
-# First Login and Registration
+# User Sign up and Login Guide
 
-## Create an Account 
+Welcome to this guide! Below are instructions on how to quickly sign up for a new account or log in to an existing one.
 
-Visit the TianGong LCA platform login page.
+## Sign up
 
-Click the "Register" button to access the registration page, and follow the on-screen instructions to fill in the required information.
+Don’t have an account yet? Follow these steps to sign up:
 
-Submit your registration details, and the system will send a verification email to the provided address.
+    1. Fill in the required registration information (e.g., email, password, etc.) as prompted.
 
-Open the verification email and click the link to activate your account.
+    2. Click the **sign up** button to complete the process.
 
-## Log In to the Platform
+![替代文字](./img/signup-EN.png)
 
-Return to the login page and enter your email address and password.
-Click the "Log In" button to access the platform.
+Once sign up is successful, you can immediately log in using the email and password you provided.
 
-After logging in for the first time, you will see the main interface. Take a few minutes to familiarize yourself with the layout, including the navigation bar, user menu, and quick-access tools.
+## Login
 
+If you already have an account, please follow these steps to log in:
+
+    1. Enter your email and password.
+
+    2. Click the **Login** button to access the system.
+
+![替代文字](./img/login-EN.png)
+
+After your first login, you can click your email address in the upper right corner. A dropdown menu will appear with options for **Account Profile** and **Logout**. Click **[Account Profile](../User-Guide/Account-Profile)** to customize your settings.
+
+## Forgot Password
+
+If you have forgotten your password, follow these steps to recover it:
+
+    1. On the login page, click the **Forgot Password ?** link to open the password recovery page.
+
+    2. Enter your registered email address (the one linked to your account).
+
+    3. Click the **Send Verify Email** button.
+
+![替代文字](./img/forgotpwd-EN.png)
+
+The system will send a verification email to the address you provided. Please follow the instructions in the email to complete the password reset process.
+
+
+[Download this picture](./img/forgotpwd-EN.png)

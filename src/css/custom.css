@@ -48,7 +48,7 @@ html[data-theme='dark'] .header-github-link:before {
     no-repeat;
 }
 
-.custom-img {
+.markdown img {
   width: 50%;
   height: auto;
 }
