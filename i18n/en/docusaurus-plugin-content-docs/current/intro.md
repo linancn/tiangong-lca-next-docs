@@ -28,7 +28,7 @@ The **Quick Start** module is designed to help you quickly get started with the 
 
 **Dataset Search and Download**: Master the basics of searching for and downloading LCA datasets on the platform, ensuring you can quickly access the data you need.
 
-**Demonstration**: Understand the core functions of the platform through example operations, such as basic dataset download or data browsing. This will help you become familiar with the platform's essential features.这将帮助您熟悉平台的核心功能。
+**Demonstration**: Understand the core functions of the platform through example operations, such as basic dataset download or data browsing. This will help you become familiar with the platform's essential features.This will help you to become familiar with the platform's core features.
 
 <!-- Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**. -->
 
@@ -49,7 +49,7 @@ The **User Guide** module provides detailed instructions on the key features of 
 
 ## FAQ
 
-The **FAQ** module helps you quickly find answers related to the TianGong LCA platform. Below are the main categories of questions covered; click the relevant links to view detailed answers:以下是我们涵盖的主要问题类别，点击相关链接查看详细解答：
+The **FAQ** module helps you quickly find answers related to the TianGong LCA platform. Below are the main categories of questions covered; click the relevant links to view detailed answers:Below are the main issue categories we cover. Click on the link to see detailed：
 
 **System Modeling Issues**: Learn how to create and manage models, including unit processes, flows, and flow properties, with common questions and solutions.
 
@@ -59,10 +59,10 @@ The **FAQ** module helps you quickly find answers related to the TianGong LCA pl
 
 ## Resources and Support
 
-The TianGong LCA platform provides extensive resources and support to ensure you can use the platform efficiently and resolve any issues you may encounter.无论是学习操作流程，还是遵循相关标准，我们都为您提供了必要的工具和指导。
+The TianGong LCA platform provides extensive resources and support to ensure you can use the platform efficiently and resolve any issues you may encounter.We have provided you with the necessary tools and guidance, both in the learning process and in compliance with relevant standards.
 
 **Learning Resources**: Access operation videos and tutorials categorized by knowledge modules, helping you systematically learn the functions of TianGong LCA and gradually master both basic and advanced operations.
 
-**Relevant Standards**: Get an overview and application guide for key standards such as ISO, GHG, EPD, and ILCD. These resources help you understand and adhere to relevant standards, improving the accuracy and compliance of your life cycle assessments (LCA).这些资源帮助您理解并遵循相关标准，提高您的生命周期评估 (LCA) 的准确性和合规性。
+**Relevant Standards**: Get an overview and application guide for key standards such as ISO, GHG, EPD, and ILCD. These resources help you understand and adhere to relevant standards, improving the accuracy and compliance of your life cycle assessments (LCA).These resources help you understand and follow relevant standards to improve the accuracy and compliance of your life-cycle assessment (LCA).
 
 **More support**: Visit the Resources & Support page for detailed learning materials and technical support information.
