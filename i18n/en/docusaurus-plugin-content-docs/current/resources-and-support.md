@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Resources and Support
 
-The TianGong LCA platform provides comprehensive resources and support to ensure that you can use the system efficiently and maximize its potential. We offer a variety of learning materials and technical support to help you quickly get started and resolve any issues you may encounter during use.
+The TianGong LCA platform provides comprehensive resources and support to ensure that you can use the system efficiently and maximize its potential. We offer a variety of learning materials and technical support to help you quickly get started and resolve any issues you may encounter during use.We provide a variety of learning materials and technical support to help you get in hand and solve problems that may be encountered during use.
 
 ## Learning Resources
 
