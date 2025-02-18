@@ -4,11 +4,11 @@ sidebar_position: 1
 
 # User Sign up and Login Guide
 
-欢迎使用本指南！Welcome to this guide! Below are instructions on how to quickly sign up for a new account or log in to an existing one.
+Welcome to this guide!Welcome to this guide! Below are instructions on how to quickly sign up for a new account or log in to an existing one.
 
 ## Sign up
 
-还没有账户？Don’t have an account yet? Follow these steps to sign up:
+No account yet?Don’t have an account yet? Follow these steps to sign up:
 
 ```
 1. Fill in the required registration information (e.g., email, password, etc.) as prompted.
@@ -32,7 +32,7 @@ If you already have an account, please follow these steps to log in:
 
 ![替代文字](./img/login.png)
 
-首次登录后，您可以点击右上角的邮箱地址。在该位置的下拉菜单中，您将看到**账号信息**和**退出登录**选项。After your first login, you can click your email address in the upper right corner. A dropdown menu will appear with options for **Account Profile** and **Logout**. Click **[Account Profile](../user-guide/account-profile)** to customize your settings.
+After first logging in, you can click on the email address in the upper right corner.In the dropdown menu for this location, you will see the **account information** and **exit login** options.After your first login, you can click your email address in the upper right corner. A dropdown menu will appear with options for **Account Profile** and **Logout**. Click **[Account Profile](../user-guide/account-profile)** to customize your settings.
 
 ## Forgot Password
 
@@ -48,4 +48,4 @@ If you have forgotten your password, follow these steps to recover it:
 
 ![替代文字](./img/forgotpwd.png)
 
-系统将向您提供的邮箱发送一封验证邮件。请根据邮件中的指引完成密码重置。
+The system will send a verification email to the email you provided.Please complete password reset according to the instructions in the email.
