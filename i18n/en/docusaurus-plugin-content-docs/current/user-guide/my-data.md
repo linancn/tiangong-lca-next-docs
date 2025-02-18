@@ -38,23 +38,23 @@ The Unit module in TianGong Data is constructed according to international stand
 
 ## Data Source
 
-在天工生命周期数据平台中，来源模块用于定义和管理与数据集相关的来源信息，包括文献、报告、研究数据或其他相关资料。
+The source module is used to define and manage source information related to data sets, including literature, reports, research data or other relevant information, in the sky- life cycle data platform.
 
-**创建一条新的“来源”数据**
+**Create a new source data**
 
-**第一步：点击“+”按钮新增来源数据**
+**First step：click the "+" button to add new source data**
 
 ```
-1. 打开平台的“我的数据--来源”模块。
+1. Open the platform's "My Data-Source" module.
 
-2. 点击右上角的“+”按钮，新增“来源”数据。
+2. Add "Source" data by clicking the "+" button in the upper right corner.
 ```
 
 ![替代文字](./img/add-source.png)
 
-**第二步：填写来源的基本数据**
+**Step 2 of：Fill from sources**
 
-**源信息（增加一张完整的图片，后面再逐步介绍）**
+**Source information (add a full picture, then step by step)**
 
 ```
 1. 源的简称（建议填写）：输入数据来源的简短名称，通常为文献、报告、研究数据或其他内部数据源的引用。为了确保数据的完整性和便于国际化使用，请同时提供中文和英文版本的名称。
@@ -149,7 +149,7 @@ The Unit module in TianGong Data is constructed according to international stand
     - 例如：Internal report, Company XYZ, 2023.
 ```
 
-**注意：如果您的数据来源属于其他特殊类别，选择“其他未发布或灰色文献”，并在后续的“数据源描述或备注”中说明详细情况。**
+**Note：if your data source belongs to other special categories, select "Other unpublished or grey literature" and give details in the next "Data Source Description or Remarks".**
 
 ```
 5. 数据源描述或备注（选填）：在数据源描述或备注字段中，简要说明数据来源的内容、使用的媒介类型（例如CD-ROM、硬拷贝等），以及任何其他相关信息，帮助其他用户理解和验证数据的背景。例如：
@@ -168,7 +168,7 @@ The Unit module in TianGong Data is constructed according to international stand
 7. 属于（选填）：此字段用于指明该数据集、数据源格式或合规系统所属的工作组、组织或数据库网络。请注意，这一字段的填写并不意味着存在法律上的绑定关系，而是指该数据集属于某个工作组、组织或自愿加入的网络。
 ```
 
-**管理信息（增加一张完整的图片，后面再逐步介绍）**
+**Manage information (add a full picture, then step by step)**
 
 ```
 8. 时间戳：此字段用于记录数据集生成的时间和日期。这是一个自动生成的字段，当您创建或保存数据集时，系统会自动填入当前的时间和日期，无需手动输入。
@@ -183,14 +183,14 @@ The Unit module in TianGong Data is constructed according to international stand
 12. 永久数据集统一资源标识符（建议填写）：用于为数据集指定一个全球唯一的标识符，支持用户和软件工具通过互联网识别和检索该数据集的原始版本或检查是否有更新。此字段由系统根据数据集的UUID（通用唯一标识符）和数据集所有者的URL自动生成。用户无需手动填写此字段。
 ```
 
-**第三步：保存并确认数据**
+**3rd step: save and confirm data**
 
 ```
-1. 在完成所有字段的填写后，请务必检查每一项内容，确保所有必填字段已完整填写且无误。
+1. After completing all fields, make sure that all required fields are complete and correct.
 
-2. 确认无误后，点击页面底部的“保存”按钮，系统将自动保存您的源信息。
+2. If you confirm, click the "Save" button at the bottom of the page to automatically save your source info.
 
-3. 提交后，您可以查看已保存的源信息记录，确认其是否正确显示在您的数据集管理列表中。
+3. Once submitted, you can view saved source information and confirm that it is correctly displayed in your dataset management list.
 ```
 
 ## Contact
