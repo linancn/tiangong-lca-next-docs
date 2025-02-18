@@ -14,7 +14,7 @@ sidebar_position: 1
 
     2. 点击 **注册** 按钮完成操作。
 
-  ![替代文字](./img/signup-CN.png)
+  ![替代文字](./img/signup.png)
 
 注册成功后，您可立即使用填写的邮箱和密码登录平台。
 
@@ -26,7 +26,7 @@ sidebar_position: 1
 
     2. 点击 **登录** 按钮进入系统。
 
-  ![替代文字](./img/login-CN.png)
+  ![替代文字](./img/login.png)
 
 首次登录后，您可以点击右上角的邮箱地址。在该位置的下拉菜单中，您将看到**账号信息**和**退出登录**选项。点击 **[账号信息](../user-guide/account-profile)**，您可以进行个性化设置。
 
@@ -40,6 +40,6 @@ sidebar_position: 1
 
     3. 点击 **发送验证邮件** 按钮。
 
-  ![替代文字](./img/forgotpwd-CN.png)
+  ![替代文字](./img/forgotpwd.png)
 
 系统将向您提供的邮箱发送一封验证邮件。请根据邮件中的指引完成密码重置。

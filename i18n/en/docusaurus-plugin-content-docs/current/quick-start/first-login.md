@@ -14,7 +14,7 @@ Don’t have an account yet? Follow these steps to sign up:
 
     2. Click the **sign up** button to complete the process.
 
-![替代文字](./img/signup-EN.png)
+![替代文字](./img/signup.png)
 
 Once sign up is successful, you can immediately log in using the email and password you provided.
 
@@ -26,7 +26,7 @@ If you already have an account, please follow these steps to log in:
 
     2. Click the **Login** button to access the system.
 
-![替代文字](./img/login-EN.png)
+![替代文字](./img/login.png)
 
 After your first login, you can click your email address in the upper right corner. A dropdown menu will appear with options for **Account Profile** and **Logout**. Click **[Account Profile](../user-guide/account-profile)** to customize your settings.
 
@@ -40,9 +40,9 @@ If you have forgotten your password, follow these steps to recover it:
 
     3. Click the **Send Verify Email** button.
 
-![替代文字](./img/forgotpwd-EN.png)
+![替代文字](./img/forgotpwd.png)
 
 The system will send a verification email to the address you provided. Please follow the instructions in the email to complete the password reset process.
 
 
-[Download this picture](./img/forgotpwd-EN.png)
+[Download this picture](./img/forgotpwd.png)

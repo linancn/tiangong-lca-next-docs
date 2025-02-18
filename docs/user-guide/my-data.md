@@ -47,7 +47,7 @@ sidebar_position: 1
 
     2. 点击右上角的“+”按钮，新增“来源”数据。
 
-![替代文字](./img/add_source.png)
+![替代文字](./img/add-source.png)
 
 **第二步：填写来源的基本数据**
 
