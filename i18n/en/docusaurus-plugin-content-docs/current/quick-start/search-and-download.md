@@ -20,7 +20,6 @@ On the dataset details page, ensure the dataset meets your needs.
 
 Click the "Download" button and choose the desired file format.
 
-The system will generate a download link. Click the link to save the dataset to your local drive.
+The system will generate a download link. Click the link to save the dataset to your local drive.//Details and Yellow Teacher determined
 
 Once the download is complete, you can locate the dataset in your local folder and import it into your LCA project for analysis.
-
