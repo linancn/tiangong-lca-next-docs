@@ -10,13 +10,13 @@ The **TianGong Data** module comprises six sections: Unit Process, Flow, Flow Pr
 
 Includes geographical location (with a link to a comprehensive list of regional abbreviations), time period, system boundary descriptions, and input/output data.
 
-覆盖.....等行业，
+Overwrite..., etc.
 
-每个行业一句话或者一段话介绍其具体内容，包括但不限于行业介绍、数据集内容、数据提供者（链接到相应网站）
+Each industry has a sentence or a paragraph that describes its content, including, but not limited to, industry presentations, data sets, data providers (linked to the corresponding website)
 
 ## Dataset Features
 
-可追溯、
+Trackable
 
 ## System Model
 
