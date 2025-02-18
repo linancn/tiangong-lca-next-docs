@@ -8,12 +8,12 @@ The **Account Profile page** is divided into three sections: **Basic Information
 
 ## Basic Information
 
-Here, you can view your current email, role, and nickname. You can also edit your nickname, and any changes will instantly update the display in the upper-right corner, replacing the default email (your registered one).
+Here, you can view your current email, role, and nickname. You can also edit your nickname, and any changes will instantly update the display in the upper-right corner, replacing the default email (your registered one).When editing finished, your nickname will be updated immediately in the upper right corner (default is the email address at register).
 
 ## Change Password
 
-The system keeps your initial password on file. To change it, simply enter your new password and confirm it. 
+Default system to save your initial password.The system keeps your initial password on file. To change it, simply enter your new password and confirm it.
 
 ## Change Email
 
-In this section, your current registered email will be displayed. Just enter your new email address and confirm it to complete the change.
+Your current registered email will be displayed.In this section, your current registered email will be displayed. Just enter your new email address and confirm it to complete the change.
