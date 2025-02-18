@@ -2,60 +2,66 @@
 sidebar_position: 1
 ---
 
-# Introduction
+# 简介
 
-**TianGong LCA** is an advanced, self-developed platform for life cycle assessment (LCA) data entry, designed to accurately quantify environmental impacts and promote sustainability research.
+TianGong LCA是一个自主研发的先进生命周期评估数据录入平台，用于精准量化环境影响并推动可持续发展研究。
 
-The TianGong LCA platform supports the following key functions:
+TianGong LCA 平台支持以下关键功能：
 
-  **Creation**: Build and manage your life cycle inventory (LCI) data using the TianGong LCA platform, including unit processes, flows, and flow properties, ensuring data accuracy and completeness.
+  **创建**: 您可以使用 TianGong LCA 平台，构建和管理生命周期清单 (LCI) 数据，包括单元过程、物质流和流属性等，确保数据的准确性和完整性。
 
-  **Reference**: Access and utilize standardized LCI datasets from the TianGong database, ensuring data consistency and traceability.
+  **引用**: 平台允许您浏览和引用 TianGong 数据库中的标准化 LCI 数据集，确保数据的一致性和可追溯性。
 
-  **Collaboration**: Leverage the platform's multi-user collaboration features to enable team members to work together on complex LCA projects, facilitating efficient project management and transparent communication.
+  **协作**: 利用平台的多用户协作功能，团队成员可以共同执行复杂的 LCA 项目，实现高效的项目管理和透明的沟通。
 
-  **Security**: Protect your sensitive data with advanced encryption technology and access control mechanisms, ensuring data integrity and security.
+  **安全**: 平台采用先进的加密技术和访问控制机制，保护您的敏感数据安全，并确保数据的完整性。
 
-  **Updates**: Benefit from regular database and methodology updates, ensuring that you are always working with the latest LCA standards and industry best practices.
+  **更新**: TianGong LCA 平台提供定期的数据库和方法更新，确保您始终使用符合最新 LCA 标准和行业最佳实践的数据和方法。
 
-The TianGong LCA platform provides comprehensive support for your LCA data management and environmental impact assessment, helping you achieve more accurate results in sustainability research. 
+TianGong LCA 平台将为您的 LCA 数据管理和环境影响评估提供全面的支持，帮助您在可持续发展研究中取得更加精准的成果。
 
-## Quick Start
+## 快速开始
 
-The **Quick Start** module is designed to help you quickly get started with the TianGong LCA platform by completing essential initial operations:
+**快速开始**模块旨在帮助您迅速上手 TianGong LCA 平台，完成关键的初始操作：
 
-  **First-Time Login and Registration**: Learn how to create an account, log in to the platform, and familiarize yourself with the basic layout of the main interface to quickly locate the tools you need.
+  **首次登录与注册**: 学习如何创建账户、登录平台，并了解主界面的基本布局，快速定位所需功能。
 
-  **Dataset Search and Download**: Master the basics of searching for and downloading LCA datasets on the platform, ensuring you can quickly access the data you need.
+  **数据集的搜索与下载**: 掌握在平台上搜索和下载 LCA 数据集的基础操作，确保您能够快速获取所需数据。
 
-  **Demonstration**: Understand the core functions of the platform through example operations, such as basic dataset download or data browsing. This will help you become familiar with the platform's essential features.
+  **操作演示**: 通过示例操作，了解如何执行基础数据操作，例如简单的数据集下载或数据浏览。这将帮助您熟悉平台的核心功能。
+<!-- Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**. -->
 
-## User Guide
+<!-- ### 必备环节
 
-The **User Guide** module provides detailed instructions on the key features of the TianGong LCA platform, helping you fully understand how to use it effectively:
+- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
+  - When installing Node.js, you are recommended to check all checkboxes related to dependencies. -->
 
-  **My Data**: Learn how to create, edit, and manage unit processes, flows, flow properties, as well as associated contacts and data sources, ensuring data accuracy and completeness.
+## 用户指引
 
-  **TianGong Data**: Explore the standardized LCI datasets provided by the platform, and learn how to browse, reference, and manage these datasets to ensure consistency and traceability.
+**用户指引**模块详细介绍 TianGong LCA 平台的各项核心功能，帮助您全面掌握平台的使用方法：
 
-  **Personal Page**: Discover how to manage your account information, configure security settings, and customize your platform experience to ensure your data and account security.
+  **我的数据**: 了解如何创建、编辑和管理单元过程、物质流、流属性以及相关的联系人和数据源，确保数据的准确性和完整性。
 
-## FAQ
+  **天工数据**: 探索平台提供的标准化 LCA 数据集，学习如何浏览、引用和管理这些数据，确保数据的一致性和可追溯性。
 
-The **FAQ** module helps you quickly find answers related to the TianGong LCA platform. Below are the main categories of questions covered; click the relevant links to view detailed answers:
+  **个人页**: 掌握如何管理个人账户信息、设置安全选项，以及调整平台的使用偏好，确保您的数据和账户安全。
 
-  **System Modeling Issues**: Learn how to create and manage models, including unit processes, flows, and flow properties, with common questions and solutions.
+## 常见问题
 
-  **Data Source and Citation Issues**: Find answers to questions about dataset sources, citation guidelines, and how to ensure data reliability.
+**常见问题**模块帮助您快速找到关于 TianGong LCA 平台的解答。以下是我们涵盖的主要问题类别，点击相关链接查看详细解答：
 
-  **More questions**: Visit the full FAQ page for detailed answers to all frequently asked questions.
+  **系统建模问题**：了解如何创建和管理模型，包括单元过程、物质流和流属性等方面的常见问题和解决方案。
 
-## Resources and Support
+  **数据来源和引用问题**：获取关于数据集来源、引用规范，以及如何确保数据可靠性的常见问题解答。
 
-The TianGong LCA platform provides extensive resources and support to ensure you can use the platform efficiently and resolve any issues you may encounter. 
+  **更多问题**：访问 完整FAQ页面 获取所有常见问题的详细解答。
 
-  **Learning Resources**: Access operation videos and tutorials categorized by knowledge modules, helping you systematically learn the functions of TianGong LCA and gradually master both basic and advanced operations.
+## 资源与支持
 
-  **Relevant Standards**: Get an overview and application guide for key standards such as ISO, GHG, EPD, and ILCD. These resources help you understand and adhere to relevant standards, improving the accuracy and compliance of your life cycle assessments (LCA).
+TianGong LCA 平台为用户提供了广泛的资源和支持，确保您能够高效使用平台并解决在使用过程中可能遇到的问题。无论是学习操作流程，还是遵循相关标准，我们都为您提供了必要的工具和指导。
 
-  **More support**: Visit the Resources & Support page for detailed learning materials and technical support information.
+  **学习资源**：您可访问按知识模块划分的操作视频和教程，帮助您系统地学习 TianGong LCA 的各项功能，逐步掌握从基础到高级的操作方法。
+
+  **相关标准**：获取 ISO、GHG、EPD、ILCD 等关键标准的概述和应用指南。这些资源帮助您理解并遵循相关标准，提高您的生命周期评估 (LCA) 的准确性和合规性。
+
+  **更多支持**：访问 资源与支持页面 获取详细的学习资料和技术支持信息。

@@ -2,47 +2,44 @@
 sidebar_position: 1
 ---
 
-# User Sign up and Login Guide
+# 用户注册与登录指南
 
-Welcome to this guide! Below are instructions on how to quickly sign up for a new account or log in to an existing one.
+欢迎使用本指南！以下是如何快速注册新账户或登录已有账户的说明。
 
-## Sign up
+## 注册
 
-Don’t have an account yet? Follow these steps to sign up:
+还没有账户？请按以下步骤注册：
 
-    1. Fill in the required registration information (e.g., email, password, etc.) as prompted.
+    1. 按页面提示填写必要的注册信息（如邮箱、密码等）。
 
-    2. Click the **sign up** button to complete the process.
+    2. 点击 **注册** 按钮完成操作。
 
-![替代文字](./img/signup-EN.png)
+  ![替代文字](./img/signup-CN.png)
 
-Once sign up is successful, you can immediately log in using the email and password you provided.
+注册成功后，您可立即使用填写的邮箱和密码登录平台。
 
-## Login
+## 登录
 
-If you already have an account, please follow these steps to log in:
+已有账户的用户请按以下步骤登录：
 
-    1. Enter your email and password.
+    1. 输入邮箱和密码。
 
-    2. Click the **Login** button to access the system.
+    2. 点击 **登录** 按钮进入系统。
 
-![替代文字](./img/login-EN.png)
+  ![替代文字](./img/login-CN.png)
 
-After your first login, you can click your email address in the upper right corner. A dropdown menu will appear with options for **Account Profile** and **Logout**. Click **[Account Profile](../User-Guide/Account-Profile)** to customize your settings.
+首次登录后，您可以点击右上角的邮箱地址。在该位置的下拉菜单中，您将看到**账号信息**和**退出登录**选项。点击 **[账号信息](../User-Guide/Account-Profile)**，您可以进行个性化设置。
 
-## Forgot Password
+## 忘记密码
 
-If you have forgotten your password, follow these steps to recover it:
+如果您忘记密码，请按照以下步骤找回：
 
-    1. On the login page, click the **Forgot Password ?** link to open the password recovery page.
+    1. 在登录页面点击 **忘记密码** 链接，进入找回密码页面。
 
-    2. Enter your registered email address (the one linked to your account).
+    2. 输入您的注册邮箱地址，确保与账号绑定的邮箱一致。
 
-    3. Click the **Send Verify Email** button.
+    3. 点击 **发送验证邮件** 按钮。
 
-![替代文字](./img/forgotpwd-EN.png)
+  ![替代文字](./img/forgotpwd-CN.png)
 
-The system will send a verification email to the address you provided. Please follow the instructions in the email to complete the password reset process.
-
-
-[Download this picture](./img/forgotpwd-EN.png)
+系统将向您提供的邮箱发送一封验证邮件。请根据邮件中的指引完成密码重置。

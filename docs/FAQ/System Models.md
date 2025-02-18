@@ -2,13 +2,11 @@
 sidebar_position: 1
 ---
 
-# System Models
+# 系统建模
 
-TianGong LCA 与 SimaPro、GaBi、Umberto、openLHow do I build models in the system?
+如何在系统中构建模型？
 
-What are the differences between TianGong LCA and platforms like SimaPro, GaBi, Umberto, and openLCA?
-
-
+TianGong LCA 与 SimaPro、GaBi、Umberto、openLCA 等平台有何不同？
 
 
 

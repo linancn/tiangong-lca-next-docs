@@ -2,42 +2,45 @@
 sidebar_position: 5
 ---
 
-# Resources and Support
+# 资源与支持
 
-The TianGong LCA platform provides comprehensive resources and support to ensure that you can use the system efficiently and maximize its potential. We offer a variety of learning materials and technical support to help you quickly get started and resolve any issues you may encounter during use.
+TianGong LCA平台为用户提供了全面的资源和支持,以确保您能够高效地使用该系统并充分发挥其潜力。我们提供各种学习材料和技术支持,帮助您快速上手并解决使用过程中可能遇到的问题。
 
-## Learning Resources
+## 学习资源
 
-### Platform Overview
+### 平台概览
 
-Get acquainted with the TianGong LCA platform's key features and interface layout through brief introductory videos, designed to help you get started quickly.
+通过简短的视频了解 TianGong LCA 平台的主要功能和界面布局，帮助您快速上手。
 
-**Data Creation and Management**: Detailed tutorials demonstrate how to create and manage life cycle inventory (LCI) data on the platform, including steps for handling unit processes, flows, and flow properties.
+**数据创建与管理**: 详细教程展示如何在平台上创建和管理生命周期清单 (LCI) 数据，包括单元过程、流和流属性的操作步骤。
 
-**Dataset Search and Download**: Watch demonstration videos to learn how to use the platform's search functionality to find and download the LCA datasets you need.
+**数据集搜索与下载**: 观看演示视频，学习如何使用平台的搜索功能查找并下载所需的 LCA 数据集。
 
-**Collaboration Features**: Video tutorials explain how to utilize the platform's collaboration tools for team project management, ensuring efficient multi-user cooperation.
+**协作功能**: 视频教程介绍如何利用平台的协作功能进行团队项目管理，确保多用户高效协作。
 
-### User Manuals & Documentation
+### 用户手册与文档
 
-**Quick Start Guide**: Download the PDF user manual that covers key steps from registration and login to initial data operations.
+**快速入门指南**: 下载 PDF 格式的用户手册，涵盖从注册、登录到初步数据操作的关键步骤。
 
-**Advanced User Guide**: Access detailed instructions aimed at advanced users to help you fully utilize all the platform's features.
+**高级操作指南**: 提供详细的操作说明，适用于高级用户，帮助您充分利用平台的所有功能。
 
-## Relevant Standards
 
-### ISO Standards
+## 相关标准
 
-**ISO 14040/14044**: Understand the core standards for life cycle assessment (LCA) and their application within the TianGong LCA platform.
+### ISO 标准
 
-**ISO 14067**: Learn about the carbon footprint assessment standard and how it is implemented in the platform.
+**ISO 14040/14044**: 了解生命周期评估 (LCA) 的核心标准及其在 TianGong LCA 平台中的应用。
 
-### GHG Standards
+**ISO 14067**: 介绍碳足迹评估标准及其在平台中的实现方式。
 
-**Greenhouse Gas Accounting**: Detailed explanations of GHG accounting methods and their integration with TianGong LCA data, enabling precise greenhouse gas assessments.
+### GHG 标准
 
-### EPD and ILCD Guidelines
+**温室气体核算**: 详细说明 GHG 核算方法与 TianGong LCA 数据之间的关联，帮助您进行精确的温室气体评估。
 
-**Environmental Product Declarations (EPD)**: Learn how to use the platform to support EPD standards for analyzing the environmental impacts of products.
+### EPD 与 ILCD 指南
 
-**ILCD Handbook**: Access key summaries from the ILCD Handbook to ensure your life cycle data complies with international standards.
+**环境产品声明 (EPD)**: 了解如何使用平台支持的 EPD 标准进行产品环境影响分析。
+
+**ILCD Handbook**: 提供 ILCD 手册的关键内容摘要，帮助您确保生命周期数据符合国际标准。
+
+

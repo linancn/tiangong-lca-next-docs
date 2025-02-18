@@ -2,18 +2,18 @@
 sidebar_position: 3
 ---
 
-# Account Profile
+# 账号信息
 
-The **Account Profile page** is divided into three sections: **Basic Information**, **Change Password**, and **Change Email**.
+**账号信息**分为**基本信息**、**修改密码**和**修改邮箱**三个部分：
 
-## Basic Information
+## 基本信息
 
-Here, you can view your current email, role, and nickname. You can also edit your nickname, and any changes will instantly update the display in the upper-right corner, replacing the default email (your registered one).
+在这一部分，您可以查看当前邮箱、角色和昵称等信息，并对昵称进行编辑。编辑完成后，右上角显示的信息（默认是注册时的邮箱地址）会立即更新为您设置的昵称。
 
-## Change Password
+## 修改密码
 
-The system keeps your initial password on file. To change it, simply enter your new password and confirm it. 
+系统默认保存您的初始密码。您只需输入新密码和确认新密码即可完成密码更改。
 
-## Change Email
+## 修改邮箱
 
-In this section, your current registered email will be displayed. Just enter your new email address and confirm it to complete the change.
+系统会显示您当前的注册邮箱。您只需输入新邮箱地址并确认即可完成修改。

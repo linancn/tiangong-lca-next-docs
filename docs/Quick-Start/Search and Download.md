@@ -2,25 +2,26 @@
 sidebar_position: 2
 ---
 
-# Dataset Search and Download
+# 数据集的搜索与下载
 
-## Search for Datasets
+## 搜索数据集
 
-On the platform's main interface, locate and click on the "Dataset Search" option.
+在平台的主界面，找到并点击“数据集搜索”选项。
 
-Enter keywords into the search bar, such as dataset name, industry type, or geographic location.
+在搜索栏中输入关键字，如数据集名称、行业类型或地理位置。
 
-Use the filters to further refine your search results, filtering by dataset type, time range, or other relevant criteria.
+使用过滤器进一步细化搜索结果，您可以按数据集类型、时间范围或其他相关标准进行筛选。
 
-Review the search results and click on a dataset name to view detailed information, including data sources, scope, and version history.
+查看搜索结果，点击数据集名称以查看详细信息，包括数据来源、适用范围和版本历史。
 
-## Download Datasets
+## 下载数据集
 
-On the dataset details page, ensure the dataset meets your needs.
+在数据集详情页面，确认该数据集符合您的需求。
 
-Click the "Download" button and choose the desired file format.
+点击“下载”按钮，选择所需的文件格式。
 
-The system will generate a download link. Click the link to save the dataset to your local drive.
+系统将生成下载链接，点击链接即可将数据集保存到本地。//细节和黄老师确定后再修改
 
-Once the download is complete, you can locate the dataset in your local folder and import it into your LCA project for analysis.
+下载完成后，您可以在本地文件夹中找到数据集，并将其导入到您的LCA项目中进行分析。
+
 

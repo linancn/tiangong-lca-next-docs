@@ -2,11 +2,13 @@
 sidebar_position: 2
 ---
 
-# Sources and Citation
+# 数据来源和引用
 
-How can data traceability and transparency be ensured?
+如何确保数据的溯源和透明度？
 
-How to correctly cite data?
+  定期更新数据库和方法学,确保用户始终使用最新的LCA标准和数据。
+
+如何正确引用数据？
 
 
 ## 

@@ -2,9 +2,9 @@
 sidebar_position: 3
 ---
 
-# Demonstrations
+# 操作演示
 
-Demonstrates the platform's usage process through sample datasets:
+通过示例数据集展示平台的使用流程:
 
 ## 
 

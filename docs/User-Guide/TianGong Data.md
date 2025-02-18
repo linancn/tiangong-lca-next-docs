@@ -2,22 +2,24 @@
 sidebar_position: 2
 ---
 
-# TianGong Data
+# 天工数据
 
-The **TianGong Data** module comprises six sections: Unit Process, Flow, Flow Property, Unit, Data Source, and Contact, where users can view data within the TianGong database.
+**天工数据**模块由单元过程、流、流属性、单位、数据源、联系人六部分构成，用户可以查看天工数据库中数据.
 
-## Dataset Information 
+## 数据集信息
 
-Includes geographical location (with a link to a comprehensive list of regional abbreviations), time period, system boundary descriptions, and input/output data.
+包含地理位置（链接一份完整的地域缩写表）、时间段、系统边界描述、输入输出
 
-Covers various industries, with each industry briefly introduced, including but not limited to industry background, dataset content, and data providers (with a link to the relevant website).
+覆盖.....等行业，
 
-## Dataset Features
+每个行业一句话或者一段话介绍其具体内容，包括但不限于行业介绍、数据集内容、数据提供者（链接到相应网站）
 
-Traceability ...
+## 数据集特点
 
-## System Model
+可追溯、
 
-## Impact Assessment
+## 系统模型
 
-## Data Version Release Notes
+## 影响评估
+
+## 数据版本发布说明
