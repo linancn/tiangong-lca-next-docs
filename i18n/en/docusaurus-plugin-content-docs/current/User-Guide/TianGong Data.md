@@ -6,15 +6,17 @@ sidebar_position: 2
 
 The **TianGong Data** module comprises six sections: Unit Process, Flow, Flow Property, Unit, Data Source, and Contact, where users can view data within the TianGong database.
 
-## Dataset Information 
+## Dataset Information
 
 Includes geographical location (with a link to a comprehensive list of regional abbreviations), time period, system boundary descriptions, and input/output data.
 
-Covers various industries, with each industry briefly introduced, including but not limited to industry background, dataset content, and data providers (with a link to the relevant website).
+覆盖.....等行业，
+
+每个行业一句话或者一段话介绍其具体内容，包括但不限于行业介绍、数据集内容、数据提供者（链接到相应网站）
 
 ## Dataset Features
 
-Traceability ...
+可追溯、
 
 ## System Model
 
