@@ -5,7 +5,7 @@ This website is built using [Docusaurus](https://docusaurus.io/), a modern stati
 ### Installation
 
 ```bash
-npm install
+npm ci
 ```
 
 ### Local Development
@@ -45,5 +45,5 @@ If you are using GitHub pages for hosting, this command is a convenient way to b
 ### Translation
 
 ```bash
-npx docusaurus write-translations --locale zh-CN
+npx docusaurus write-translations --locale en
 ```
