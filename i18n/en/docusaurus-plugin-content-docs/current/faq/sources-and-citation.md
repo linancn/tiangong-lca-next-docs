@@ -6,7 +6,7 @@ sidebar_position: 2
 
 How can data traceability and transparency be ensured?
 
-定期更新数据库和方法学,确保用户始终使用最新的LCA标准和数据。
+The database and methodologies are regularly updated to ensure that users consistently use the latest LCA standards and data.
 
 How to correctly cite data?
 
