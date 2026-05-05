@@ -14,7 +14,7 @@ sidebar_position: 1
 
 当前有两层基线需要区分：
 
-- **Docs 站点仓**：`package.json` 当前声明 `node >=18.0`
+- **Docs 站点仓**：`package.json` 当前声明 `node >=20.19.0`
 - **产品仓 `../tiangong-lca-next`**：工程基线当前是 **Node 24**
 
 ### 推荐做法

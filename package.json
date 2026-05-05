@@ -19,23 +19,23 @@
     "ncu:update": "npx npm-check-updates -u"
   },
   "dependencies": {
-    "@docusaurus/core": "3.9.2",
-    "@docusaurus/preset-classic": "3.9.2",
+    "@docusaurus/core": "3.10.1",
+    "@docusaurus/preset-classic": "3.10.1",
     "@mdx-js/react": "^3.1.1",
     "clsx": "^2.1.1",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "react-player": "^3.4.0",
     "rehype-mathjax": "^7.1.0",
     "remark-math": "^6.0.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.9.2",
-    "@docusaurus/tsconfig": "3.9.2",
-    "@docusaurus/types": "3.9.2",
-    "markdownlint-cli2": "^0.20.0",
-    "npm-check-updates": "^19.3.2",
+    "@docusaurus/module-type-aliases": "3.10.1",
+    "@docusaurus/tsconfig": "3.10.1",
+    "@docusaurus/types": "3.10.1",
+    "markdownlint-cli2": "^0.22.1",
+    "npm-check-updates": "^22.1.0",
     "typescript": "~5.9.3"
   },
   "browserslist": {
@@ -51,6 +51,6 @@
     ]
   },
   "engines": {
-    "node": ">=18.0"
+    "node": ">=20.19.0"
   }
 }

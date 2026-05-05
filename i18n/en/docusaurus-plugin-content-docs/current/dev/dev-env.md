@@ -14,7 +14,7 @@ If your work also involves aligning docs with product behaviour, continue with
 
 There are currently two baselines to keep in mind:
 
-- **Docs site repo**: `package.json` currently declares `node >=18.0`
+- **Docs site repo**: `package.json` currently declares `node >=20.19.0`
 - **Product repo `../tiangong-lca-next`**: the current engineering baseline is **Node 24**
 
 ### Recommended approach

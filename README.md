@@ -13,7 +13,7 @@ changes in Chinese, update the English mirror in the same change.
 
 ## Environment
 
-- Docs repo runtime: `package.json` currently allows `node >=18.0`
+- Docs repo runtime: `package.json` currently allows `node >=20.19.0`
 - Recommended workspace baseline: **Node 24**
 
 If you are working across both docs and `../tiangong-lca-next`, use Node 24 to avoid switching
