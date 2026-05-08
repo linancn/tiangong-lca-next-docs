@@ -23,8 +23,11 @@ checkPaths:
   - src/**
   - static/**
   - TODO.docs-system-gaps.md
-lastReviewedAt: 2026-05-03
-lastReviewedCommit: f98057b9104556ba4fa7a79f5409565e6aed24a8
+  - .githooks/pre-push
+  - scripts/docpact-gate.sh
+  - scripts/install-git-hooks.sh
+lastReviewedAt: 2026-05-08
+lastReviewedCommit: 77fb69cdd95f467f5f4841cf8e0b42b451dba3ce
 related:
   - AGENTS.md
   - .docpact/config.yaml
@@ -52,3 +55,7 @@ Do not document product behavior here without checking the product repository wh
 ## Integration Semantics
 
 A merged PR in this repository is repo-complete only. If the updated docs site snapshot must ship through the workspace, root integration must deliberately update the `tiangong-lca-next-docs` submodule pointer after merge.
+
+## Local Docpact Push Gate
+
+This repository has a versioned local `pre-push` hook under `.githooks/pre-push` that delegates to `scripts/docpact-gate.sh`. The hook is a local developer guard for docpact config validation and enforced doc-governance linting; CI remains the authoritative PR enforcement path.

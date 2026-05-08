@@ -23,8 +23,11 @@ checkPaths:
   - docs/**
   - i18n/en/docusaurus-plugin-content-docs/current/**
   - TODO.docs-system-gaps.md
-lastReviewedAt: 2026-05-03
-lastReviewedCommit: f98057b9104556ba4fa7a79f5409565e6aed24a8
+  - .githooks/pre-push
+  - scripts/docpact-gate.sh
+  - scripts/install-git-hooks.sh
+lastReviewedAt: 2026-05-08
+lastReviewedCommit: 77fb69cdd95f467f5f4841cf8e0b42b451dba3ce
 related:
   - AGENTS.md
   - .docpact/config.yaml
@@ -61,3 +64,13 @@ docpact lint --root . --base origin/main --head HEAD --mode enforce
 ```
 
 The repository PR workflow runs the same docpact config validation and PR-shaped lint gate.
+
+## Local Docpact Push Gate
+
+Install the versioned local hook once per checkout:
+
+```bash
+./scripts/install-git-hooks.sh
+```
+
+The `pre-push` hook runs `scripts/docpact-gate.sh`, which performs strict config validation and `docpact lint --mode enforce` before the push leaves the machine. The default comparison base is `origin/main`. Override it for unusual stacks with `DOCPACT_BASE_REF=<ref>` or `scripts/docpact-gate.sh --base <ref>`. The gate writes its detailed report to a temporary file so normal pushes do not create `.docpact/runs/` artifacts.
