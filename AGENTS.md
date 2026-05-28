@@ -81,7 +81,7 @@ Route those tasks to:
 
 ## Runtime Facts
 
-- Repo-local documentation governance is enforced through `.docpact/config.yaml` and `.github/workflows/ai-doc-lint.yml`.
+- Repo-local documentation governance is encoded in `.docpact/config.yaml` and enforced locally by the pre-push docpact gate; `.github/workflows/ai-doc-lint.yml` is manual-dispatch fallback.
 - Chinese docs are the source of truth for this site; English pages are maintained mirrors and must be updated in the same change
 - The canonical local commands are `npm run lint`, `npm run build`, and `npm run typecheck`
 - Use Playwright or equivalent product verification only when text inspection of `../tiangong-lca-next` is not enough to confirm the current UI flow or screenshot target
