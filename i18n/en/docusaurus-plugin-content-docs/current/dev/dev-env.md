@@ -35,6 +35,8 @@ If your work also involves aligning docs with product behaviour, continue with
 
 ## Node baseline
 
+<!-- docs-impact-review: 2026-07-01 issue 334 reviewed docs:llms and publication-scope commands after mapped public docs updates; no reader-facing workflow change required. -->
+
 There are currently two baselines to keep in mind:
 
 - **Docs site repo**: `package.json` currently declares `node >=18.0`

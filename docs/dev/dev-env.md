@@ -35,6 +35,8 @@ related:
 
 ## Node 基线
 
+<!-- docs-impact-review: 2026-07-01 issue 334 reviewed docs:llms and publication-scope commands after mapped public docs updates; no reader-facing workflow change required. -->
+
 当前有两层基线需要区分：
 
 - **Docs 站点仓**：`package.json` 当前声明 `node >=18.0`

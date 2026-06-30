@@ -46,6 +46,8 @@ related:
   - TODO.docs-system-gaps.md
 ---
 
+<!-- docs-impact-review: 2026-06-30 issue 334 reviewed public content and publication pipeline workflow boundaries for UUID reference search and review-submit gate docs; no repo-contract change required. -->
+
 ## Repo Contract
 
 `tiangong-lca-next-docs` owns the public TianGong LCA documentation site built with Docusaurus. Start here when the task may change published docs pages, navigation, screenshots, or the durable backlog that tracks docs drift against the product.
