@@ -20,8 +20,8 @@ checkPaths:
   - scripts/check-publication-scope.mjs
   - context7.json
   - static/llms.txt
-lastReviewedAt: 2026-06-30
-lastReviewedCommit: 343f5b408d9ed74bc646171dbd6a3c14ca92adfb
+lastReviewedAt: 2026-07-01
+lastReviewedCommit: b52261c56f0bf6c7455a5f16c667c317c2b8966e
 related:
   - docs/dev/dev-env.md
   - docs/agents/repo-validation.md
