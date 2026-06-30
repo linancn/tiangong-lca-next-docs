@@ -30,6 +30,8 @@ related:
 This page explains the local setup for `tiangong-lca-next-docs` and how its Node baseline relates to
 the product repo at `../tiangong-lca-next`.
 
+<!-- docs-impact-review: 2026-06-30 issue 334 reran publication and build commands for mapped public-doc updates; local development commands remain current. -->
+
 If your work also involves aligning docs with product behaviour, continue with
 [Docs / Product Sync Guide](./docs-product-sync).
 

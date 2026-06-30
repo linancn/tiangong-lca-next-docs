@@ -40,6 +40,8 @@ related:
   - docs/agents/repo-validation.md
 ---
 
+<!-- docs-impact-review: 2026-06-30 issue 334 confirmed the mapped public-doc edits stay within next-docs ownership and do not alter product/repo boundary semantics. -->
+
 ## next-docs Repo Architecture
 
 `tiangong-lca-next-docs` owns the public TianGong LCA documentation site built with Docusaurus.

@@ -28,6 +28,8 @@ related:
   - docs/dev/dev-env.md
 ---
 
+<!-- docs-impact-review: 2026-06-30 issue 334 reran llms, publication-scope, lint, typecheck, and build validation for the mapped public-doc updates; README workflow remains accurate. -->
+
 ## TianGong LCA Docs
 
 This repository contains the public Docusaurus site for TianGong LCA.

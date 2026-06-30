@@ -22,6 +22,13 @@ first, then submit again.
 
 ![Submission validation prompt](img/data-problem.png)
 
+For process datasets, **Submit for review** first enters the **Numerical stability gate**. Common
+states include “Review submission is queued,” “Numerical stability gate is running,” “Review
+submission is waiting for the numerical stability gate to finish,” and “Numerical stability gate
+passed. Submitting for review now.” If the page says submission is still processing in the
+background, click **Submit for review** again later to refresh the latest status. If the gate blocks
+submission, fix the reported data issues, save again, and resubmit.
+
 ## Who does what
 
 | Role | Primary responsibility | Main entry |

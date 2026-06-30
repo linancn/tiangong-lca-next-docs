@@ -30,6 +30,8 @@ related:
 本页说明 `tiangong-lca-next-docs` 的本地开发环境，以及它与产品仓
 `../tiangong-lca-next` 之间的 Node 基线关系。
 
+<!-- docs-impact-review: 2026-06-30 issue 334 reran publication and build commands for mapped public-doc updates; local development commands remain current. -->
+
 如果您这次修改还涉及文档与产品行为对齐，请继续阅读
 [Docs / Product 同步指南](./docs-product-sync)。
 

@@ -110,5 +110,5 @@ Custom unit groups or flow properties can introduce conversion issues or LCIA fa
 
 1. **Save drafts** frequently to avoid losing progress.  
 2. **Run `Data check`** on the process or model editor to validate required fields and references.  
-3. **Submit for review** and monitor the status via the notification center or the filters described in [Data Review](/en/user-guide/data-review).  
+3. **Submit for review** and monitor the status via the notification center or the filters described in [Data Review](/en/user-guide/data-review). For process datasets, the system may run a **Numerical stability gate** first. If you see “Review submission is queued,” “Numerical stability gate is running,” or “Review submission is still processing in the background,” make sure the data is saved and click **Submit for review** again later to refresh the latest status.  
 4. **Collaborate** by contributing the dataset to your team if others need to continue the work.
