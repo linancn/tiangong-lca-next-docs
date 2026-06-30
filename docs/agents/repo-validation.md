@@ -40,6 +40,8 @@ related:
   - docs/agents/repo-architecture.md
 ---
 
+<!-- docs-impact-review: 2026-06-30 issue 334 validated mapped public-doc updates with placement, llms, publication-scope, lint, typecheck, build, and docpact gates. -->
+
 ## next-docs Validation Guide
 
 The canonical local commands are:

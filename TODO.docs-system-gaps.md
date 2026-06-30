@@ -71,6 +71,8 @@ of truth once a gap has been identified.
   density metadata instead.
 - The public docs site is primarily for human readers, so use screenshots when they materially
   improve comprehension, but do not require screenshots on every page.
+- 2026-06-30 docs-impact issue 334 review: UUID reference search and review-submit gate behavior
+  were covered by the mapped public-doc updates in this PR; no additional backlog item is required.
 
 ## Status Legend
 
