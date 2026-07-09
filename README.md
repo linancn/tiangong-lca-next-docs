@@ -20,9 +20,9 @@ checkPaths:
   - scripts/publication-policy.mjs
   - context7.json
   - static/llms.txt
-lastReviewedAt: 2026-07-08
-lastReviewedCommit: 8246f72601ead64197bfdbc5bbc861fa4e92b0dc
-lastReviewedNote: "Reviewed docs-impact issue #377 public docs and llms.txt changes; setup, validation, and publication commands remain accurate."
+lastReviewedAt: 2026-07-09
+lastReviewedCommit: 4f364ffcc15f236eb4e5ec13963870370bec7a10
+lastReviewedNote: "Reviewed docs-impact issue #380 public docs and llms.txt changes; setup, validation, and publication commands remain accurate."
 related:
   - AGENTS.md
   - docs/agents/repo-validation.md
