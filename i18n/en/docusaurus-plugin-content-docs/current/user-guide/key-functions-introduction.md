@@ -20,7 +20,7 @@ shows process-flow relationships, lets presenters switch graph layouts and map s
 search, quick selection, and cache status so they can tell whether the graph is ready. Use the
 dashboard for presentation, public dashboard, or offline demo scenarios, not for editing data.
 
-![The Process Flow Graph view on the national carbon dashboard shows the graph toolbar, graph loading status, and the screen 05 indicator.](./img/national-carbon-flow-graph.png)
+![The Process Flow Graph view on the national carbon dashboard shows the graph toolbar, graph loading status, and the screen 05 indicator.](pathname:///docs/user-guide/img/national-carbon-flow-graph.png)
 
 ## Global top-bar controls
 

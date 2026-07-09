@@ -13,7 +13,7 @@ page after signing in. The guide shows the **TianGong Life Cycle Database** over
 **Operation Demo Video**, the **Process Data Development Workflow**, and the data-object overview so
 you can confirm the preparation order before entering **My Data**.
 
-![The Data Development Guide on the Welcome page shows the database overview, operation demo video, process workflow, and data-object cards.](./img/welcome-data-development-guide.png)
+![The Data Development Guide on the Welcome page shows the database overview, operation demo video, process workflow, and data-object cards.](pathname:///docs/user-guide/img/welcome-data-development-guide.png)
 
 ### Common rules
 
