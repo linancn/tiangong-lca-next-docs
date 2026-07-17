@@ -22,7 +22,7 @@ checkPaths:
   - static/llms.txt
 lastReviewedAt: 2026-07-09
 lastReviewedCommit: ed8fedbb03cf43c7db8061a27913eb86307a8c02
-lastReviewedNote: "Reviewed docs-impact issue #380 public docs, mirrored screenshots, and llms.txt changes; local dev and publication command guidance remains accurate."
+lastReviewedNote: "Reviewed docs-impact issue #377 public docs and llms.txt changes; local dev and publication command guidance remains accurate."
 related:
   - i18n/en/docusaurus-plugin-content-docs/current/dev/dev-env.md
   - docs/agents/repo-validation.md
