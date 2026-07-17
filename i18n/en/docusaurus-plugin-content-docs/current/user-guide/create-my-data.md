@@ -8,6 +8,11 @@ Within “My Data” you control the full lifecycle of TianGong LCA datasets. Th
 
 ## Before you start
 
+When you develop process data for the first time, open **Data Development Guide** from the Welcome
+page after signing in. The guide shows the **TianGong Life Cycle Database** overview, the
+**Operation Demo Video**, the **Process Data Development Workflow**, and the data-object overview so
+you can confirm the preparation order before entering **My Data**.
+
 ### Common rules
 
 1. **Language fields**: Whenever a field offers multiple languages, the English input is mandatory. Match the language selector to the content you enter.  
