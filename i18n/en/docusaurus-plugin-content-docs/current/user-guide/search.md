@@ -36,5 +36,6 @@ Search results for "coal":
 - Search results are subject to user permissions; "my data" and "team data" searches only return records the signed-in user can access
 - Commercial data module only displays metadata search results
 - Chinese terms, English terms, common abbreviations, and CAS numbers can use standardized aliases to improve recall stability
+- When a search term contains quotation marks, backslashes, or PGroonga query-syntax characters, hybrid search escapes the term before full-text recall; you usually do not need to remove those characters manually to avoid syntax conflicts
 - To trace where an ID is referenced, copy the complete UUID, enable **Reference Lookup** in the related data list, and search. If the input is not a complete UUID, the system asks you to complete it. Reference Lookup shows up to the first 50 results; if no rows return, no referencing records were found in the current data scope and permission boundary
 - Using standard classification systems improves search efficiency
