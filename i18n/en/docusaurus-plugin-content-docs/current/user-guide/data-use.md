@@ -19,6 +19,8 @@ sidebar_position: 5
 5. View Historical Data: Click "View" next to specific versions to see detailed historical data. When a page supports version selection, choose the target historical version and submit it.
 6. Continue the same dataset ID: To create a new version from a historical version, select the source version in **All Versions** and click **Create Version**. The form shows “The new version will be generated automatically,” and the system assigns the next version when you save. If you need an independently editable copy instead, use **Copy Data**.
 
+When you move from viewing data into your first process-data authoring task, open **Data Development Guide** on the home page first. Use its workflow, data-object notes, and operation demo video to prepare inputs, outputs, sources, and units. If the demo video fails to load, click **Reload** or try again later.
+
 ![](./img/open1.png)
 
 ## Citing Data

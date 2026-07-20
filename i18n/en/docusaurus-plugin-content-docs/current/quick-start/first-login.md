@@ -30,6 +30,13 @@ If you already have an account, please follow these steps to log in:
 
 After your first login, you can click your email address in the upper right corner. A dropdown menu will appear with options for **Account Profile** and **Logout**. Click **[Account Profile](../user-guide/account-profile)** to customize your settings.
 
+If you are preparing process data for the first time, open **Data Development Guide** on the home page. It shows the process data workflow, data objects, and operation demo video. The video first shows “Loading video...”; if it reports “Video failed to load,” click **Reload** or try again later.
+
+![Operation demo video area in Data Development Guide](../../../../../docs/quick-start/img/docs-impact-issue-380-welcome-guide.png)
+
+1. Data Development Guide title
+2. Operation demo video area
+
 ## Forgot Password
 
 If you have forgotten your password, follow these steps to recover it:

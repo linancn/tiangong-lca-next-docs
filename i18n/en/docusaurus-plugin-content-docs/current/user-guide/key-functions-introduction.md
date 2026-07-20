@@ -14,9 +14,13 @@ If you receive or need to present a `/dashboard/national-carbon` link, you can o
 carbon dashboard directly. It is not shown in the normal menu and does not require entering the
 signed-in workspace first.
 
-The dashboard presents national carbon data platform progress across four views: **Overview**,
-**Status**, **Outcomes**, and **Computable**. Use it for presentation, public dashboard, or offline
-demo scenarios, not for editing data.
+The dashboard presents national carbon data platform progress across five views: **Overview**,
+**Status**, **Outcomes**, **Computable**, and **Flow Graph**. Use it for presentation, public
+dashboard, or offline demo scenarios, not for editing data.
+
+**Flow Graph** shows process-flow relationships and regional graph views. It can also display graph
+cache build status; if the cache is not ready or needs to be regenerated, wait for the background
+task to finish, or ask an authorised operator to rerun the graph cache build from the dashboard.
 
 ## Global top-bar controls
 

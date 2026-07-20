@@ -83,6 +83,8 @@ description: 说明顶部全局入口中的 TIDAS ZIP 导入、导出，以及�
 
 - EcoSpold1 / EcoSpold2 转换会尽量保留来源过程、流、交换编号、分类、地理位置、CAS 号和数值文本；无法安全写入正式字段的来源信息会保存在 TIDAS import trace 中。
 - openLCA JSON-LD 转换会把可解析的 `defaultProvider` 关系生成候选生命周期模型，并把无法直接映射的来源元数据保留为 trace，便于后续人工核对。
+- openLCA JSON-LD 中的交换量会尽量换算到对应流的参考流属性基准单位；原始数值、单位和流属性会保留在 trace 中，便于复核来源数据。
+- 如果部分交换量无法完成单位换算，`conversion-report.json` 会记录未换算原因。导入前请优先处理这些警告，避免把非基准单位数量误当作正式结果使用。
 - 转换器默认会写出 `process-bundles/<process_uuid>/` 子目录，便于下游 AI 或导入 worker 按单个过程处理依赖对象；如不需要，可在转换命令中加入 `--no-process-bundles`。
 - 专家审查用 mapping CSV 默认不会生成。需要逐字段复核时，可在转换命令中加入 `--write-mapping-csv`；转换成功并通过校验后会生成 `mapping.csv.gz`，用于检查正式字段、trace-only 字段、占位字段和生成字段。导入前请优先查看该文件以及 `conversion-report.json`。
 - 若报告中出现 schema、引用、CAS 或分类问题，应先回到来源数据或转换配置中修正，再重新生成 ZIP。

@@ -8,6 +8,8 @@ Within “My Data” you control the full lifecycle of TianGong LCA datasets. Th
 
 ## Before you start
 
+If this is your first time preparing process data, return to the home page and open **Data Development Guide** first. It shows the process data workflow, data objects, and operation demo video. The video loads from platform files; if the page reports “Video failed to load,” click **Reload** or try again later.
+
 ### Common rules
 
 1. **Language fields**: Whenever a field offers multiple languages, the English input is mandatory. Match the language selector to the content you enter.  
