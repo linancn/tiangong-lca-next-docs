@@ -14,9 +14,12 @@ If you receive or need to present a `/dashboard/national-carbon` link, you can o
 carbon dashboard directly. It is not shown in the normal menu and does not require entering the
 signed-in workspace first.
 
-The dashboard presents national carbon data platform progress across four views: **Overview**,
-**Status**, **Outcomes**, and **Computable**. Use it for presentation, public dashboard, or offline
-demo scenarios, not for editing data.
+The dashboard presents national carbon data platform progress across five views: **Overview**,
+**Status**, **Outcomes**, **Computable**, and **Process Flow Topology**. The topology view shows
+process and flow connections, lets you switch between sphere 3D, expanded 2D, and geographic map
+layouts, and uses node search, quick selection, and cache job status to show whether the graph is
+ready. Use the dashboard for presentation, public dashboard, or offline demo scenarios, not for
+editing data.
 
 ## Global top-bar controls
 

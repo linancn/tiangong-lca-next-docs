@@ -30,6 +30,8 @@ If you already have an account, please follow these steps to log in:
 
 After your first login, you can click your email address in the upper right corner. A dropdown menu will appear with options for **Account Profile** and **Logout**. Click **[Account Profile](../user-guide/account-profile)** to customize your settings.
 
+The home page also shows the **Data Development Guide** entry. When you open it, **Operation Demo Video** first shows **Loading video...**. If the video is temporarily unavailable, the page shows **Video failed to load** and offers **Reload**. The data creation workflow still follows [Create My Data](../user-guide/create-my-data).
+
 ## Forgot Password
 
 If you have forgotten your password, follow these steps to recover it:
