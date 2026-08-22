@@ -3,5 +3,7 @@
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
     "baseUrl": "."
-  }
+  },
+  // spike/ 携带自己的 tsconfig（Next.js 16 + TS7 工具链），不属于 Docusaurus 类型检查范围
+  "exclude": ["node_modules", "spike"]
 }
