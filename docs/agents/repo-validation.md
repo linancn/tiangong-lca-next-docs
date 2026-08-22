@@ -34,9 +34,9 @@ checkPaths:
   - scripts/docpact
   - scripts/docpact-gate.sh
   - scripts/install-git-hooks.sh
-lastReviewedAt: 2026-08-20
-lastReviewedCommit: e76d5571a6fa495e103576e2a69a9c2407522458
-lastReviewedNote: "Reviewed for docs-impact Issue #619 after rebasing current main into PR #129: bilingual, llms.txt, screenshot, publication-scope, lint, typecheck, build, and docpact proof requirements remain current for TIDAS import API docs."
+lastReviewedAt: 2026-08-22
+lastReviewedCommit: b89fa47360347726e1de3fe62c983b16b40a268f
+lastReviewedNote: "Reviewed for P0A spike Issue #131: root `tsc` excludes `spike/` (temporary Next.js 16 + TS7 spike scaffold with its own tsconfig); Docusaurus validation commands and proof expectations unchanged for regular docs changes."
 related:
   - AGENTS.md
   - .docpact/config.yaml
@@ -69,6 +69,7 @@ Use the narrowest command set that proves the touched area.
 - Screenshot replacement must preserve the prior composition within the declared tolerance unless the manifest records an `aspectRatioChangeReason`. A new screenshot must name a repository image with the same `compositionClass`; the validator does not force unrelated screenshots into one global ratio.
 - Partial fixes to product/docs drift must update `TODO.docs-system-gaps.md`.
 - Documentation-governance changes require docpact validation.
+- `npm run typecheck` (root `tsc`) excludes `spike/`: the P0A compatibility spike (issue #131) carries its own Next.js 16 + TypeScript 7 toolchain and tsconfig with `@/*` aliases, so it is outside the Docusaurus typecheck scope. The spike is a temporary scaffold and will be superseded by the P1 production skeleton.
 
 ## Docpact Validation
 
