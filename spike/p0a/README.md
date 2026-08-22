@@ -78,4 +78,4 @@ pnpm build:spike
 - [ ] EdgeOne Makers 建项目连本分支，Root Directory `spike/p0a`，跑 Preview 构建
 - [ ] 确认 Global/China 控制面与 Acceleration Region / ICP 约束
 - [ ] Preview 构建日志断言 node/pnpm/git 实际版本
-- [ ] Push 分支 + Draft PR 验证 GitHub Actions 全绿
+- [x] Push 分支 + Draft PR 验证 GitHub Actions 全绿（PR #132 validate ✅ 2026-08-22）
