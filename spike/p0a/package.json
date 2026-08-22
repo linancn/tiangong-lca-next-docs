@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:spike": "node scripts/check-env.mjs && next build && node scripts/verify-out.mjs",
+    "build:spike": "node scripts/spike-build.mjs",
     "typecheck": "next typegen && tsc --noEmit",
     "check:env": "node scripts/check-env.mjs",
     "verify:out": "node scripts/verify-out.mjs"
