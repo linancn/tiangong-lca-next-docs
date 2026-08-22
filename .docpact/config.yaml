@@ -1,9 +1,9 @@
 version: 1
 layout: repo
-lastReviewedAt: "2026-08-20"
-lastReviewedCommit: "e76d5571a6fa495e103576e2a69a9c2407522458"
-reviewNote: "Reviewed for docs-impact Issue #619 after rebasing current main into PR #129: TIDAS import validation guidance remains within existing public content, llms.txt generation, publication-scope, screenshot validation, and repo routing rules."
-lastReviewedNote: "Reviewed for docs-impact Issue #619 after conflict resolution: bilingual TIDAS import API guidance and generated llms.txt update do not change routing, ownership, publication, or screenshot evidence contracts."
+lastReviewedAt: "2026-08-22"
+lastReviewedCommit: "b89fa47360347726e1de3fe62c983b16b40a268f"
+reviewNote: "Reviewed for P0A spike Issue #131: no routing/ownership changes; spike/** stays unmatched until P0C."
+lastReviewedNote: "Reviewed for P0A spike Issue #131: spike/** paths are intentionally unmatched by routing rules until the P0C governance rework; ownership, publication-scope, and screenshot contracts unchanged for regular docs changes."
 
 catalog:
   repos:

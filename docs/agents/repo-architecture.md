@@ -34,9 +34,9 @@ checkPaths:
   - scripts/docpact
   - scripts/docpact-gate.sh
   - scripts/install-git-hooks.sh
-lastReviewedAt: 2026-08-20
-lastReviewedCommit: e76d5571a6fa495e103576e2a69a9c2407522458
-lastReviewedNote: "Reviewed for docs-impact Issue #619 after rebasing current main into PR #129: next-docs still owns bilingual public docs, generated llms.txt, and publication assets while TIDAS validation behavior remains sourced from product/tooling repos."
+lastReviewedAt: 2026-08-22
+lastReviewedCommit: b89fa47360347726e1de3fe62c983b16b40a268f
+lastReviewedNote: "Reviewed for P0A spike Issue #131: architecture contracts unchanged; spike/ holds a temporary Fumadocs/TS7 verification app (issue #131) that will be superseded by the P1 production skeleton."
 related:
   - AGENTS.md
   - .docpact/config.yaml
