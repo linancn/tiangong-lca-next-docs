@@ -38,9 +38,9 @@ checkPaths:
   - scripts/docpact
   - scripts/docpact-gate.sh
   - scripts/install-git-hooks.sh
-lastReviewedAt: 2026-08-20
-lastReviewedCommit: e76d5571a6fa495e103576e2a69a9c2407522458
-lastReviewedNote: "Reviewed for docs-impact Issue #619 after rebasing current main into PR #129: bilingual public-doc, validation, publication, screenshot, and workspace-integration boundaries remain current for TIDAS import API validation guidance."
+lastReviewedAt: 2026-08-22
+lastReviewedCommit: b89fa47360347726e1de3fe62c983b16b40a268f
+lastReviewedNote: "Reviewed for P0A spike Issue #131: temporary spike/ scaffold (Next.js 16 + TS7 compatibility verification) is out of Docusaurus routing scope until P0C rewires governance; bilingual docs, publication, and workspace boundaries unchanged."
 related:
   - .docpact/config.yaml
   - docs/agents/repo-architecture.md
