@@ -1,0 +1,37 @@
+{
+  "name": "tiangong-lca-docs-spike-p0a",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.22.0",
+  "engines": {
+    "node": ">=24.18.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:spike": "node scripts/check-env.mjs && next build && node scripts/verify-out.mjs",
+    "typecheck": "next typegen && tsc --noEmit",
+    "check:env": "node scripts/check-env.mjs",
+    "verify:out": "node scripts/verify-out.mjs"
+  },
+  "dependencies": {
+    "@fumadocs/language": "0.2.2",
+    "algoliasearch": "5.57.0",
+    "fumadocs-core": "16.15.0",
+    "fumadocs-mdx": "15.3.1",
+    "fumadocs-ui": "16.15.0",
+    "next": "16.3.2",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/mdx": "2.0.14",
+    "@types/node": "24.13.3",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "postcss": "8.5.26",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2"
+  }
+}
