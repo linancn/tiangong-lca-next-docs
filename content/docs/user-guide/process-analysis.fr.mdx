@@ -191,11 +191,11 @@ demande totale de l'échange d'entrée.
 Certaines analyses peuvent déclencher du travail de résolution en arrière-plan. Si le traitement
 prend du temps, surveillez le **Centre de tâches** dans la barre supérieure :
 
-- Le centre de tâches réunit **Calcul LCA**, import/export TIDAS et tâches d'envoi en revue dans un panneau unique.
-- Vous pouvez basculer par type de tâche ; le panneau affiche la progression au moyen de barres, d'étiquettes d'état et de libellés d'étape. Les tâches d'envoi en revue peuvent traverser les phases « en file », « contrôle en cours », « en attente de contrôle », « soumission en cours », « soumis », « bloqué », « périmé », « annulé » ou « erreur ».
-- Utilisez **Voir** ou **Détails** pour inspecter les identifiants de résultat, d'instantané, de tâche, les causes d'échec et les diagnostics. En cas d'échec d'envoi en revue, ouvrez le motif du contrôle, le `review_submit_job_id` et les diagnostics de la tâche worker avant de décider d'une nouvelle tentative.
-- Si un contrôle d'envoi en revue est déjà en cours pour la même version de processus, la page invite à réessayer plus tard plutôt que de créer une tâche en double.
-- Les tâches terminées peuvent être effacées ; les tâches échouées ou annulées devraient d'abord être ouvertes pour décider de relancer l'analyse ou la soumission concernée.
+- Le centre de tâches réunit le travail en arrière-plan du **Calcul LCA** et des imports/exports TIDAS.
+- Vous pouvez basculer par type ; progression, état et phase indiquent le traitement courant.
+- **Voir** ou **Détails** donne les identifiants de résultat, d'instantané et de tâche LCA, ou les causes d'échec et diagnostics d'un paquet TIDAS.
+- La soumission actuelle d'un procédé en revue n'est pas une tâche Worker de contrôle dans ce centre. La plateforme vérifie synchroniquement données et références, puis appelle directement la commande de revue ; un refus serveur apparaît lors de l'action. Suivez la progression dans [Revue de données](/fr/docs/user-guide/data-review/) et les notifications.
+- Les tâches terminées peuvent être effacées ; ouvrez les tâches LCA/TIDAS échouées ou annulées avant de décider de les relancer.
 
 Si vous travaillez avec des packages TIDAS, consultez aussi les indications du centre de tâches
 dans [Import/export TIDAS ZIP et centre de tâches](/fr/docs/user-guide/tidas-zip-workflows/).

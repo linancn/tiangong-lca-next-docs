@@ -10,13 +10,12 @@ type Language = 'zh' | 'en' | 'de' | 'fr';
 interface HomePath {
   title: string;
   description: string;
-  slug: string;
+  anchor: 'journey-lca-study' | 'journey-data-production';
 }
 
 interface HomeCopy {
   eyebrow: string;
-  title: string;
-  titleLines?: readonly [string, string];
+  title: string | readonly [string, string];
   description: string;
   primary: string;
   secondary: string;
@@ -34,130 +33,121 @@ interface HomeCopy {
 const copy: Record<Language, HomeCopy> = {
   zh: {
     eyebrow: 'TianGong LCA · 开源生命周期评价平台',
-    title: '从数据到模型，完成生命周期评价',
-    titleLines: ['从数据到模型，', '完成生命周期评价'],
+    title: ['查找数据、建立模型并', '计算产品的环境影响'],
     description:
-      'TianGong LCA 将标准化数据、过程建模、LCIA 计算与团队评审串联起来。文档按真实任务组织，帮助你从查找数据、建立模型一路到理解结果。',
-    primary: '从快速入门开始',
-    secondary: '浏览任务指南',
-    pathsEyebrow: '任务指南',
-    pathsTitle: '从要完成的工作开始',
-    pathsDescription: '选择一个任务，直接进入对应步骤、界面说明和结果检查。',
-    openGuide: '打开指南',
+      'TianGong LCA 是一个生命周期评价（LCA）平台。你可以查找过程数据，把生产环节连接成产品系统，并计算气候变化等潜在环境影响。平台帮助组织计算和评审；研究目的、系统边界和最终结论仍需由使用者确定。',
+    primary: '完成 10–15 分钟快速开始',
+    secondary: '查看全部文档',
+    pathsEyebrow: '两类常见任务',
+    pathsTitle: '你现在想完成什么？',
+    pathsDescription: '选择最接近你当前工作的任务，再按步骤查看需要的方法说明和平台操作。',
+    openGuide: '查看操作步骤',
     paths: [
-      { title: '查找和使用数据', description: '搜索数据空间，查看数据集，并引用或复制所需记录。', slug: 'user-guide/data' },
-      { title: '创建数据与模型', description: '建立流和过程，连接交换，准备可计算的模型。', slug: 'user-guide/create-my-data' },
-      { title: '计算和解读 LCIA', description: '运行影响评价，查看过程或模型的结果。', slug: 'user-guide/lcia' },
-      { title: '评审与团队协作', description: '提交数据、处理反馈，并在团队数据空间协作。', slug: 'user-guide/data-review' },
+      { title: '分析一个产品的环境影响', description: '说明为什么计算和计算到哪里，准备数据、连接生产环节，再计算和解释结果。', anchor: 'journey-lca-study' },
+      { title: '整理并发布一份 LCA 数据', description: '记录数据来源，按 TIDAS 格式整理，检查后提交评审、发布和交换。', anchor: 'journey-data-production' },
     ],
     technicalLabel: '面向开发者与运维',
     integrationAction: '连接 MCP、CLI 与 OpenAPI',
     deploymentAction: '查看私有部署与开发',
     conceptMap: {
-      ariaLabel: '生命周期评价概念图：参考数据连接过程关系，形成产品系统并生成 LCIA 结果。',
+      ariaLabel: '生命周期评价概念图：参考数据连接生产过程，形成产品系统并计算环境影响结果。',
       title: '生命周期评价概念图',
       referenceLabel: '参考数据',
       referenceItems: ['过程数据', '基本流', '影响方法'],
       relationsLabel: '过程关系',
       relationItems: ['材料', '电力', '制造'],
       productSystemLabel: '产品系统',
-      resultsLabel: 'LCIA 结果',
+      resultsLabel: '环境影响结果',
       impactLabels: ['气候变化', '资源使用'],
     },
   },
   en: {
     eyebrow: 'TianGong LCA · Open life cycle assessment platform',
-    title: 'Find data, build models, and complete an LCA',
+    title: 'Find data, build models, and calculate product impacts',
     description:
-      'TianGong LCA brings standardised data, process modelling, LCIA, and team review into one workspace. Follow the documentation by task, from finding data to interpreting results.',
-    primary: 'Complete the first steps',
-    secondary: 'Browse task guides',
-    pathsEyebrow: 'Task guides',
-    pathsTitle: 'Start with the task you need to complete',
-    pathsDescription: 'Choose a task to open the relevant steps, interface guidance, and result checks.',
-    openGuide: 'Open guide',
+      'TianGong LCA is a life cycle assessment (LCA) platform. Use it to find process data, connect production activities into a product system, and calculate potential impacts such as climate change. The platform organises calculations and review; practitioners still define the study goal, system boundary, and final conclusions.',
+    primary: 'Complete the 10–15 minute Quick Start',
+    secondary: 'Browse all documentation',
+    pathsEyebrow: 'Two common tasks',
+    pathsTitle: 'What do you want to do?',
+    pathsDescription: 'Choose the task closest to your work, then follow the method guidance and platform steps.',
+    openGuide: 'View the steps',
     paths: [
-      { title: 'Find and use data', description: 'Search data spaces, inspect datasets, and reference or copy the records you need.', slug: 'user-guide/data' },
-      { title: 'Create data and models', description: 'Build flows and processes, connect exchanges, and prepare a model for assessment.', slug: 'user-guide/create-my-data' },
-      { title: 'Calculate and interpret LCIA', description: 'Run impact assessment and read results for processes and models.', slug: 'user-guide/lcia' },
-      { title: 'Review and collaborate', description: 'Submit contributions for review, address feedback, and work in team data spaces.', slug: 'user-guide/data-review' },
+      { title: 'Assess a product’s environmental impacts', description: 'Define why and how far to calculate, prepare data, connect production activities, then calculate and interpret results.', anchor: 'journey-lca-study' },
+      { title: 'Organise and publish LCA data', description: 'Record sources, structure the data in TIDAS, check it, then submit it for review, publication, and exchange.', anchor: 'journey-data-production' },
     ],
     technicalLabel: 'For developers and operators',
     integrationAction: 'Connect MCP, CLI, and OpenAPI',
     deploymentAction: 'View self-hosting and development',
     conceptMap: {
-      ariaLabel: 'Life cycle assessment concept map: reference data connects process relationships to a product system and LCIA results.',
+      ariaLabel: 'Life cycle assessment concept map: reference data connects production processes to a product system and environmental-impact results.',
       title: 'Life cycle assessment concept map',
       referenceLabel: 'Reference data',
       referenceItems: ['Process data', 'Elementary flows', 'Impact methods'],
       relationsLabel: 'Process relations',
       relationItems: ['Material', 'Electricity', 'Manufacturing'],
       productSystemLabel: 'Product system',
-      resultsLabel: 'LCIA results',
+      resultsLabel: 'Impact results',
       impactLabels: ['Climate change', 'Resource use'],
     },
   },
   de: {
     eyebrow: 'TianGong LCA · Offene Plattform für Ökobilanzen',
-    title: 'Daten finden, Modelle erstellen und eine Ökobilanz durchführen',
+    title: 'Daten finden, Modelle erstellen und Umweltwirkungen berechnen',
     description:
-      'TianGong LCA vereint standardisierte Daten, Prozessmodellierung, Wirkungsabschätzung und Teamprüfung in einem Arbeitsbereich. Folgen Sie der Dokumentation nach Aufgabe – von der Datensuche bis zur Interpretation der Ergebnisse.',
-    primary: 'Erste Schritte durchführen',
-    secondary: 'Aufgabenguides ansehen',
-    pathsEyebrow: 'Aufgabenguides',
-    pathsTitle: 'Beginnen Sie mit Ihrer aktuellen Aufgabe',
-    pathsDescription: 'Wählen Sie eine Aufgabe, um direkt die passenden Schritte, Bedienhinweise und Ergebniskontrollen zu öffnen.',
-    openGuide: 'Guide öffnen',
+      'TianGong LCA ist eine Plattform für Lebenszyklusanalysen (LCA). Sie können Prozessdaten finden, Produktionsschritte zu einem Produktsystem verbinden und potenzielle Umweltwirkungen wie den Klimawandel berechnen. Die Plattform strukturiert Berechnung und Prüfung; Untersuchungsziel, Systemgrenze und Schlussfolgerungen bleiben Aufgabe der Fachperson.',
+    primary: 'Schnellstart in 10–15 Minuten',
+    secondary: 'Alle Dokumente ansehen',
+    pathsEyebrow: 'Zwei häufige Aufgaben',
+    pathsTitle: 'Was möchten Sie tun?',
+    pathsDescription: 'Wählen Sie die passende Aufgabe und folgen Sie den methodischen Hinweisen und den Schritten in der Plattform.',
+    openGuide: 'Schritte ansehen',
     paths: [
-      { title: 'Daten finden und verwenden', description: 'Datenräume durchsuchen, Datensätze prüfen und benötigte Einträge referenzieren oder kopieren.', slug: 'user-guide/data' },
-      { title: 'Daten und Modelle erstellen', description: 'Flüsse und Prozesse anlegen, Austausche verknüpfen und ein berechenbares Modell vorbereiten.', slug: 'user-guide/create-my-data' },
-      { title: 'LCIA berechnen und auswerten', description: 'Wirkungsabschätzungen durchführen und Ergebnisse für Prozesse oder Modelle auswerten.', slug: 'user-guide/lcia' },
-      { title: 'Prüfen und zusammenarbeiten', description: 'Daten zur Prüfung einreichen, Rückmeldungen bearbeiten und in Team-Datenräumen arbeiten.', slug: 'user-guide/data-review' },
+      { title: 'Umweltwirkungen eines Produkts untersuchen', description: 'Zweck und Grenzen festlegen, Daten vorbereiten, Produktionsschritte verbinden und Ergebnisse berechnen und auswerten.', anchor: 'journey-lca-study' },
+      { title: 'LCA-Daten strukturieren und veröffentlichen', description: 'Quellen festhalten, Daten im TIDAS-Format strukturieren, prüfen und anschließend zur Prüfung und Veröffentlichung einreichen.', anchor: 'journey-data-production' },
     ],
     technicalLabel: 'Für Entwicklung und Betrieb',
     integrationAction: 'MCP, CLI und OpenAPI anbinden',
     deploymentAction: 'Self-Hosting und Entwicklung ansehen',
     conceptMap: {
-      ariaLabel: 'Konzeptkarte der Ökobilanz: Referenzdaten verbinden Prozessbeziehungen mit dem Produktsystem und den LCIA-Ergebnissen.',
+      ariaLabel: 'Konzeptkarte der Ökobilanz: Referenzdaten verbinden Produktionsprozesse mit dem Produktsystem und den Umweltwirkungsergebnissen.',
       title: 'Konzeptkarte der Ökobilanz',
       referenceLabel: 'Referenzdaten',
       referenceItems: ['Prozessdaten', 'Elementarflüsse', 'Wirkungsmethoden'],
       relationsLabel: 'Prozessbeziehungen',
       relationItems: ['Material', 'Strom', 'Herstellung'],
       productSystemLabel: 'Produktsystem',
-      resultsLabel: 'LCIA-Ergebnisse',
+      resultsLabel: 'Wirkungsergebnisse',
       impactLabels: ['Klimawandel', 'Ressourcennutzung'],
     },
   },
   fr: {
     eyebrow: 'TianGong LCA · Plateforme ouverte d’analyse du cycle de vie',
-    title: 'Trouvez des données, construisez des modèles et réalisez une ACV',
+    title: 'Trouver des données, construire un modèle et calculer les impacts',
     description:
-      'TianGong LCA réunit données normalisées, modélisation de procédés, évaluation des impacts et revue en équipe dans un même espace de travail. Suivez la documentation par tâche, de la recherche de données à l’interprétation des résultats.',
-    primary: 'Effectuer les premières étapes',
-    secondary: 'Parcourir les guides',
-    pathsEyebrow: 'Guides par tâche',
-    pathsTitle: 'Commencez par la tâche à accomplir',
-    pathsDescription: 'Choisissez une tâche pour accéder directement aux étapes, aux repères d’interface et aux contrôles de résultat.',
-    openGuide: 'Ouvrir le guide',
+      'TianGong LCA est une plateforme d’analyse du cycle de vie (ACV). Elle permet de trouver des données de procédé, de relier les étapes de production dans un système de produit et de calculer des impacts potentiels tels que le changement climatique. La plateforme organise le calcul et la revue ; l’objectif, la frontière du système et les conclusions restent à la charge du praticien.',
+    primary: 'Démarrage rapide en 10–15 minutes',
+    secondary: 'Voir toute la documentation',
+    pathsEyebrow: 'Deux tâches courantes',
+    pathsTitle: 'Que souhaitez-vous faire ?',
+    pathsDescription: 'Choisissez la tâche la plus proche de votre travail, puis suivez les indications méthodologiques et les étapes dans la plateforme.',
+    openGuide: 'Voir les étapes',
     paths: [
-      { title: 'Trouver et utiliser des données', description: 'Recherchez dans les espaces de données, examinez les jeux de données et référencez ou copiez les enregistrements utiles.', slug: 'user-guide/data' },
-      { title: 'Créer des données et des modèles', description: 'Créez des flux et des procédés, reliez les échanges et préparez un modèle calculable.', slug: 'user-guide/create-my-data' },
-      { title: 'Calculer et interpréter l’ACVI', description: 'Lancez l’évaluation des impacts et interprétez les résultats d’un procédé ou d’un modèle.', slug: 'user-guide/lcia' },
-      { title: 'Réviser et collaborer', description: 'Soumettez des données à révision, traitez les retours et travaillez dans les espaces d’équipe.', slug: 'user-guide/data-review' },
+      { title: 'Évaluer les impacts environnementaux d’un produit', description: 'Définir le but et les limites, préparer les données, relier les étapes de production, puis calculer et interpréter les résultats.', anchor: 'journey-lca-study' },
+      { title: 'Structurer et publier des données ACV', description: 'Consigner les sources, structurer les données au format TIDAS, les contrôler, puis les soumettre pour revue et publication.', anchor: 'journey-data-production' },
     ],
     technicalLabel: 'Pour les équipes techniques',
     integrationAction: 'Connecter MCP, la CLI et OpenAPI',
     deploymentAction: 'Voir l’auto-hébergement et le développement',
     conceptMap: {
-      ariaLabel: 'Carte conceptuelle de l’ACV : les données de référence relient les relations entre procédés au système de produit et aux résultats d’ACVI.',
+      ariaLabel: 'Carte conceptuelle de l’ACV : les données de référence relient les procédés de production au système de produit et aux résultats environnementaux.',
       title: 'Carte conceptuelle de l’ACV',
       referenceLabel: 'Données de référence',
       referenceItems: ['Données de procédé', 'Flux élémentaires', 'Méthodes d’impact'],
       relationsLabel: 'Relations de procédé',
       relationItems: ['Matière', 'Électricité', 'Fabrication'],
       productSystemLabel: 'Système de produit',
-      resultsLabel: 'Résultats ACVI',
+      resultsLabel: 'Résultats d’impact',
       impactLabels: ['Changement climatique', 'Ressources'],
     },
   },
@@ -183,8 +173,8 @@ export function DocsHome({ lang }: { lang: string }) {
             <div className="min-w-0 max-w-[38rem] max-[68rem]:max-w-[48rem]" data-hero-copy>
               <p className="docs-eyebrow">{content.eyebrow}</p>
               <h1 className="m-0 max-w-[14ch] text-[clamp(2.5rem,4.2vw,4rem)] leading-[1.08] font-[560] tracking-[-0.045em] text-balance max-[40rem]:max-w-full max-[40rem]:text-[clamp(2.2rem,10vw,2.8rem)] max-[40rem]:tracking-[-0.04em]" data-controlled-title>
-                {content.titleLines
-                  ? content.titleLines.map((line) => <span className="block whitespace-nowrap" data-title-line key={line}>{line}</span>)
+                {Array.isArray(content.title)
+                  ? content.title.map((line) => <span className="block" data-title-line key={line}>{line}</span>)
                   : content.title}
               </h1>
               <p className="mt-6 mb-0 max-w-[39rem] text-[clamp(1rem,1.35vw,1.125rem)] leading-[1.7] text-fd-muted-foreground">
@@ -201,7 +191,7 @@ export function DocsHome({ lang }: { lang: string }) {
                 </Link>
                 <Link
                   className={`${buttonVariants({ variant: 'outline' })} min-h-12 min-w-[11.5rem] justify-between rounded-[2px] border-fd-border bg-transparent px-4 py-3 text-sm font-medium transition-colors duration-100 max-[40rem]:w-full`}
-                  href={`/${language}/docs/user-guide/`}
+                  href={`/${language}/docs/`}
                 >
                   {content.secondary}
                 </Link>
@@ -221,13 +211,13 @@ export function DocsHome({ lang }: { lang: string }) {
               </h2>
               <p className="m-0 text-base leading-[1.65] text-fd-muted-foreground">{content.pathsDescription}</p>
             </div>
-            <Cards className="grid-cols-4 gap-3 max-[68rem]:grid-cols-2 max-[40rem]:grid-cols-1">
+            <Cards className="grid-cols-2 gap-3 max-[40rem]:grid-cols-1">
               {content.paths.map((path) => (
                 <Card
                   className="grid min-h-56 content-start gap-2.5 rounded-[2px] border-fd-border bg-fd-card p-5 text-inherit transition-colors duration-100 hover:border-fd-primary hover:bg-fd-accent max-[40rem]:min-h-48 [&>div:last-child]:self-end [&_h3]:m-0 [&_h3]:text-lg [&_h3]:leading-[1.35] [&_h3]:font-semibold [&_h3]:tracking-[-0.02em] [&_p]:m-0! [&_p]:text-sm [&_p]:leading-[1.6] [&_p]:text-fd-muted-foreground"
                   description={path.description}
-                  href={`/${language}/docs/${path.slug}/`}
-                  key={path.slug}
+                  href={`/${language}/docs/#${path.anchor}`}
+                  key={path.anchor}
                   title={path.title}
                 >
                   <span className="inline-flex items-center gap-2 text-xs font-medium text-fd-primary">

@@ -34,13 +34,15 @@ checkPaths:
   - context7.json
   - .github/workflows/**
 lastReviewedAt: 2026-08-30
-lastReviewedCommit: 23c1f194d44f22935845707cd00160e64ada2f1a
-lastReviewedNote: "Reviewed for Issue #163: EdgeOne's managed build uses its preinstalled pnpm directly and no longer mutates Corepack shims; routes, outputs, and publication trust boundaries are unchanged."
+lastReviewedCommit: ceb3b05325fa8467f350e87b08935a0b2b3bd909
+lastReviewedNote: "Reviewed for PR #160 follow-up: TIDAS task steps now enter through localized beginner overviews before field-level details, and the mobile title can wrap without changing route, runtime, or publication boundaries."
 related:
   - AGENTS.md
   - .docpact/config.yaml
   - docs/agents/repo-validation.md
 ---
+
+Review note, 2026-08-30: Home chooses between two plain-language tasks, DocsPortal owns their complete five-step maps, Quick Start owns one first-use exercise, and Overview owns the central terminology page.
 
 ## Architecture
 
@@ -71,9 +73,11 @@ Retired paths are intentionally absent. No application or hosting configuration 
 
 `components/lca-concept-map.tsx` owns the TianGong LCA hero signature. Its abstract reference-data → process-relations → product-system → LCIA-results topology is intentionally different from the TIDAS data-system/schema signature. The `data-hero-signature="lca-concept-map"` marker makes that distinction testable while shell widths, control placement, brand treatment, and accessibility behavior remain aligned between the sites.
 
-The four `content/docs/index*.mdx` sources render `components/docs-portal.tsx` inside the normal Fumadocs document layout. The portal deliberately keeps the document title and sidebar, then provides recommended task entry points, a five-step task route, and technical references. This keeps `/{lang}/docs/` useful without copying the marketing hero. The LCA portal exposes `data-docs-portal="lca-task-hub"` and `data-docs-portal-map="lca-task-route"`; the TIDAS site uses the same information hierarchy with a distinct system-module matrix.
+The four `content/docs/index*.mdx` sources render `components/docs-portal.tsx` inside the normal Fumadocs document layout. Home states the platform boundary and asks what the reader wants to complete; it does not duplicate the stages. The portal owns two complete maps: assessing a product from goal/scope through interpretation/report, and publishing reusable data from sources and intended use through TIDAS formatting, structure/reference checks, review/publication, and import/export/reuse. Each step labels whether it is a method choice, platform action, TIDAS data-format action, or a combination of platform work and professional judgement. Cross-site TIDAS targets use the same explicit locale. Beginner steps enter through the TIDAS core-module and tool overviews; those pages lead onward to field-level specification and validation details when the reader needs them. The current markers are `data-docs-portal-map-v2="two-lca-journeys"` and `data-docs-journey`; the earlier `data-docs-portal="lca-task-hub"` and `data-docs-portal-map="lca-task-route"` remain output compatibility markers.
 
-The four `content/docs/quick-start/index*.mdx` sources render `components/quick-start-guide.tsx` as a category-level first-session route. It keeps the ordinary document shell, then sequences account access and an operation walkthrough before branching into a first data, authoring, or LCIA task. Completion cues make each stage testable, while account, FAQ, and support links remain a low-emphasis fallback. The `data-quick-start-guide="first-session-route"` and `data-quick-start-map="three-stage-onboarding"` markers distinguish this local onboarding path from the broader five-stage docs-root map.
+The four `content/docs/quick-start/index*.mdx` sources render `components/quick-start-guide.tsx` as a category-level first-use exercise. It takes 10–15 minutes: sign in, review the methanol example source, find any visible open process, distinguish its reference flow and quantity from a study functional unit, and inspect the LCIA method and coverage. Prerequisites, sample limits, step outcomes, completion criteria, recovery, and an optional video make the exercise usable without branching or requiring video playback. The current marker is `data-quick-start-map-v2="golden-path"` with `data-quick-start-guide="first-session-route"`; `data-quick-start-map="three-stage-onboarding"` is retained only so existing output consumers do not break.
+
+The four `content/docs/overview/glossary*.mdx` sources are the centralized beginner terminology layer. They define the same LCA concepts in each locale from JRC ILCD primary sources and explicitly separate data-structure checks, content completeness, human review, data quality, and named methodological compliance. Entry pages link to this layer; Schema, CLI, contracts, and runtime identifiers remain in advanced documentation.
 
 The `overview`, `user-guide`, `data-collection`, `integration`, `openapi`, `deploy-and-dev`, `faq`, and `changelog` roots, plus the nested `data-collection/case-introduction` root, render `components/category-directory.tsx`. Each MDX variant supplies only its locale and category slug. The server component locates the category folder in `source.getPageTree(lang)`, preserves current `meta*.json` order, includes direct pages and folder index pages, and normalizes emitted links to locale-absolute trailing-slash URLs. Titles and descriptions are read from the child page; when description metadata is absent, a bounded first sentence is derived from `structuredData`. Future child-page additions, removals, renames, ordering changes, and copy updates therefore require no category-index edit.
 

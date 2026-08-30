@@ -102,7 +102,7 @@ if (sr.sourceCommit !== (commit ?? null)) {
 }
 const recomputed = createHash('sha256').update(JSON.stringify(sr.records)).digest('hex');
 if (sr.digest !== `sha256:${recomputed}`) errors.push('search-records digest mismatch');
-const expectedCounts = { zh: 38, en: 38, de: 38, fr: 38 };
+const expectedCounts = { zh: 39, en: 39, de: 39, fr: 39 };
 for (const [lang, count] of Object.entries(expectedCounts)) {
   if (sr.countsByLocale?.[lang] !== count) {
     errors.push(`countsByLocale.${lang} = ${sr.countsByLocale?.[lang]}, expected ${count}`);
@@ -116,12 +116,12 @@ for (const record of sr.records) {
 }
 passed.push(`search-records count=${sr.count} counts=${JSON.stringify(sr.countsByLocale)}`);
 
-// 5. llms.txt：commit + 条目计数（78 = 74 正文 + 4 首页；分类页排除）
+// 5. llms.txt：commit + 条目计数（156 = 四语各 39 条；分类页排除）
 const llms = read('llms.txt');
 if (commit && !llms.includes(commit)) errors.push('llms.txt does not expose SOURCE_COMMIT');
 const llmsEntries = (llms.match(/^- \[/gm) ?? []).length;
-if (llmsEntries !== 152) errors.push(`llms entries = ${llmsEntries}, expected 152`);
-else passed.push(`llms entries 152 + commit`);
+if (llmsEntries !== 156) errors.push(`llms entries = ${llmsEntries}, expected 156`);
+else passed.push(`llms entries 156 + commit`);
 // 分类页不得出现在 llms（抽样：quick-start 分类首页的 URL 形态）
 if (/\/zh\/docs\/quick-start\/\)/.test(llms)) errors.push('category page leaked into llms.txt');
 
@@ -141,10 +141,10 @@ if (deployEnv !== 'production') {
 // 7. sitemap：locale 隔离（de/fr 深层路由不出现）+ 全量收录
 const sitemap = read('sitemap.xml');
 const sitemapCount = (sitemap.match(/<loc>/g) ?? []).length;
-if (sitemapCount !== 197) errors.push(`sitemap entries = ${sitemapCount}, expected 197`);
-else passed.push('sitemap 197 entries');
+if (sitemapCount !== 201) errors.push(`sitemap entries = ${sitemapCount}, expected 201`);
+else passed.push('sitemap 201 entries');
 
-// 8. OG 图（98 页 → ≥98 产物）
+// 8. OG 图（196 个文档页面 → 至少 192 个非 HTML 产物）
 let ogCount = 0;
 (function walk(dir) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -183,20 +183,34 @@ for (const lang of ['zh', 'en', 'de', 'fr']) {
     errors.push(`${lang} docs root omits the LCA task-route marker`);
     continue;
   }
+  if (!html.includes('data-docs-portal-map-v2="two-lca-journeys"')) {
+    errors.push(`${lang} docs root omits the two-journey map marker`);
+    continue;
+  }
+  if (!html.includes('data-docs-journey="lca-study"') || !html.includes('data-docs-journey="data-production"')) {
+    errors.push(`${lang} docs root omits one of the two LCA journeys`);
+    continue;
+  }
+  for (const tidasTarget of ['core-modules', 'tool']) {
+    const href = `https://tidas.tiangong.earth/${lang}/docs/${tidasTarget}/`;
+    if (!html.includes(`href="${href}"`)) {
+      errors.push(`${lang} docs root omits locale-aligned TIDAS target ${href}`);
+    }
+  }
   docsPortalCount += 1;
 }
-if (docsPortalCount === 4) passed.push('four-locale LCA docs task hubs');
+if (docsPortalCount === 4) passed.push('four-locale two-journey LCA docs hubs');
 
-// 11. 快速开始分类首页提供真实的首次使用路线和当前任务入口。
+// 11. 快速开始分类首页提供一条固定 golden path、完成标准和恢复入口。
 const quickStartTargets = [
   'quick-start/first-login',
   'quick-start/demonstrations',
   'user-guide/data',
-  'user-guide/create-my-data',
+  'user-guide/data-use',
   'user-guide/lcia',
   'user-guide/account-profile',
+  'user-guide/search',
   'faq',
-  'overview/resources-and-support',
 ];
 let quickStartGuideCount = 0;
 for (const lang of ['zh', 'en', 'de', 'fr']) {
@@ -206,7 +220,19 @@ for (const lang of ['zh', 'en', 'de', 'fr']) {
     continue;
   }
   if (!html.includes('data-quick-start-map="three-stage-onboarding"')) {
-    errors.push(`${lang} quick-start root omits the three-stage onboarding marker`);
+    errors.push(`${lang} quick-start root omits the compatibility onboarding marker`);
+    continue;
+  }
+  if (!html.includes('data-quick-start-map-v2="golden-path"')) {
+    errors.push(`${lang} quick-start root omits the golden-path marker`);
+    continue;
+  }
+  if (!html.includes('data-quick-start-prerequisites') || !html.includes('data-quick-start-sample') || !html.includes('data-quick-start-recovery')) {
+    errors.push(`${lang} quick-start root omits prerequisites, sample, or recovery guidance`);
+    continue;
+  }
+  if (html.includes('data-quick-start-branch')) {
+    errors.push(`${lang} quick-start root still exposes a branching first-task route`);
     continue;
   }
   if (!html.includes('data-quick-start-primary')) {
@@ -220,7 +246,7 @@ for (const lang of ['zh', 'en', 'de', 'fr']) {
   }
   quickStartGuideCount += 1;
 }
-if (quickStartGuideCount === 4) passed.push('four-locale guided quick-start routes');
+if (quickStartGuideCount === 4) passed.push('four-locale golden-path quick-start routes');
 
 // 12. 分类首页目录从本地化 page tree 自动派生；meta 增删或排序无需再手改首页。
 const categoryDirectorySource = fs.readFileSync(path.join(ROOT, 'components', 'category-directory.tsx'), 'utf8');
@@ -240,7 +266,7 @@ for (const lang of ['zh', 'en', 'de', 'fr']) {
   for (const base of directoryBases) {
     const metaFile = lang === 'zh' ? 'meta.json' : `meta.${lang}.json`;
     const meta = load(`content/docs/${base}/${metaFile}`);
-    const targets = meta.pages.filter((page) => page !== 'index');
+    const targets = meta.pages.filter((page) => page !== 'index' && !/^---.*---$/.test(page));
     const html = read(`${lang}/docs/${base}/index.html`);
     if (!html.includes(`data-category-directory="${base}"`)) {
       errors.push(`${lang}/${base} omits its automatic category-directory marker`);

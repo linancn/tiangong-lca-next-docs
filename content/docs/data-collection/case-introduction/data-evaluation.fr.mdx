@@ -58,8 +58,12 @@ Chaque sous-processus exige de préciser :
 - Veillez à des quantités de référence cohérentes entre tous les processus pour des calculs de système corrects
 
 Le modèle global est un système partiellement terminé, avec le troisième processus unitaire
-[Production de méthanol] comme référence. L'unité fonctionnelle est fixée à 1 kg de méthanol produit
-(ou 1 tonne — au choix du modélisateur, mais avec cohérence entre processus unitaires).
+[Production de méthanol] comme référence. Pour ce cas, définissez la fonction comme la fourniture de
+méthanol sous des conditions précisées de qualité, de frontière et de temps, puis quantifiez-la par
+une unité fonctionnelle telle que 1 kg de méthanol. Une tonne n'est qu'un changement d'échelle de la
+même base fonctionnelle, pas un choix arbitraire. Chaque processus conserve son flux et sa quantité
+de référence ; les échanges les ramènent à l'unité fonctionnelle commune sans exiger des quantités
+de référence identiques.
 
 **Notes de traitement :**
 

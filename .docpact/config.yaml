@@ -1,9 +1,10 @@
 version: 1
 layout: repo
 lastReviewedAt: "2026-08-30"
-lastReviewedCommit: "23c1f194d44f22935845707cd00160e64ada2f1a"
-reviewNote: "Reviewed for Issue #163: the existing next-docs-site-structure rule governs the EdgeOne direct-pnpm install command and its contract test."
-lastReviewedNote: "No routing, ownership, coverage, locale, screenshot, or validation rule change is required; the managed EdgeOne runtime supplies pnpm and no longer runs Corepack shim mutation."
+lastReviewedCommit: "ceb3b05325fa8467f350e87b08935a0b2b3bd909"
+reviewNote: "Reviewed for PR #160 follow-up: beginner task copy and the localized ILCD-grounded glossary remain covered by the existing public-content and site-structure rules."
+lastReviewedNote: "No routing, ownership, coverage, locale, screenshot, or validation rule change is required; the glossary is governed under content/docs/** and its entry components and tests under the existing site-structure rule."
+# Review note, 2026-08-30: plain-language task navigation, first-use copy, and glossary assurance boundaries are covered across components, locale families, content contracts, and output validation.
 
 catalog:
   repos:

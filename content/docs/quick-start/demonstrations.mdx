@@ -1,13 +1,32 @@
 ---
-title: "操作演示"
+title: "查看过程和环境影响结果"
+description: "以甲醇文献为例，说明如何查看来源、过程数据、基准流和 LCIA 结果；视频为可选补充。"
 ---
 
-通过示例数据集展示平台的使用流程:
+本页配合[快速开始](/zh/docs/quick-start/)，说明文献来源、平台中的过程数据、产品系统和
+生命周期影响评价（LCIA）结果之间是什么关系。**论文只是示例的背景来源；平台没有自动导入或
+复现论文中的模型和结论，本页也不是可导入的数据包。**
 
-示例数据来源：[Comparative environmental assessment of methanol production technologies: A cradle-to-gate life cycle analysis](https://doi.org/10.1016/j.enconman.2024.118128)
+## 示例来源
+
+[Comparative environmental assessment of methanol production technologies: A cradle-to-gate life cycle analysis](https://doi.org/10.1016/j.enconman.2024.118128)
+
+## 按步骤查看
+
+1. 记下论文题目和 DOI，了解示例来自哪里。论文内容不会自动变成平台数据。
+2. 在平台的开放数据中搜索 `methanol`；若没有完全同名结果，选择任一可见过程继续。
+3. 打开过程详情，找到基准流、基准数量和投入产出。基准流说明这个过程主要生产什么以及按
+   多少数量记录；它不自动等于整项研究用于比较的功能单位。
+4. 查看可用的 LCIA 结果，记下使用的方法，并检查有多少投入和排放已找到对应的计算因子。
+   缺少因子表示结果覆盖不完整，不表示环境影响为零。
+5. 进入过程分析，查看哪些环节对结果贡献较大。研究者仍需结合目的、系统边界和数据局限形成
+   结论，并对最终报告负责。
+
+不播放视频也可以完成以上步骤。
+
+## 可选视频
 
 <VideoEmbed
   src="https://player.bilibili.com/player.html?isOutside=true&aid=114295153168127&bvid=BV1YiRyYbE6h&cid=29278735266&p=1&autoplay=0"
   title="TianGong LCA 平台操作演示"
 />
----

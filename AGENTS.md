@@ -37,8 +37,8 @@ checkPaths:
   - .github/workflows/**
   - .githooks/**
 lastReviewedAt: 2026-08-30
-lastReviewedCommit: 23c1f194d44f22935845707cd00160e64ada2f1a
-lastReviewedNote: "Reviewed for Issue #163: EdgeOne uses its preinstalled pnpm directly; local Corepack setup remains contributor-only and the bounded Node/exact package-tool contract is unchanged."
+lastReviewedCommit: ceb3b05325fa8467f350e87b08935a0b2b3bd909
+lastReviewedNote: "Reviewed for PR #160 follow-up: beginner-facing task copy and the four-locale ILCD-grounded glossary change public explanation, not routes, runtime, ownership, or compatibility markers."
 related:
   - .docpact/config.yaml
   - docs/agents/repo-architecture.md
@@ -46,6 +46,8 @@ related:
   - README.md
   - TODO.docs-system-gaps.md
 ---
+
+Review note, 2026-08-30: The docs hub presents two plain-language tasks, Quick Start explains one five-step first-use exercise, and the overview owns a central four-locale terminology page. Legacy `journey` data markers remain only for output compatibility.
 
 ## Repository contract
 
@@ -82,8 +84,9 @@ This repository does not own shipped product behavior, route truth, API semantic
 - Docs-impact screenshots use one shared `public/assets/docs/<sha256-prefix>/<semantic-name>.png` asset and explicit zh/en/de/fr document bindings. Added and replaced screenshots must pass the repository validator; replacement never overwrites an existing content-addressed path.
 - `SiteBrand`, `DocsHome`, and the Fumadocs Neutral theme define the shared documentation shell. Keep both documentation sites aligned on the 72rem shell, brand-lockup structure, solid plum interaction color, neutral layers, focus treatment, dark mode, low-radius controls, and responsive behavior.
 - Product identity belongs in a semantic hero signature rather than a shared decorative motif. This site uses `data-hero-signature="lca-concept-map"` for the reference-data → process-relations → product-system → LCIA-results concept map; TIDAS must retain a distinct data-system/schema signature.
-- `/{lang}/docs/` is a task-navigation hub rendered by `DocsPortal`, not a second marketing landing or a directory placeholder. Its governed markers are `data-docs-portal="lca-task-hub"` and `data-docs-portal-map="lca-task-route"`; all links must remain locale-absolute and structurally aligned across four languages.
-- `/{lang}/docs/quick-start/` is a focused first-session route rendered by `QuickStartGuide`. It uses `data-quick-start-guide="first-session-route"` and `data-quick-start-map="three-stage-onboarding"` to connect account access, the operation walkthrough, and one real first task without duplicating the broader docs hub.
+- `/{lang}/docs/` is a task-navigation hub rendered by `DocsPortal`, not a second marketing landing or a directory placeholder. It owns two five-step tasks: assessing a product (`goal/scope -> data checks -> product system -> LCIA -> interpretation/report`) and publishing reusable data (`sources/scope -> TIDAS formatting -> structure/reference checks -> review/publication -> import/export/reuse`). Beginner copy must distinguish automated structure checks, content completeness, human review, data quality, and named methodological compliance. The current contract is `data-docs-portal-map-v2="two-lca-journeys"` plus `data-docs-journey="lca-study|data-production"`; `data-docs-portal="lca-task-hub"` and `data-docs-portal-map="lca-task-route"` remain compatibility markers. Internal links must be locale-absolute, and cross-site TIDAS links must target the same explicit `https://tidas.tiangong.earth/{lang}/docs/**/` locale.
+- `/{lang}/docs/overview/glossary/` is the beginner terminology authority in all four locales. It grounds core LCA terms in JRC ILCD primary sources, defines acronyms at first use, and keeps software implementation terms out of entry navigation.
+- `/{lang}/docs/quick-start/` is one fixed 10–15 minute, five-step golden path rendered by `QuickStartGuide`; it must contain prerequisites, a sourced sample, ordered actions, completion criteria, failure recovery, and an optional (never required) video. The current contract is `data-quick-start-map-v2="golden-path"` with `data-quick-start-guide="first-session-route"`; `data-quick-start-map="three-stage-onboarding"` is a compatibility marker only and must not reintroduce a branch.
 - The remaining top-level category roots render `CategoryDirectory` from only `lang` and `category`. Directory order and membership come from the localized Fumadocs page tree / `meta*.json`; titles and descriptions come from child-page metadata, with a bounded first-paragraph fallback. Never hand-maintain category entry lists in index MDX.
 - Reuse exported Fumadocs primitives such as `buttonVariants`, `Card`, and `Cards`. Custom presentation is limited to theme tokens, the shared shell, and product-specific concept or navigation figures; do not add gradients, glow, shadow, or lift animation to public actions.
 - `next.config.ts` sets `agentRules: false` because this governed file, not generated development-server text, is authoritative.

@@ -1,0 +1,83 @@
+---
+title: "Termes et abréviations"
+description: "Explications accessibles des termes d’ACV, de données et de contrôle employés dans TianGong LCA."
+---
+
+Cette page s’adresse aux personnes qui découvrent l’ACV ou les données d’ACV. Les définitions suivent l’[ILCD General Guide](https://publications.jrc.ec.europa.eu/repository/bitstream/JRC48157/ilcd_handbook-general_guide_for_lca-detailed_guidance_12march2010_isbn_fin.pdf) du Centre commun de recherche de la Commission européenne ; les explications courtes sont rédigées pour cette documentation.
+
+## Termes employés dans une étude
+
+### Analyse du cycle de vie (ACV)
+
+Étude des ressources utilisées et des impacts environnementaux potentiels pendant la vie d’un produit ou service, de l’extraction des ressources à la fin de vie en passant par la production et l’utilisation. L’ACV commence par la question et le champ de l’étude, établit l’inventaire, évalue les impacts puis interprète les résultats.
+
+### Objectifs et champ de l’étude
+
+La définition de la raison de l’étude, des destinataires des résultats, du produit étudié et des étapes et procédés inclus. Les données, calculs et conclusions qui suivent doivent rester cohérents avec ces choix.
+
+### Unité fonctionnelle
+
+La quantité de service à laquelle les résultats et comparaisons de toute l’étude sont rapportés. Elle décrit ce qui est fourni, en quelle quantité, à quel niveau de qualité et pendant combien de temps, par exemple « fournir 1 kWh d’électricité en courant alternatif basse tension aux utilisateurs d’une région définie ».
+
+### Frontière du système
+
+La règle qui détermine les étapes du cycle de vie et les procédés inclus ou exclus. Les inclusions, exclusions et leurs raisons importantes doivent être présentées dans le rapport.
+
+### Système de produit
+
+L’ensemble de procédés reliés nécessaire pour fournir l’unité fonctionnelle. Les procédés de matière, d’électricité, de transport et de fabrication sont reliés par leurs entrées et leurs sorties.
+
+### Processus élémentaire et jeu de données de procédé
+
+Un **processus élémentaire (unit process)** est la plus petite activité dont les entrées et sorties peuvent être enregistrées séparément, par exemple une activité de production d’électricité ou de transport. Un **jeu de données de procédé** décrit une activité de production ou de service et, en général, sa période, son lieu, sa technologie, ses sources et sa qualité. Il ne représente pas toujours un seul processus élémentaire.
+
+### Flux de référence
+
+La quantité de produit ou de service nécessaire dans le système de produit pour remplir l’unité fonctionnelle. Le flux et la quantité de référence affichés sur la page d’un procédé ne doivent pas être pris automatiquement comme unité fonctionnelle de toute l’étude.
+
+### Entrées, sorties et échanges
+
+Les matières, l’énergie et les services utilisés par un procédé sont des entrées. Les produits, coproduits, déchets et émissions sont des sorties. Les formats de données enregistrent généralement chaque entrée ou sortie comme un « échange ».
+
+### Flux élémentaire
+
+Matière ou énergie qui passe directement de la nature au système technique ou du système technique à la nature, par exemple l’eau prélevée, une ressource minérale ou le dioxyde de carbone émis dans l’air.
+
+### Inventaire du cycle de vie (ICV, LCI en anglais)
+
+Le relevé quantifié de ce que les procédés du système de produit utilisent, produisent et émettent. L’ICV constitue la base des calculs d’impact.
+
+### Évaluation de l’impact du cycle de vie (ACVI)
+
+La conversion des ressources et émissions de l’inventaire en indicateurs d’impacts potentiels tels que le changement climatique ou l’utilisation des ressources. Les résultats d’ACVI ne prédisent pas directement les conséquences environnementales réelles ; ils doivent être lus avec la méthode choisie et sa couverture.
+
+### Interprétation du cycle de vie
+
+La vérification que les résultats répondent à la question initiale. Elle identifie les contributions principales, la sensibilité et les limites avant de formuler conclusions et recommandations.
+
+### Qualité des données et représentativité
+
+La description du caractère suffisamment complet et fiable des données, ainsi que de leur représentativité technologique, géographique et temporelle pour l’étude. Réussir un contrôle de structure du fichier ne démontre pas une qualité suffisante.
+
+### Revue
+
+L’examen humain des données, méthodes ou conclusions selon un périmètre et une procédure définis. La soumission à la revue dans la plateforme est distincte d’un contrôle automatique de structure ; utilisez « revu » uniquement lorsque la revue correspondante est terminée.
+
+### TIDAS
+
+TIDAS définit comment les procédés, flux, unités, sources et leurs références sont enregistrés, contrôlés et échangés. Il fournit une structure de données commune aux outils, mais ne remplace ni les choix de méthode ACV, ni le jugement sur la qualité des données, ni la revue professionnelle. Les champs et outils sont détaillés dans la [documentation TIDAS](https://tidas.tiangong.earth/fr/docs/).
+
+## Ne pas confondre ces cinq formes d’assurance
+
+1. **Contrôle de structure** : vérifie qu’un fichier respecte les règles TIDAS de champs, de types et de références. Un résultat positif ne concerne que cette structure.
+2. **Complétude du contenu** : vérifie que les informations nécessaires à l’usage prévu sont renseignées. Certains éléments sont automatisables ; les objectifs et hypothèses exigent encore un jugement humain.
+3. **État de revue** : indique si une personne a examiné les données ou l’étude, qui l’a fait et ce qui était couvert. Il ne se déduit pas du contrôle de structure.
+4. **Qualité des données** : évalue la complétude, la fiabilité et la représentativité technologique, géographique et temporelle pour un usage précis.
+5. **Déclaration de conformité méthodologique** : ne peut viser qu’un système et une version nommés, après satisfaction de toutes leurs exigences. Un contrôle de structure réussi ne signifie pas « conforme à l’ACV ».
+
+## Sources primaires
+
+- [ILCD Handbook: General Guide for Life Cycle Assessment](https://publications.jrc.ec.europa.eu/repository/bitstream/JRC48157/ilcd_handbook-general_guide_for_lca-detailed_guidance_12march2010_isbn_fin.pdf)
+- [ILCD Process data set format](https://eplca.jrc.ec.europa.eu/LCDN/downloads/ILCD_Format_1.1_Documentation/ILCD_ProcessDataSet.html)
+- [ILCD Flow data set format](https://eplca.jrc.ec.europa.eu/LCDN/downloads/ILCD_Format_1.1_Documentation/ILCD_FlowDataSet.html)
+- [ILCD Data Network compliance and entry-level rules](https://eplca.jrc.ec.europa.eu/uploads/ILCD-Data-Network-Compliance-Entry-level-Version1.1-Jan2012.pdf)

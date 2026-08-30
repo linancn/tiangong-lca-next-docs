@@ -20,9 +20,15 @@ first, then submit again.
 
 ![Submission validation prompt](/assets/docs/956dc785/data-problem.png)
 
-For process datasets, **Submit for review** now calls the review submission directly. If the system
-rejects the submission, fix the issues shown on the page, save again, and resubmit. You no longer
-need to wait for a separate numerical-stability-gate task in Task Center.
+For process datasets, **Submit for review** first saves the current revision and checks its structure,
+quantitative reference, and reference integrity. When those synchronous checks pass, it calls review
+submission directly; there is no separate numerical-stability-gate task to await in Task Center. The
+server may still reject the command for authorisation, a non-current version, a conflicting review,
+or concurrent state. Fix the reported condition, save, and resubmit.
+
+A review admin can manually run the completeness and numerical-stability quality diagnostic. Its
+report is informational: findings, a `not_evaluable` outcome, or a failed run do not change review
+state or block assignment, approval, rejection, or resubmission.
 
 ## Who does what
 
@@ -33,7 +39,8 @@ need to wait for a separate numerical-stability-gate task in Task Center.
 | Review admin (`review-admin`) | Assign work, track progress, manage review members, approve or reject the full review | Avatar menu → Review Management |
 | Team admin | Coordinate with authors and help track project progress | My Team, [notification center](/en/docs/user-guide/notifications/) |
 
-> Review roles and team roles are different permission systems. A person may have both, or only one
+> Review members submit advisory opinions. Only a review admin can finally approve or reject the
+> whole review. Review roles and team roles are different permission systems. A person may have both, or only one
 > of them.
 
 ## How to open the review workspace

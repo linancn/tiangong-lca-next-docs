@@ -36,7 +36,7 @@ test('bounds Node 24 while pinning pnpm, TypeScript, and markdownlint exactly', 
   );
   assert.equal(
     packageJson.scripts.test,
-    'node --test scripts/check-env.test.mjs scripts/check-links.test.mjs scripts/toolchain-contract.test.mjs',
+    'node --test scripts/check-env.test.mjs scripts/check-links.test.mjs scripts/journey-contract.test.mjs scripts/toolchain-contract.test.mjs',
   );
   assert.equal(
     packageJson.scripts['test:screenshots'],

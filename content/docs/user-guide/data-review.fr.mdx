@@ -21,10 +21,16 @@ problèmes. Corrigez-les d'abord, puis soumettez à nouveau.
 
 ![Invite de validation de la soumission](/assets/docs/956dc785/data-problem.png)
 
-Pour les jeux de données de processus, **Soumettre pour revue** appelle désormais directement la
-soumission de revue. Si le système rejette la soumission, corrigez les problèmes affichés sur la
-page, enregistrez à nouveau et soumettez de nouveau. Il n'est plus nécessaire d'attendre une tâche
-séparée de contrôle de stabilité numérique dans le centre de tâches.
+Pour un procédé, **Soumettre pour revue** enregistre d'abord la révision courante et vérifie structure,
+référence quantitative et intégrité des références. Une fois ces contrôles synchrones réussis, la
+commande de revue est appelée directement ; aucune tâche séparée de stabilité numérique n'est à
+attendre dans le centre de tâches. Le serveur peut encore refuser la commande pour autorisation,
+version non courante, revue en conflit ou état concurrent. Corrigez la condition signalée,
+enregistrez et soumettez à nouveau.
+
+Un administrateur de revue peut lancer manuellement le diagnostic de qualité sur la complétude et la
+stabilité numérique. Son rapport est informatif : résultats, état `not_evaluable` ou échec d'exécution
+ne changent pas l'état de revue et ne bloquent ni attribution, approbation, rejet ni nouvelle soumission.
 
 ## Qui fait quoi
 
@@ -35,7 +41,8 @@ séparée de contrôle de stabilité numérique dans le centre de tâches.
 | Administrateur de revue (`review-admin`) | Attribuer le travail, suivre l'avancement, gérer les relecteurs, approuver ou rejeter la revue | Menu du profil → Gestion des revues |
 | Admin d'équipe | Coordonner avec les auteurs et aider à suivre l'avancement du projet | Mon équipe, [centre de notifications](/fr/docs/user-guide/notifications/) |
 
-> Les rôles de revue et les rôles d'équipe sont des systèmes d'autorisation distincts. Une personne
+> Les membres relecteurs soumettent des avis consultatifs. Seul un administrateur de revue peut
+> approuver ou rejeter définitivement la revue entière. Les rôles de revue et les rôles d'équipe sont des systèmes d'autorisation distincts. Une personne
 > peut cumuler les deux, n'en avoir qu'un, ou aucun.
 
 ## Comment ouvrir l'espace de revue

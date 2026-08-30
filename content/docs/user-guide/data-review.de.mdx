@@ -20,10 +20,16 @@ Beheben Sie diese Probleme zuerst und reichen Sie erneut ein.
 
 ![Validierungshinweis bei der Einreichung](/assets/docs/956dc785/data-problem.png)
 
-Bei Prozessdatensätzen ruft **Zur Prüfung einreichen** die Prüfeinreichung inzwischen direkt auf.
-Lehnt das System die Einreichung ab, beheben Sie die auf der Seite angezeigten Probleme, speichern
-Sie erneut und reichen Sie wieder ein. Ein gesonderter Aufgabe zur numerischen Stabilitätsprüfung im
-Aufgabenzentrum ist nicht mehr abzuwarten.
+Bei Prozessdatensätzen speichert **Zur Prüfung einreichen** zuerst die aktuelle Revision und prüft
+Struktur, quantitative Referenz und Referenzintegrität. Nach bestandener synchroner Prüfung wird die
+Prüfeinreichung direkt aufgerufen; im Aufgabenzentrum ist keine gesonderte Stabilitätsprüfung
+abzuwarten. Der Server kann den Befehl weiterhin wegen Berechtigungen, einer nicht aktuellen Version,
+einer konkurrierenden Prüfung oder eines Parallelzustands ablehnen. Beheben Sie die gemeldete
+Bedingung, speichern Sie erneut und reichen Sie wieder ein.
+
+Ein Prüfadministrator kann die Qualitätsdiagnose zu Vollständigkeit und numerischer Stabilität
+manuell starten. Ihr Bericht ist rein informativ: Befunde, `not_evaluable` oder ein Laufzeitfehler
+ändern den Prüfstatus nicht und blockieren weder Zuweisung, Freigabe, Ablehnung noch erneute Einreichung.
 
 ## Wer macht was
 
@@ -34,7 +40,8 @@ Aufgabenzentrum ist nicht mehr abzuwarten.
 | Prüfadministrator (`review-admin`) | Arbeit zuweisen, Fortschritt verfolgen, Prüfer verwalten, die gesamte Prüfung genehmigen oder ablehnen | Profilmenü → Prüfverwaltung |
 | Team-Administrator | Mit Autoren koordinieren und den Projektfortschritt begleiten | Mein Team, [Benachrichtigungszentrum](/de/docs/user-guide/notifications/) |
 
-> Prüfrollen und Teamrollen sind unterschiedliche Berechtigungssysteme. Eine Person kann beide,
+> Prüfer geben beratende Meinungen ab. Nur ein Prüfadministrator kann die gesamte Prüfung endgültig
+> freigeben oder ablehnen. Prüfrollen und Teamrollen sind unterschiedliche Berechtigungssysteme. Eine Person kann beide,
 > nur eine oder keine davon haben.
 
 ## So öffnen Sie den Prüf-Arbeitsbereich

@@ -50,7 +50,12 @@ Each sub-process requires specifying:
   - Methanol synthesis: 1kg methanol
 - Ensure consistent reference quantities across all processes for correct system calculations
 
-The overall model is a partially terminated system, with the third unit process [Methanol Production] as the baseline. Functional unit set as 1 kg methanol product (or 1 ton - modeler's choice, but must maintain consistency across unit processes).
+The overall model is a partially terminated system with the third unit process, Methanol Production,
+as the baseline. For this case, define the function as providing methanol under stated quality,
+boundary, and time conditions, then quantify it with a functional unit such as 1 kg of methanol.
+One tonne is only a scale conversion of the same functional basis, not an arbitrary modeller choice.
+Each unit process keeps its own reference flow and quantity; exchanges scale them to the shared
+functional unit, so their reference quantities do not all need to be identical.
 
 **Processing Notes:**
 

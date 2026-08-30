@@ -193,11 +193,11 @@ Eingabe-Austauschs.
 Manche Analysen können Hintergrund-Berechnungen auslösen. Dauert die Verarbeitung länger, behalten
 Sie das **Aufgabenzentrum** in der Kopfleiste im Blick:
 
-- Das Aufgabenzentrum vereint **LCA-Berechnung**, TIDAS-Import/-export und Prüf-Einreichungsaufgaben in einem Panel.
-- Sie können nach Aufgabentyp wechseln; das Panel zeigt den Fortschritt über Fortschrittsbalken, Status-Tags und Phasen-Labels. Prüfeinreichungs-Aufgaben können die Phasen „in Warteschlange", „Gate läuft", „wartet auf Gate", „Prüfung wird eingereicht", „eingereicht", „blockiert", „veraltet", „abgebrochen" oder „Fehler" durchlaufen.
-- Nutzen Sie **Ansehen** oder **Details**, um Ergebnis-IDs, Snapshot-IDs, Aufgaben-IDs, Fehlerursachen und Diagnosen einzusehen. Scheitert eine Prüfeinreichung, öffnen Sie die Gate-Begründung, die `review_submit_job_id` und die Worker-Job-Diagnosen, bevor Sie einen erneuten Versuch erwägen.
-- Läuft bereits ein Prüfeinreichungs-Gate für dieselbe Prozessversion, fordert die Seite zu einem späteren Versuch auf, statt eine doppelte Hintergrundaufgabe anzulegen.
-- Abgeschlossene Aufgaben lassen sich entfernen; fehlgeschlagene oder abgebrochene Aufgaben sollten Sie zuerst öffnen, um zu entscheiden, ob die zugehörige Analyse oder Prüfeinreichung erneut laufen soll.
+- Das Aufgabenzentrum sammelt Hintergrundarbeit für **LCA-Berechnung** sowie TIDAS-Import/-export.
+- Sie können nach Aufgabentyp wechseln; Fortschritt, Status und Phasen zeigen den aktuellen Verarbeitungsstand.
+- Unter **Ansehen** oder **Details** finden Sie LCA-Ergebnis-, Snapshot- und Aufgaben-IDs oder Fehlerursachen und Diagnosen der TIDAS-Paketverarbeitung.
+- Die aktuelle Prozess-Prüfeinreichung ist keine Worker-Gate-Aufgabe im Aufgabenzentrum. Die Plattform prüft aktuelle Daten und Referenzen synchron und ruft danach den Prüfbefehl direkt auf; Server-Ablehnungen erscheinen bei der Einreichung. Verfolgen Sie die Prüfung unter [Datenprüfung](/de/docs/user-guide/data-review/) und in Benachrichtigungen.
+- Abgeschlossene Aufgaben lassen sich entfernen; öffnen Sie fehlgeschlagene oder abgebrochene LCA-/TIDAS-Aufgaben vor einem erneuten Lauf.
 
 Arbeiten Sie mit TIDAS-Paketen, beachten Sie auch die Aufgabenzentrum-Hinweise unter
 [TIDAS-ZIP-Import, -Export und Aufgabenzentrum](/de/docs/user-guide/tidas-zip-workflows/).

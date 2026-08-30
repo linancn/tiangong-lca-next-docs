@@ -1,0 +1,83 @@
+---
+title: "Begriffe und Abkürzungen"
+description: "Verständliche Erklärungen der in TianGong LCA verwendeten LCA-, Daten- und Prüfbegriffe."
+---
+
+Diese Seite richtet sich an Personen, die neu mit LCA oder LCA-Daten arbeiten. Die Definitionen folgen dem [ILCD General Guide](https://publications.jrc.ec.europa.eu/repository/bitstream/JRC48157/ilcd_handbook-general_guide_for_lca-detailed_guidance_12march2010_isbn_fin.pdf) der Gemeinsamen Forschungsstelle der Europäischen Kommission; die kurzen Erklärungen wurden für diese Dokumentation formuliert.
+
+## Begriffe einer Studie
+
+### Lebenszyklusanalyse / Ökobilanz (LCA)
+
+Eine Untersuchung der Ressourcennutzung und potenziellen Umweltwirkungen eines Produkts oder einer Dienstleistung von der Rohstoffgewinnung über Herstellung und Nutzung bis zum Lebensende. Eine LCA beginnt mit Untersuchungsfrage und Rahmen, erstellt dann die Sachbilanz, bewertet Wirkungen und wertet die Ergebnisse aus.
+
+### Ziele und Untersuchungsrahmen
+
+Die Festlegung, warum die Studie durchgeführt wird, wer ihre Ergebnisse nutzt, welches Produkt untersucht wird und welche Lebenswegabschnitte und Prozesse einbezogen werden. Daten, Berechnungen und Schlussfolgerungen müssen zu diesen Festlegungen passen.
+
+### Funktionelle Einheit
+
+Die Menge einer Leistung, auf die sich Ergebnisse und Vergleiche der gesamten Studie beziehen. Sie beschreibt, was, wie viel, in welcher Qualität und für welche Dauer bereitgestellt wird, zum Beispiel „Lieferung von 1 kWh Niederspannungs-Wechselstrom an Nutzer in einer festgelegten Region“.
+
+### Systemgrenze
+
+Die Regel, welche Lebenswegabschnitte und Prozesse ein- oder ausgeschlossen sind. Wesentliche Ein- und Ausschlüsse sowie ihre Gründe gehören in den Bericht.
+
+### Produktsystem
+
+Die verbundenen Prozesse, die zum Erbringen der funktionellen Einheit benötigt werden. Material-, Strom-, Transport- und Herstellungsprozesse werden über ihre Inputs und Outputs verknüpft.
+
+### Prozessmodul und Prozessdatensatz
+
+Ein **Prozessmodul (unit process)** ist die kleinste Tätigkeit, deren Inputs und Outputs getrennt erfasst werden können, etwa eine Stromerzeugungs- oder Transportaktivität. Ein **Prozessdatensatz** ist der Datensatz einer Produktions- oder Dienstleistungsaktivität und beschreibt üblicherweise auch Zeit, Ort, Technologie, Quellen und Qualität. Ein Prozessdatensatz steht nicht immer nur für ein Prozessmodul.
+
+### Referenzfluss
+
+Die Menge eines Produkts oder einer Dienstleistung, die im Produktsystem zur Erfüllung der funktionellen Einheit benötigt wird. Referenzfluss und Referenzmenge auf einer einzelnen Prozessseite sind nicht automatisch die funktionelle Einheit der gesamten Studie.
+
+### Inputs, Outputs und Austausche
+
+Materialien, Energie und Dienstleistungen, die ein Prozess nutzt, sind Inputs. Produkte, Kuppelprodukte, Abfälle und Emissionen sind Outputs. Datenformate speichern jeden Input oder Output gewöhnlich als „Austausch“.
+
+### Elementarfluss
+
+Stoff oder Energie, der direkt aus der Natur in das technische System eintritt oder es direkt in die Natur verlässt, zum Beispiel entnommenes Wasser, mineralische Ressourcen oder Kohlendioxid-Emissionen in die Luft.
+
+### Sachbilanz (LCI)
+
+Die mengenmäßige Erfassung dessen, was die Prozesse im Produktsystem nutzen, erzeugen und emittieren. Die Sachbilanz ist die Grundlage der Wirkungsberechnung.
+
+### Wirkungsabschätzung (LCIA)
+
+Die Umrechnung von Ressourcennutzung und Emissionen der Sachbilanz in Indikatoren für potenzielle Wirkungen wie Klimawandel oder Ressourcennutzung. LCIA-Ergebnisse sind keine direkte Vorhersage tatsächlicher Umweltfolgen; lesen Sie sie zusammen mit der gewählten Methode und ihrer Abdeckung.
+
+### Auswertung
+
+Die Prüfung, ob die Ergebnisse die Ausgangsfrage beantworten. Dazu gehören die wesentlichen Beiträge, Sensitivität und Grenzen, bevor Schlussfolgerungen und Empfehlungen formuliert werden.
+
+### Datenqualität und Repräsentativität
+
+Die Beschreibung, ob Daten ausreichend vollständig und verlässlich sind und die benötigte Technologie, Region und Zeit abbilden. Eine bestandene Dateistrukturprüfung belegt keine ausreichende Datenqualität.
+
+### Prüfung
+
+Die menschliche Beurteilung von Daten, Methoden oder Schlussfolgerungen nach festgelegtem Umfang und Vorgehen. Die Einreichung zur Prüfung in der Plattform ist von einer automatischen Strukturprüfung getrennt; „geprüft“ darf erst nach der entsprechenden Prüfung verwendet werden.
+
+### TIDAS
+
+TIDAS legt fest, wie Prozesse, Flüsse, Einheiten, Quellen und ihre Verweise gespeichert, geprüft und ausgetauscht werden. Es stellt eine einheitliche Datenstruktur für Werkzeuge bereit, ersetzt aber weder LCA-Methodenentscheidungen noch die Beurteilung der Datenqualität oder eine fachliche Prüfung. Feld- und Werkzeugdetails stehen in der [TIDAS-Dokumentation](https://tidas.tiangong.earth/de/docs/).
+
+## Diese fünf Aussagen nicht verwechseln
+
+1. **Strukturprüfung**: prüft, ob eine Datei nach den TIDAS-Regeln für Felder, Typen und Verweise lesbar ist. „Bestanden“ sagt nur etwas über diese Struktur aus.
+2. **Inhaltliche Vollständigkeit**: prüft, ob die für den aktuellen Zweck nötigen Angaben vorhanden sind. Ein Teil ist automatisierbar; Ziele und Annahmen brauchen fachliche Beurteilung.
+3. **Prüfstatus**: hält fest, ob eine Person die Daten oder Studie geprüft hat, wer dies tat und was abgedeckt war. Er folgt nicht aus einer Strukturprüfung.
+4. **Datenqualität**: bewertet Vollständigkeit, Verlässlichkeit sowie technische, geografische und zeitliche Repräsentativität für einen bestimmten Zweck.
+5. **Erklärung zur methodischen Konformität**: ist nur gegenüber einem benannten System und einer Version zulässig, wenn alle Anforderungen erfüllt sind. Eine bestandene Strukturprüfung ist keine „LCA-Konformität“.
+
+## Primärquellen
+
+- [ILCD Handbook: General Guide for Life Cycle Assessment](https://publications.jrc.ec.europa.eu/repository/bitstream/JRC48157/ilcd_handbook-general_guide_for_lca-detailed_guidance_12march2010_isbn_fin.pdf)
+- [ILCD Process data set format](https://eplca.jrc.ec.europa.eu/LCDN/downloads/ILCD_Format_1.1_Documentation/ILCD_ProcessDataSet.html)
+- [ILCD Flow data set format](https://eplca.jrc.ec.europa.eu/LCDN/downloads/ILCD_Format_1.1_Documentation/ILCD_FlowDataSet.html)
+- [ILCD Data Network compliance and entry-level rules](https://eplca.jrc.ec.europa.eu/uploads/ILCD-Data-Network-Compliance-Entry-level-Version1.1-Jan2012.pdf)

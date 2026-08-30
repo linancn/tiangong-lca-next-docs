@@ -451,6 +451,15 @@
       "context7": true
     },
     {
+      "route": "/zh/docs/overview/glossary/",
+      "locale": "zh",
+      "pageType": "doc",
+      "sitemap": true,
+      "llms": true,
+      "search": true,
+      "context7": true
+    },
+    {
       "route": "/zh/docs/overview/resources-and-support/",
       "locale": "zh",
       "pageType": "doc",
@@ -776,6 +785,15 @@
     },
     {
       "route": "/en/docs/overview/intro/",
+      "locale": "en",
+      "pageType": "doc",
+      "sitemap": true,
+      "llms": true,
+      "search": true,
+      "context7": true
+    },
+    {
+      "route": "/en/docs/overview/glossary/",
       "locale": "en",
       "pageType": "doc",
       "sitemap": true,
@@ -1117,6 +1135,15 @@
       "context7": true
     },
     {
+      "route": "/de/docs/overview/glossary/",
+      "locale": "de",
+      "pageType": "doc",
+      "sitemap": true,
+      "llms": true,
+      "search": true,
+      "context7": true
+    },
+    {
       "route": "/de/docs/overview/resources-and-support/",
       "locale": "de",
       "pageType": "doc",
@@ -1442,6 +1469,15 @@
     },
     {
       "route": "/fr/docs/overview/intro/",
+      "locale": "fr",
+      "pageType": "doc",
+      "sitemap": true,
+      "llms": true,
+      "search": true,
+      "context7": true
+    },
+    {
+      "route": "/fr/docs/overview/glossary/",
       "locale": "fr",
       "pageType": "doc",
       "sitemap": true,

@@ -1,0 +1,83 @@
+---
+title: "Terms and abbreviations"
+description: "Plain-language explanations of the LCA, data, and assurance terms used in TianGong LCA."
+---
+
+This page is for people who are new to LCA or LCA data. The definitions follow the European Commission Joint Research Centre’s [ILCD General Guide](https://publications.jrc.ec.europa.eu/repository/bitstream/JRC48157/ilcd_handbook-general_guide_for_lca-detailed_guidance_12march2010_isbn_fin.pdf); the short explanations are written for this documentation.
+
+## Terms used in a study
+
+### Life cycle assessment (LCA)
+
+A study of resource use and potential environmental impacts across the life of a product or service, from resource extraction through production, use, and end of life. LCA starts with the study question and scope, then develops an inventory, assesses impacts, and interprets the results.
+
+### Goal and scope
+
+The statement of why the study is being done, who will use its results, what product is studied, and which life-cycle stages and processes are included. Later data, calculations, and conclusions should remain consistent with these choices.
+
+### Functional unit
+
+The amount of service against which the whole study reports and compares results. It should describe what is provided, how much, at what quality, and for how long—for example, “delivery of 1 kWh of low-voltage AC electricity to users in a defined region.”
+
+### System boundary
+
+The rule that determines which life-cycle stages and processes are included or excluded. Important inclusions, exclusions, and their reasons should be reported.
+
+### Product system
+
+The connected set of processes needed to provide the functional unit. Material, electricity, transport, and manufacturing processes are linked through their inputs and outputs.
+
+### Unit process and process dataset
+
+A **unit process** is the smallest activity for which inputs and outputs can be recorded separately, such as one electricity-generation or transport activity. A **process dataset** is a data record for a production or service activity and usually also describes time, location, technology, sources, and quality. A process dataset does not always represent only one unit process.
+
+### Reference flow
+
+The amount of product or service required within the product system to fulfil the functional unit. The reference flow and quantity shown on one process page should not automatically be treated as the functional unit of the whole study.
+
+### Inputs, outputs, and exchanges
+
+Materials, energy, and services used by a process are inputs. Products, co-products, waste, and emissions are outputs. Data formats commonly record each input or output as an “exchange.”
+
+### Elementary flow
+
+Matter or energy that enters the technical system directly from nature or leaves it directly to nature, such as extracted water, mineral resources, or carbon dioxide emitted to air.
+
+### Life cycle inventory (LCI)
+
+The quantified record of what processes use, produce, and emit across the product system. The LCI is the basis for impact calculations.
+
+### Life cycle impact assessment (LCIA)
+
+The conversion of inventory resource use and emissions into indicators for potential impacts such as climate change or resource use. LCIA results are not direct predictions of actual environmental consequences; read them together with the chosen method and its coverage.
+
+### Life cycle interpretation
+
+The check that results answer the original question, including identification of major contributions, sensitivity, and limitations before conclusions and recommendations are formed.
+
+### Data quality and representativeness
+
+An account of whether data is sufficiently complete and reliable, and whether it represents the technology, geography, and time required by the study. Passing a file-structure check does not establish adequate data quality.
+
+### Review
+
+A human examination of data, methods, or conclusions against a stated scope and procedure. Submission for review in the platform is separate from an automatic structure check; say “reviewed” only when the relevant review has been completed.
+
+### TIDAS
+
+TIDAS defines how processes, flows, units, sources, and their references are stored, checked, and exchanged. It gives tools a consistent data structure, but it does not replace LCA method choices, data-quality judgement, or professional review. See the [TIDAS documentation](https://tidas.tiangong.earth/en/docs/) for fields and tool details.
+
+## Do not confuse these five kinds of assurance
+
+1. **Structure check**: checks whether a file can be read under the TIDAS field, type, and reference rules. Passing means only that the structure meets those rules.
+2. **Content completeness**: checks whether the information needed for the current use has been filled in. Some items can be checked automatically; goals and assumptions still need human judgement.
+3. **Review status**: records whether a person reviewed the data or study, who did so, and what was covered. It cannot be inferred from a structure check.
+4. **Data quality**: assesses completeness, reliability, and technological, geographical, and time representativeness for a specific use.
+5. **Methodological compliance statement**: may be made only against a named system and version after all of its requirements are met. Do not describe a passed structure check as “LCA compliant.”
+
+## Primary sources
+
+- [ILCD Handbook: General Guide for Life Cycle Assessment](https://publications.jrc.ec.europa.eu/repository/bitstream/JRC48157/ilcd_handbook-general_guide_for_lca-detailed_guidance_12march2010_isbn_fin.pdf)
+- [ILCD Process data set format](https://eplca.jrc.ec.europa.eu/LCDN/downloads/ILCD_Format_1.1_Documentation/ILCD_ProcessDataSet.html)
+- [ILCD Flow data set format](https://eplca.jrc.ec.europa.eu/LCDN/downloads/ILCD_Format_1.1_Documentation/ILCD_FlowDataSet.html)
+- [ILCD Data Network compliance and entry-level rules](https://eplca.jrc.ec.europa.eu/uploads/ILCD-Data-Network-Compliance-Entry-level-Version1.1-Jan2012.pdf)

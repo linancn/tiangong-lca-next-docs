@@ -1,159 +1,216 @@
 import Link from 'next/link';
-import { Card, Cards } from 'fumadocs-ui/components/card';
 
 type Language = 'zh' | 'en' | 'de' | 'fr';
+type Boundary = 'method' | 'platform' | 'specification' | 'shared';
+
+interface TaskStep {
+  code: string;
+  title: string;
+  description: string;
+  href: string;
+  boundary: Boundary;
+}
+
+interface TaskPath {
+  code: string;
+  title: string;
+  description: string;
+  ariaLabel: string;
+  steps: [TaskStep, TaskStep, TaskStep, TaskStep, TaskStep];
+}
 
 interface PortalLink {
   code: string;
   title: string;
   description: string;
-  slug: string;
+  href: string;
 }
 
 interface PortalCopy {
-  startEyebrow: string;
-  startTitle: string;
-  startDescription: string;
-  openLabel: string;
-  starts: [PortalLink, PortalLink, PortalLink, PortalLink];
-  routeEyebrow: string;
-  routeTitle: string;
-  routeDescription: string;
-  routeAriaLabel: string;
-  route: [PortalLink, PortalLink, PortalLink, PortalLink, PortalLink];
-  exploreEyebrow: string;
-  exploreTitle: string;
-  exploreDescription: string;
-  explore: [PortalLink, PortalLink, PortalLink, PortalLink];
+  eyebrow: string;
+  title: string;
+  description: string;
+  boundaryLabels: Record<Boundary, string>;
+  tasks: [TaskPath, TaskPath];
+  referenceEyebrow: string;
+  referenceTitle: string;
+  referenceDescription: string;
+  references: [PortalLink, PortalLink, PortalLink, PortalLink];
 }
+
+const tidasHref = (language: Language, slug: string) =>
+  `https://tidas.tiangong.earth/${language}/docs/${slug}/`;
+const docsHref = (language: Language, slug: string) => `/${language}/docs/${slug}/`;
 
 const copy: Record<Language, PortalCopy> = {
   zh: {
-    startEyebrow: '推荐入口',
-    startTitle: '从你现在要完成的任务开始',
-    startDescription: '无需按目录顺序阅读。选择一个目标，直接进入对应操作和检查步骤。',
-    openLabel: '打开指南',
-    starts: [
-      { code: 'START', title: '首次使用 TianGong LCA', description: '完成注册、登录和核心操作演示，建立对平台的基本认识。', slug: 'quick-start' },
-      { code: 'DATA', title: '查找并使用数据', description: '搜索数据空间，查看数据集，并引用或复制所需记录。', slug: 'user-guide/data' },
-      { code: 'MODEL', title: '创建数据与模型', description: '创建流和过程、连接交换，并准备可计算的产品系统。', slug: 'user-guide/create-my-data' },
-      { code: 'LCIA', title: '计算并解读结果', description: '运行影响评价，检查过程或模型的 LCIA 结果。', slug: 'user-guide/lcia' },
+    eyebrow: '文档导航',
+    title: '常见任务指南',
+    description:
+      '以下内容按常见任务分类，汇总相关的方法说明、平台操作和详细文档。首次使用可先阅读“快速开始”；具体界面功能见“用户指南”。',
+    boundaryLabels: {
+      method: '方法要求',
+      platform: '平台操作',
+      specification: 'TIDAS 数据格式',
+      shared: '平台操作 + 人工判断',
+    },
+    tasks: [
+      {
+        code: '任务 01',
+        title: '分析一个产品的环境影响',
+        description:
+          '先说明为什么计算、计算什么和计算到哪里，再准备数据、建立产品系统、计算并解释结果。平台提供数据和计算工具，方法选择与结论仍由研究者负责。',
+        ariaLabel: '分析产品环境影响的五个步骤：确定目的与范围、收集并检查数据、建立产品系统、计算环境影响、解释结果并报告。',
+        steps: [
+          { code: '01', title: '确定目的与范围', description: '说明为什么开展研究、结果给谁用，并确定功能单位和系统边界。', href: docsHref('zh', 'data-collection/data-collection-instructions'), boundary: 'method' },
+          { code: '02', title: '收集并检查数据', description: '查找过程数据，查看来源以及技术、地区和时间代表性。', href: docsHref('zh', 'user-guide/data'), boundary: 'platform' },
+          { code: '03', title: '建立产品系统', description: '连接生产过程及其投入产出，核对基准流和数量关系。', href: docsHref('zh', 'user-guide/create-my-data'), boundary: 'platform' },
+          { code: '04', title: '计算环境影响', description: '选择生命周期影响评价（LCIA）方法，查看结果并检查缺失因子。', href: docsHref('zh', 'user-guide/lcia'), boundary: 'platform' },
+          { code: '05', title: '解释结果并报告', description: '分析主要贡献和敏感性，说明局限，形成结论和报告。', href: docsHref('zh', 'user-guide/process-analysis'), boundary: 'shared' },
+        ],
+      },
+      {
+        code: '任务 02',
+        title: '整理并发布一份 LCA 数据',
+        description:
+          '把一项生产或服务活动的来源、投入、产出和适用范围按统一方式记录，检查后提交评审，让其他人能够查找、理解和复用。',
+        ariaLabel: '整理并发布 LCA 数据的五个步骤：记录来源和适用范围、按 TIDAS 格式整理数据、检查文件结构和引用、提交评审并发布、导入导出与复用。',
+        steps: [
+          { code: '01', title: '记录来源和适用范围', description: '记录原始资料、地区、年份、技术、假设和数据质量说明。', href: docsHref('zh', 'data-collection/data-collection-instructions'), boundary: 'method' },
+          { code: '02', title: '按 TIDAS 格式整理数据', description: '先了解过程、流、单位和来源怎样按统一结构整理；需要逐字段说明时再进入详细规范。', href: tidasHref('zh', 'core-modules'), boundary: 'specification' },
+          { code: '03', title: '检查文件结构和引用', description: '了解工具怎样检查必填内容和引用，以及结构检查不能代替哪些专业判断。', href: tidasHref('zh', 'tool'), boundary: 'specification' },
+          { code: '04', title: '提交评审并发布', description: '在平台提交，回应意见；是否通过由评审管理员决定。', href: docsHref('zh', 'user-guide/data-review'), boundary: 'platform' },
+          { code: '05', title: '导入、导出与复用', description: '用 TIDAS ZIP 文件导入或导出数据，并查看处理进度。', href: docsHref('zh', 'user-guide/tidas-zip-workflows'), boundary: 'platform' },
+        ],
+      },
     ],
-    routeEyebrow: '任务路线',
-    routeTitle: '一项生命周期评价如何在平台中推进',
-    routeDescription: '这是一张文档导航图，而非固定流程。可从任一步进入，并按项目需要返回前一步修订。',
-    routeAriaLabel: 'TianGong LCA 文档任务路线：快速上手、找到数据、建立模型、计算 LCIA、评审协作。',
-    route: [
-      { code: '01', title: '快速上手', description: '账号与界面', slug: 'quick-start' },
-      { code: '02', title: '找到数据', description: '检索与引用', slug: 'user-guide/data' },
-      { code: '03', title: '建立模型', description: '过程与交换', slug: 'user-guide/create-my-data' },
-      { code: '04', title: '计算 LCIA', description: '影响与结果', slug: 'user-guide/lcia' },
-      { code: '05', title: '评审协作', description: '提交与反馈', slug: 'user-guide/data-review' },
-    ],
-    exploreEyebrow: '继续深入',
-    exploreTitle: '按专业主题浏览',
-    exploreDescription: '面向数据生产、系统集成和私有化部署的参考资料。',
-    explore: [
-      { code: 'METHOD', title: '数据收集与建模方法', description: '规范、案例与质量检查', slug: 'data-collection' },
-      { code: 'CONNECT', title: '集成与扩展', description: 'MCP、CLI 与外部工具', slug: 'integration' },
-      { code: 'API', title: 'OpenAPI', description: '接口约定与调用示例', slug: 'openapi' },
-      { code: 'OPERATE', title: '部署与开发', description: '私有化部署和开发环境', slug: 'deploy-and-dev' },
+    referenceEyebrow: '进一步了解',
+    referenceTitle: '需要时查看这些说明',
+    referenceDescription: '第一次操作、专业术语、具体界面和系统连接分别有独立说明。',
+    references: [
+      { code: '开始', title: '10–15 分钟快速开始', description: '按五个步骤查看一个公开过程的环境影响结果。', href: docsHref('zh', 'quick-start') },
+      { code: '术语', title: '术语与缩写', description: '集中解释 LCA、功能单位、系统边界、LCI、LCIA、评审和数据质量。', href: docsHref('zh', 'overview/glossary') },
+      { code: '指南', title: '用户指南', description: '按数据、建模、分析、评审与权限查界面操作。', href: docsHref('zh', 'user-guide') },
+      { code: '连接', title: '集成与扩展', description: 'MCP、CLI、OpenAPI 与外部工具入口。', href: docsHref('zh', 'integration') },
     ],
   },
   en: {
-    startEyebrow: 'Recommended entry points',
-    startTitle: 'Begin with the task in front of you',
-    startDescription: 'You do not need to read the documentation in order. Choose an outcome and open the relevant actions and checks.',
-    openLabel: 'Open guide',
-    starts: [
-      { code: 'START', title: 'Use TianGong LCA for the first time', description: 'Complete registration, sign-in, and the core demonstrations to learn the platform.', slug: 'quick-start' },
-      { code: 'DATA', title: 'Find and use data', description: 'Search data spaces, inspect datasets, and reference or copy the records you need.', slug: 'user-guide/data' },
-      { code: 'MODEL', title: 'Create data and models', description: 'Create flows and processes, connect exchanges, and prepare a calculable product system.', slug: 'user-guide/create-my-data' },
-      { code: 'LCIA', title: 'Calculate and interpret results', description: 'Run impact assessment and inspect LCIA results for a process or model.', slug: 'user-guide/lcia' },
+    eyebrow: 'Documentation guide',
+    title: 'Guides for common tasks',
+    description:
+      'The guidance below is organized by common task and brings together relevant methodology, platform actions, and detailed documentation. New users can begin with Quick Start; the User Guide explains individual screens.',
+    boundaryLabels: { method: 'Method choices', platform: 'Platform action', specification: 'TIDAS data format', shared: 'Platform action + professional judgement' },
+    tasks: [
+      {
+        code: 'TASK 01', title: 'Assess a product’s environmental impacts',
+        description: 'Start by defining why you are calculating, what is included, and where the study stops. Then prepare data, build a product system, calculate impacts, and interpret the results. The platform supplies data and calculation tools; practitioners remain responsible for method choices and conclusions.',
+        ariaLabel: 'Five steps for assessing a product: define goal and scope, collect and check data, build the product system, calculate environmental impacts, interpret and report.',
+        steps: [
+          { code: '01', title: 'Define goal and scope', description: 'State why the study is being done and who will use it; define the functional unit and system boundary.', href: docsHref('en', 'data-collection/data-collection-instructions'), boundary: 'method' },
+          { code: '02', title: 'Collect and check data', description: 'Find process data and check its sources and technological, geographical, and time representativeness.', href: docsHref('en', 'user-guide/data'), boundary: 'platform' },
+          { code: '03', title: 'Build the product system', description: 'Connect processes and their inputs and outputs; check reference flows and quantities.', href: docsHref('en', 'user-guide/create-my-data'), boundary: 'platform' },
+          { code: '04', title: 'Calculate environmental impacts', description: 'Choose a life cycle impact assessment (LCIA) method, inspect the results, and check for missing factors.', href: docsHref('en', 'user-guide/lcia'), boundary: 'platform' },
+          { code: '05', title: 'Interpret and report', description: 'Analyse major contributions and sensitivity, state limitations, and form conclusions and a report.', href: docsHref('en', 'user-guide/process-analysis'), boundary: 'shared' },
+        ],
+      },
+      {
+        code: 'TASK 02', title: 'Organise and publish LCA data',
+        description: 'Record the sources, inputs, outputs, and intended use of a production or service activity in a consistent form. Check it and submit it for review so others can find, understand, and reuse it.',
+        ariaLabel: 'Five steps for organising and publishing LCA data: record sources and intended use, organise data in the TIDAS format, check file structure and references, submit for review and publication, import export and reuse.',
+        steps: [
+          { code: '01', title: 'Record sources and intended use', description: 'Record original sources, region, year, technology, assumptions, and a data-quality description.', href: docsHref('en', 'data-collection/data-collection-instructions'), boundary: 'method' },
+          { code: '02', title: 'Organise data in the TIDAS format', description: 'First learn how processes, flows, units, and sources fit into one shared structure; open the field-level specification only when needed.', href: tidasHref('en', 'core-modules'), boundary: 'specification' },
+          { code: '03', title: 'Check file structure and references', description: 'Learn what the tools check and which professional judgements still require a person.', href: tidasHref('en', 'tool'), boundary: 'specification' },
+          { code: '04', title: 'Submit for review and publication', description: 'Submit in the platform and respond to comments; the review administrator makes the final decision.', href: docsHref('en', 'user-guide/data-review'), boundary: 'platform' },
+          { code: '05', title: 'Import, export, and reuse', description: 'Use TIDAS ZIP files to import or export data and view processing progress.', href: docsHref('en', 'user-guide/tidas-zip-workflows'), boundary: 'platform' },
+        ],
+      },
     ],
-    routeEyebrow: 'Task route',
-    routeTitle: 'How an assessment moves through the platform',
-    routeDescription: 'This is a documentation map, not a rigid workflow. Enter at any step and return to earlier steps as the project changes.',
-    routeAriaLabel: 'TianGong LCA documentation task route: get started, find data, build a model, calculate LCIA, review and collaborate.',
-    route: [
-      { code: '01', title: 'Get started', description: 'Account and interface', slug: 'quick-start' },
-      { code: '02', title: 'Find data', description: 'Search and reference', slug: 'user-guide/data' },
-      { code: '03', title: 'Build a model', description: 'Processes and exchanges', slug: 'user-guide/create-my-data' },
-      { code: '04', title: 'Calculate LCIA', description: 'Impacts and results', slug: 'user-guide/lcia' },
-      { code: '05', title: 'Review together', description: 'Submit and respond', slug: 'user-guide/data-review' },
-    ],
-    exploreEyebrow: 'Explore further',
-    exploreTitle: 'Browse by technical subject',
-    exploreDescription: 'References for data production, system integration, and self-hosted operation.',
-    explore: [
-      { code: 'METHOD', title: 'Data collection and modelling', description: 'Rules, cases, and quality checks', slug: 'data-collection' },
-      { code: 'CONNECT', title: 'Integrations and extensions', description: 'MCP, CLI, and external tools', slug: 'integration' },
-      { code: 'API', title: 'OpenAPI', description: 'Interface conventions and examples', slug: 'openapi' },
-      { code: 'OPERATE', title: 'Deployment and development', description: 'Self-hosting and development setup', slug: 'deploy-and-dev' },
+    referenceEyebrow: 'Learn more', referenceTitle: 'Open these guides when needed',
+    referenceDescription: 'First use, terminology, individual screens, and system connections each have a dedicated guide.',
+    references: [
+      { code: 'START', title: '10–15 minute Quick Start', description: 'Follow five steps to view the environmental-impact results of one open process.', href: docsHref('en', 'quick-start') },
+      { code: 'TERMS', title: 'Terms and abbreviations', description: 'Definitions for LCA, functional unit, system boundary, LCI, LCIA, review, and data quality.', href: docsHref('en', 'overview/glossary') },
+      { code: 'GUIDE', title: 'User Guide', description: 'Find interface guidance by data, modelling, analysis, review, and access.', href: docsHref('en', 'user-guide') },
+      { code: 'CONNECT', title: 'Integrations and extensions', description: 'MCP, CLI, OpenAPI, and external tool entry points.', href: docsHref('en', 'integration') },
     ],
   },
   de: {
-    startEyebrow: 'Empfohlene Einstiege',
-    startTitle: 'Beginnen Sie mit Ihrer aktuellen Aufgabe',
-    startDescription: 'Sie müssen die Dokumentation nicht der Reihe nach lesen. Wählen Sie ein Ziel und öffnen Sie die passenden Schritte und Prüfungen.',
-    openLabel: 'Guide öffnen',
-    starts: [
-      { code: 'START', title: 'TianGong LCA erstmals verwenden', description: 'Registrierung, Anmeldung und zentrale Demos vermitteln die Grundlagen der Plattform.', slug: 'quick-start' },
-      { code: 'DATA', title: 'Daten finden und verwenden', description: 'Datenräume durchsuchen, Datensätze prüfen und benötigte Einträge referenzieren oder kopieren.', slug: 'user-guide/data' },
-      { code: 'MODEL', title: 'Daten und Modelle erstellen', description: 'Flüsse und Prozesse anlegen, Austausche verbinden und ein berechenbares Produktsystem vorbereiten.', slug: 'user-guide/create-my-data' },
-      { code: 'LCIA', title: 'Ergebnisse berechnen und auswerten', description: 'Wirkungsabschätzungen ausführen und LCIA-Ergebnisse für Prozesse oder Modelle prüfen.', slug: 'user-guide/lcia' },
+    eyebrow: 'Dokumentationsübersicht', title: 'Anleitungen für häufige Aufgaben',
+    description: 'Die folgenden Hinweise sind nach häufigen Aufgaben gegliedert und bündeln methodische Erläuterungen, Aktionen in der Plattform und weiterführende Dokumentation. Für die erste Nutzung empfiehlt sich der Schnellstart; einzelne Ansichten erklärt das Benutzerhandbuch.',
+    boundaryLabels: { method: 'Methodische Festlegung', platform: 'Aktion in der Plattform', specification: 'TIDAS-Datenformat', shared: 'Plattform + fachliche Beurteilung' },
+    tasks: [
+      {
+        code: 'AUFGABE 01', title: 'Umweltwirkungen eines Produkts untersuchen',
+        description: 'Legen Sie zuerst fest, warum gerechnet wird, was einbezogen wird und wo die Untersuchung endet. Danach bereiten Sie Daten vor, erstellen das Produktsystem, berechnen Wirkungen und werten die Ergebnisse aus. Die Plattform stellt Daten und Rechenwerkzeuge bereit; Methodenwahl und Schlussfolgerungen bleiben in fachlicher Verantwortung.',
+        ariaLabel: 'Fünf Schritte zur Untersuchung eines Produkts: Ziel und Untersuchungsrahmen festlegen, Daten sammeln und prüfen, Produktsystem erstellen, Umweltwirkungen berechnen, Ergebnisse auswerten und berichten.',
+        steps: [
+          { code: '01', title: 'Ziel und Untersuchungsrahmen festlegen', description: 'Zweck und Zielgruppe nennen sowie funktionelle Einheit und Systemgrenze bestimmen.', href: docsHref('de', 'data-collection/data-collection-instructions'), boundary: 'method' },
+          { code: '02', title: 'Daten sammeln und prüfen', description: 'Prozessdaten finden und Quellen sowie technische, geografische und zeitliche Repräsentativität prüfen.', href: docsHref('de', 'user-guide/data'), boundary: 'platform' },
+          { code: '03', title: 'Produktsystem erstellen', description: 'Prozesse mit ihren Inputs und Outputs verbinden; Referenzflüsse und Mengen prüfen.', href: docsHref('de', 'user-guide/create-my-data'), boundary: 'platform' },
+          { code: '04', title: 'Umweltwirkungen berechnen', description: 'Eine Methode der Wirkungsabschätzung (LCIA) wählen, Ergebnisse ansehen und fehlende Faktoren prüfen.', href: docsHref('de', 'user-guide/lcia'), boundary: 'platform' },
+          { code: '05', title: 'Auswerten und berichten', description: 'Wesentliche Beiträge und Sensitivität untersuchen, Grenzen benennen und Schlussfolgerungen berichten.', href: docsHref('de', 'user-guide/process-analysis'), boundary: 'shared' },
+        ],
+      },
+      {
+        code: 'AUFGABE 02', title: 'LCA-Daten strukturieren und veröffentlichen',
+        description: 'Erfassen Sie Quellen, Inputs, Outputs und den Anwendungsbereich einer Produktions- oder Dienstleistungsaktivität einheitlich. Prüfen Sie die Daten und reichen Sie sie zur fachlichen Prüfung ein, damit andere sie finden, verstehen und wiederverwenden können.',
+        ariaLabel: 'Fünf Schritte zum Strukturieren und Veröffentlichen von LCA-Daten: Quellen und Anwendungsbereich festhalten, Daten im TIDAS-Format strukturieren, Dateistruktur und Verweise prüfen, zur Prüfung und Veröffentlichung einreichen, importieren exportieren und wiederverwenden.',
+        steps: [
+          { code: '01', title: 'Quellen und Anwendungsbereich festhalten', description: 'Originalquellen, Region, Jahr, Technologie, Annahmen und Datenqualität beschreiben.', href: docsHref('de', 'data-collection/data-collection-instructions'), boundary: 'method' },
+          { code: '02', title: 'Daten im TIDAS-Format strukturieren', description: 'Zuerst verstehen, wie Prozesse, Flüsse, Einheiten und Quellen in einer gemeinsamen Struktur zusammengehören; Feldregeln erst bei Bedarf öffnen.', href: tidasHref('de', 'core-modules'), boundary: 'specification' },
+          { code: '03', title: 'Dateistruktur und Verweise prüfen', description: 'Erfahren, was die Werkzeuge prüfen und welche fachlichen Beurteilungen weiterhin Menschen treffen müssen.', href: tidasHref('de', 'tool'), boundary: 'specification' },
+          { code: '04', title: 'Zur Prüfung und Veröffentlichung einreichen', description: 'In der Plattform einreichen und Kommentare beantworten; die Prüfadministration entscheidet abschließend.', href: docsHref('de', 'user-guide/data-review'), boundary: 'platform' },
+          { code: '05', title: 'Importieren, exportieren und wiederverwenden', description: 'Daten mit TIDAS-ZIP-Dateien importieren oder exportieren und den Fortschritt ansehen.', href: docsHref('de', 'user-guide/tidas-zip-workflows'), boundary: 'platform' },
+        ],
+      },
     ],
-    routeEyebrow: 'Aufgabenroute',
-    routeTitle: 'Wie eine Ökobilanz durch die Plattform geführt wird',
-    routeDescription: 'Dies ist eine Navigationskarte, kein starrer Ablauf. Steigen Sie bei jedem Schritt ein und gehen Sie bei Änderungen zurück.',
-    routeAriaLabel: 'Dokumentationsroute für TianGong LCA: Einstieg, Daten finden, Modell erstellen, LCIA berechnen, prüfen und zusammenarbeiten.',
-    route: [
-      { code: '01', title: 'Einstieg', description: 'Konto und Oberfläche', slug: 'quick-start' },
-      { code: '02', title: 'Daten finden', description: 'Suchen und referenzieren', slug: 'user-guide/data' },
-      { code: '03', title: 'Modell erstellen', description: 'Prozesse und Austausche', slug: 'user-guide/create-my-data' },
-      { code: '04', title: 'LCIA berechnen', description: 'Wirkungen und Ergebnisse', slug: 'user-guide/lcia' },
-      { code: '05', title: 'Gemeinsam prüfen', description: 'Einreichen und reagieren', slug: 'user-guide/data-review' },
-    ],
-    exploreEyebrow: 'Weiterführende Themen',
-    exploreTitle: 'Nach Fachthema durchsuchen',
-    exploreDescription: 'Referenzen für Datenproduktion, Systemintegration und eigenen Betrieb.',
-    explore: [
-      { code: 'METHOD', title: 'Datensammlung und Modellierung', description: 'Regeln, Fälle und Qualitätsprüfungen', slug: 'data-collection' },
-      { code: 'CONNECT', title: 'Integrationen und Erweiterungen', description: 'MCP, CLI und externe Werkzeuge', slug: 'integration' },
-      { code: 'API', title: 'OpenAPI', description: 'Schnittstellenregeln und Beispiele', slug: 'openapi' },
-      { code: 'OPERATE', title: 'Bereitstellung und Entwicklung', description: 'Self-Hosting und Entwicklungsumgebung', slug: 'deploy-and-dev' },
+    referenceEyebrow: 'Mehr erfahren', referenceTitle: 'Diese Anleitungen bei Bedarf öffnen',
+    referenceDescription: 'Erste Nutzung, Fachbegriffe, einzelne Ansichten und Systemanbindungen sind getrennt erklärt.',
+    references: [
+      { code: 'START', title: 'Schnellstart in 10–15 Minuten', description: 'In fünf Schritten die Umweltwirkungsergebnisse eines offenen Prozesses ansehen.', href: docsHref('de', 'quick-start') },
+      { code: 'BEGRIFFE', title: 'Begriffe und Abkürzungen', description: 'Erklärungen zu LCA, funktioneller Einheit, Systemgrenze, LCI, LCIA, Prüfung und Datenqualität.', href: docsHref('de', 'overview/glossary') },
+      { code: 'GUIDE', title: 'Benutzerhandbuch', description: 'Oberflächenhinweise nach Daten, Modellierung, Analyse, Prüfung und Zugriff.', href: docsHref('de', 'user-guide') },
+      { code: 'CONNECT', title: 'Integrationen und Erweiterungen', description: 'Einstiege für MCP, CLI, OpenAPI und externe Werkzeuge.', href: docsHref('de', 'integration') },
     ],
   },
   fr: {
-    startEyebrow: 'Entrées recommandées',
-    startTitle: 'Commencez par la tâche à accomplir',
-    startDescription: 'Il n’est pas nécessaire de lire la documentation dans l’ordre. Choisissez un objectif et ouvrez les actions et contrôles correspondants.',
-    openLabel: 'Ouvrir le guide',
-    starts: [
-      { code: 'START', title: 'Utiliser TianGong LCA pour la première fois', description: 'Terminez l’inscription, la connexion et les démonstrations essentielles pour découvrir la plateforme.', slug: 'quick-start' },
-      { code: 'DATA', title: 'Trouver et utiliser des données', description: 'Recherchez dans les espaces de données, examinez les jeux et référencez ou copiez les enregistrements utiles.', slug: 'user-guide/data' },
-      { code: 'MODEL', title: 'Créer des données et des modèles', description: 'Créez des flux et procédés, reliez les échanges et préparez un système de produit calculable.', slug: 'user-guide/create-my-data' },
-      { code: 'LCIA', title: 'Calculer et interpréter les résultats', description: 'Lancez l’évaluation des impacts et examinez les résultats d’ACVI d’un procédé ou modèle.', slug: 'user-guide/lcia' },
+    eyebrow: 'Guide de la documentation', title: 'Guides pour les tâches courantes',
+    description: 'Les indications ci-dessous sont organisées par tâche courante et regroupent les explications méthodologiques, les opérations dans la plateforme et la documentation détaillée. Les nouveaux utilisateurs peuvent commencer par le démarrage rapide ; le guide utilisateur décrit les différents écrans.',
+    boundaryLabels: { method: 'Choix méthodologique', platform: 'Action dans la plateforme', specification: 'Format de données TIDAS', shared: 'Plateforme + jugement professionnel' },
+    tasks: [
+      {
+        code: 'TÂCHE 01', title: 'Évaluer les impacts environnementaux d’un produit',
+        description: 'Commencez par préciser pourquoi vous calculez, ce qui est inclus et où s’arrête l’étude. Préparez ensuite les données, construisez le système de produit, calculez les impacts et interprétez les résultats. La plateforme fournit les données et les outils de calcul ; les choix méthodologiques et les conclusions restent sous la responsabilité du praticien.',
+        ariaLabel: 'Cinq étapes pour évaluer un produit : définir les objectifs et le champ, collecter et contrôler les données, construire le système de produit, calculer les impacts environnementaux, interpréter et rédiger le rapport.',
+        steps: [
+          { code: '01', title: 'Définir les objectifs et le champ', description: 'Préciser pourquoi l’étude est menée et pour qui ; définir l’unité fonctionnelle et la frontière du système.', href: docsHref('fr', 'data-collection/data-collection-instructions'), boundary: 'method' },
+          { code: '02', title: 'Collecter et contrôler les données', description: 'Trouver des données de procédé et contrôler leurs sources ainsi que leur représentativité technologique, géographique et temporelle.', href: docsHref('fr', 'user-guide/data'), boundary: 'platform' },
+          { code: '03', title: 'Construire le système de produit', description: 'Relier les procédés et leurs entrées et sorties ; vérifier les flux de référence et les quantités.', href: docsHref('fr', 'user-guide/create-my-data'), boundary: 'platform' },
+          { code: '04', title: 'Calculer les impacts environnementaux', description: 'Choisir une méthode d’évaluation de l’impact du cycle de vie (ACVI), lire les résultats et rechercher les facteurs manquants.', href: docsHref('fr', 'user-guide/lcia'), boundary: 'platform' },
+          { code: '05', title: 'Interpréter et rendre compte', description: 'Analyser les contributions principales et la sensibilité, indiquer les limites et formuler les conclusions.', href: docsHref('fr', 'user-guide/process-analysis'), boundary: 'shared' },
+        ],
+      },
+      {
+        code: 'TÂCHE 02', title: 'Structurer et publier des données ACV',
+        description: 'Consignez de manière cohérente les sources, les entrées, les sorties et le domaine d’utilisation d’une activité de production ou de service. Contrôlez les données puis soumettez-les à la revue pour que d’autres puissent les trouver, les comprendre et les réutiliser.',
+        ariaLabel: 'Cinq étapes pour structurer et publier des données ACV : consigner les sources et le domaine d’utilisation, structurer les données au format TIDAS, contrôler la structure du fichier et les références, soumettre pour revue et publication, importer exporter et réutiliser.',
+        steps: [
+          { code: '01', title: 'Consigner les sources et le domaine d’utilisation', description: 'Décrire les sources d’origine, la région, l’année, la technologie, les hypothèses et la qualité des données.', href: docsHref('fr', 'data-collection/data-collection-instructions'), boundary: 'method' },
+          { code: '02', title: 'Structurer les données au format TIDAS', description: 'Comprendre d’abord comment procédés, flux, unités et sources s’organisent dans une structure commune ; consulter les règles de champ au besoin.', href: tidasHref('fr', 'core-modules'), boundary: 'specification' },
+          { code: '03', title: 'Contrôler la structure et les références', description: 'Comprendre ce que les outils contrôlent et quels jugements professionnels restent humains.', href: tidasHref('fr', 'tool'), boundary: 'specification' },
+          { code: '04', title: 'Soumettre pour revue et publication', description: 'Soumettre dans la plateforme et répondre aux commentaires ; l’administrateur de revue prend la décision finale.', href: docsHref('fr', 'user-guide/data-review'), boundary: 'platform' },
+          { code: '05', title: 'Importer, exporter et réutiliser', description: 'Importer ou exporter les données avec des fichiers TIDAS ZIP et consulter l’avancement du traitement.', href: docsHref('fr', 'user-guide/tidas-zip-workflows'), boundary: 'platform' },
+        ],
+      },
     ],
-    routeEyebrow: 'Parcours par tâche',
-    routeTitle: 'Comment une évaluation progresse dans la plateforme',
-    routeDescription: 'Il s’agit d’une carte de navigation, pas d’un processus figé. Entrez à n’importe quelle étape et revenez en arrière si le projet évolue.',
-    routeAriaLabel: 'Parcours documentaire TianGong LCA : démarrer, trouver des données, construire un modèle, calculer l’ACVI, réviser et collaborer.',
-    route: [
-      { code: '01', title: 'Démarrer', description: 'Compte et interface', slug: 'quick-start' },
-      { code: '02', title: 'Trouver les données', description: 'Recherche et référence', slug: 'user-guide/data' },
-      { code: '03', title: 'Construire le modèle', description: 'Procédés et échanges', slug: 'user-guide/create-my-data' },
-      { code: '04', title: 'Calculer l’ACVI', description: 'Impacts et résultats', slug: 'user-guide/lcia' },
-      { code: '05', title: 'Réviser ensemble', description: 'Soumission et retours', slug: 'user-guide/data-review' },
-    ],
-    exploreEyebrow: 'Pour aller plus loin',
-    exploreTitle: 'Parcourir par sujet technique',
-    exploreDescription: 'Références pour la production de données, l’intégration de systèmes et l’auto-hébergement.',
-    explore: [
-      { code: 'METHOD', title: 'Collecte et modélisation', description: 'Règles, cas et contrôles qualité', slug: 'data-collection' },
-      { code: 'CONNECT', title: 'Intégrations et extensions', description: 'MCP, CLI et outils externes', slug: 'integration' },
-      { code: 'API', title: 'OpenAPI', description: 'Conventions d’interface et exemples', slug: 'openapi' },
-      { code: 'OPERATE', title: 'Déploiement et développement', description: 'Auto-hébergement et environnement', slug: 'deploy-and-dev' },
+    referenceEyebrow: 'Pour aller plus loin', referenceTitle: 'Ouvrir ces guides selon le besoin',
+    referenceDescription: 'La première utilisation, les termes, les écrans et les connexions système sont expliqués séparément.',
+    references: [
+      { code: 'DÉBUT', title: 'Démarrage rapide en 10–15 minutes', description: 'Suivre cinq étapes pour voir les résultats environnementaux d’un procédé ouvert.', href: docsHref('fr', 'quick-start') },
+      { code: 'TERMES', title: 'Termes et abréviations', description: 'Définitions de l’ACV, de l’unité fonctionnelle, de la frontière, de l’ICV, de l’ACVI, de la revue et de la qualité des données.', href: docsHref('fr', 'overview/glossary') },
+      { code: 'GUIDE', title: 'Guide utilisateur', description: 'Trouver l’interface par données, modélisation, analyse, revue et accès.', href: docsHref('fr', 'user-guide') },
+      { code: 'CONNECT', title: 'Intégrations et extensions', description: 'Entrées MCP, CLI, OpenAPI et outils externes.', href: docsHref('fr', 'integration') },
     ],
   },
 };
@@ -166,8 +223,9 @@ function Arrow() {
   );
 }
 
-function routeHref(language: Language, slug: string) {
-  return `/${language}/docs/${slug}/`;
+function TaskLink({ href, children, className }: { href: string; children: React.ReactNode; className: string }) {
+  const external = href.startsWith('https://');
+  return <Link className={className} href={href} {...(external ? { rel: 'noreferrer', target: '_blank' } : {})}>{children}</Link>;
 }
 
 export function DocsPortal({ lang }: { lang: string }) {
@@ -176,75 +234,49 @@ export function DocsPortal({ lang }: { lang: string }) {
 
   return (
     <div className="not-prose mt-8 grid gap-12 pb-3" data-docs-portal="lca-task-hub">
-      <section aria-labelledby="docs-portal-start">
-        <div className="mb-5 grid max-w-[42rem] gap-2">
-          <p className="m-0 text-xs font-semibold tracking-[0.08em] text-fd-primary uppercase">{content.startEyebrow}</p>
-          <h2 className="m-0 text-2xl leading-tight font-semibold tracking-[-0.025em]" id="docs-portal-start">{content.startTitle}</h2>
-          <p className="m-0 text-sm leading-6 text-fd-muted-foreground">{content.startDescription}</p>
+      <section aria-labelledby="docs-portal-journeys" className="grid gap-6" data-docs-portal-map="lca-task-route" data-docs-portal-map-v2="two-lca-journeys">
+        <div className="grid max-w-[48rem] gap-2">
+          <p className="m-0 text-xs font-semibold tracking-[0.08em] text-fd-primary uppercase">{content.eyebrow}</p>
+          <h2 className="m-0 text-2xl leading-tight font-semibold tracking-[-0.025em]" id="docs-portal-journeys">{content.title}</h2>
+          <p className="m-0 text-sm leading-6 text-fd-muted-foreground">{content.description}</p>
         </div>
-        <Cards className="grid-cols-2 gap-3 max-[40rem]:grid-cols-1">
-          {content.starts.map((item) => (
-            <Card
-              className="grid min-h-44 content-start gap-3 rounded-[2px] border-fd-border bg-fd-card p-4 text-inherit transition-colors duration-100 hover:border-fd-primary hover:bg-fd-accent [&>div:last-child]:self-end [&_h3]:m-0 [&_h3]:text-base [&_h3]:leading-snug [&_h3]:font-semibold [&_p]:m-0! [&_p]:text-sm [&_p]:leading-6 [&_p]:text-fd-muted-foreground"
-              description={item.description}
-              href={routeHref(language, item.slug)}
-              key={item.slug}
-              title={item.title}
-            >
-              <span className="inline-flex items-center justify-between gap-3 text-xs font-semibold tracking-[0.05em] text-fd-primary uppercase">
-                {item.code}
-                <span className="inline-flex items-center gap-1 font-medium tracking-normal normal-case">
-                  {content.openLabel}
-                  <Arrow />
-                </span>
-              </span>
-            </Card>
-          ))}
-        </Cards>
+        {content.tasks.map((task, taskIndex) => (
+          <article className="rounded-[2px] border border-fd-border bg-fd-muted/25 p-5 max-[40rem]:p-4" data-docs-journey={taskIndex === 0 ? 'lca-study' : 'data-production'} id={taskIndex === 0 ? 'journey-lca-study' : 'journey-data-production'} key={task.code}>
+            <div className="mb-5 grid max-w-[48rem] gap-2">
+              <p className="m-0 text-xs font-semibold tracking-[0.08em] text-fd-primary uppercase">{task.code}</p>
+              <h3 className="m-0 text-xl leading-tight font-semibold tracking-[-0.02em]">{task.title}</h3>
+              <p className="m-0 text-sm leading-6 text-fd-muted-foreground">{task.description}</p>
+            </div>
+            <ol aria-label={task.ariaLabel} className="m-0 grid list-none grid-cols-5 gap-[2px] overflow-hidden rounded-[2px] border-2 border-fd-border bg-fd-border p-0 max-[58rem]:grid-cols-1">
+              {task.steps.map((step) => (
+                <li className="m-0 min-w-0 bg-fd-background p-0" key={step.code}>
+                  <TaskLink className="group grid min-h-48 content-between gap-5 p-3.5 text-fd-foreground no-underline transition-colors duration-100 hover:bg-fd-accent max-[58rem]:min-h-0" href={step.href}>
+                    <span className="flex items-center justify-between gap-2 text-xs font-semibold text-fd-primary">{step.code}<Arrow /></span>
+                    <span className="grid gap-1.5">
+                      <span className="w-fit rounded-[2px] border border-fd-border px-1.5 py-0.5 text-[0.65rem] font-semibold tracking-[0.04em] text-fd-muted-foreground uppercase">{content.boundaryLabels[step.boundary]}</span>
+                      <strong className="text-sm leading-snug font-semibold">{step.title}</strong>
+                      <span className="text-xs leading-5 text-fd-muted-foreground">{step.description}</span>
+                    </span>
+                  </TaskLink>
+                </li>
+              ))}
+            </ol>
+          </article>
+        ))}
       </section>
 
-      <section aria-labelledby="docs-portal-route" className="rounded-[2px] border border-fd-border bg-fd-muted/30 p-5 max-[40rem]:p-4" data-docs-portal-map="lca-task-route">
-        <div className="mb-5 grid max-w-[42rem] gap-2">
-          <p className="m-0 text-xs font-semibold tracking-[0.08em] text-fd-primary uppercase">{content.routeEyebrow}</p>
-          <h2 className="m-0 text-xl leading-tight font-semibold tracking-[-0.02em]" id="docs-portal-route">{content.routeTitle}</h2>
-          <p className="m-0 text-sm leading-6 text-fd-muted-foreground">{content.routeDescription}</p>
-        </div>
-        <ol aria-label={content.routeAriaLabel} className="m-0 grid list-none grid-cols-5 gap-[2px] overflow-hidden rounded-[2px] border-2 border-fd-border bg-fd-border p-0 max-[52rem]:grid-cols-1">
-          {content.route.map((step) => (
-            <li className="m-0 min-w-0 bg-fd-background p-0" key={step.code}>
-              <Link className="group grid min-h-36 content-between gap-5 p-3.5 text-fd-foreground no-underline transition-colors duration-100 hover:bg-fd-accent" href={routeHref(language, step.slug)}>
-                <span className="flex items-center justify-between gap-2 text-xs font-semibold text-fd-primary">
-                  {step.code}
-                  <Arrow />
-                </span>
-                <span className="grid gap-1">
-                  <strong className="text-sm leading-snug font-semibold">{step.title}</strong>
-                  <span className="text-xs leading-5 text-fd-muted-foreground">{step.description}</span>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section aria-labelledby="docs-portal-explore">
-        <div className="mb-5 grid max-w-[42rem] gap-2">
-          <p className="m-0 text-xs font-semibold tracking-[0.08em] text-fd-primary uppercase">{content.exploreEyebrow}</p>
-          <h2 className="m-0 text-xl leading-tight font-semibold tracking-[-0.02em]" id="docs-portal-explore">{content.exploreTitle}</h2>
-          <p className="m-0 text-sm leading-6 text-fd-muted-foreground">{content.exploreDescription}</p>
+      <section aria-labelledby="docs-portal-reference">
+        <div className="mb-5 grid max-w-[43rem] gap-2">
+          <p className="m-0 text-xs font-semibold tracking-[0.08em] text-fd-primary uppercase">{content.referenceEyebrow}</p>
+          <h2 className="m-0 text-xl leading-tight font-semibold tracking-[-0.02em]" id="docs-portal-reference">{content.referenceTitle}</h2>
+          <p className="m-0 text-sm leading-6 text-fd-muted-foreground">{content.referenceDescription}</p>
         </div>
         <div className="grid grid-cols-2 gap-[2px] overflow-hidden rounded-[2px] border-2 border-fd-border bg-fd-border max-[40rem]:grid-cols-1">
-          {content.explore.map((item) => (
-            <Link className="group grid min-h-28 content-between gap-4 bg-fd-background p-4 text-fd-foreground no-underline transition-colors duration-100 hover:bg-fd-accent" href={routeHref(language, item.slug)} key={item.slug}>
-              <span className="flex items-center justify-between gap-3 text-xs font-semibold tracking-[0.05em] text-fd-primary uppercase">
-                {item.code}
-                <Arrow />
-              </span>
-              <span className="grid gap-1">
-                <strong className="text-sm font-semibold">{item.title}</strong>
-                <span className="text-xs leading-5 text-fd-muted-foreground">{item.description}</span>
-              </span>
-            </Link>
+          {content.references.map((item) => (
+            <TaskLink className="group grid min-h-28 content-between gap-4 bg-fd-background p-4 text-fd-foreground no-underline transition-colors duration-100 hover:bg-fd-accent" href={item.href} key={item.code}>
+              <span className="flex items-center justify-between gap-3 text-xs font-semibold tracking-[0.05em] text-fd-primary uppercase">{item.code}<Arrow /></span>
+              <span className="grid gap-1"><strong className="text-sm font-semibold">{item.title}</strong><span className="text-xs leading-5 text-fd-muted-foreground">{item.description}</span></span>
+            </TaskLink>
           ))}
         </div>
       </section>

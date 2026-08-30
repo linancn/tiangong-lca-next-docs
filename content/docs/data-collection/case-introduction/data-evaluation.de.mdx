@@ -57,9 +57,13 @@ Jeder Teilprozess erfordert die Angabe:
   - Methanolsynthese: 1 kg Methanol
 - Gewährleisten Sie konsistente Referenzmengen über alle Prozesse hinweg für korrekte Systemberechnungen
 
-Das Gesamtmodell ist ein teilweise terminiertes System, mit dem dritten Unit-Prozess
-[Methanolproduktion] als Baseline. Die funktionale Einheit wurde auf 1 kg Methanolprodukt festgelegt
-(oder 1 Tonne — Wahl des Modellierers, aber konsistent über alle Unit-Prozesse hinweg).
+Das Gesamtmodell ist ein teilweise terminiertes System mit dem dritten Unit-Prozess
+[Methanolproduktion] als Baseline. Definieren Sie für diesen Fall die Funktion als Bereitstellung von
+Methanol unter angegebenen Qualitäts-, Grenz- und Zeitbedingungen und quantifizieren Sie sie etwa
+mit 1 kg Methanol. Eine Tonne ist nur eine Skalierung derselben funktionellen Grundlage, keine
+beliebige Wahl. Jeder Unit-Prozess behält eigenen Referenzfluss und eigene Referenzmenge; die
+Austausche skalieren sie auf die gemeinsame funktionelle Einheit. Identische Referenzmengen sind
+nicht erforderlich.
 
 **Verarbeitungshinweise:**
 
