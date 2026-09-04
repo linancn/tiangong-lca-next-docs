@@ -309,6 +309,51 @@ for (const route of toolGuideRoutes()) {
 }
 passed.push(`four-language tool-guide discovery (${toolGuideRoutes().length} chapters)`);
 
+// 14. Landing pages expose one compact technical-guide group and a safe
+// external entry to the TianGong LCA application.
+const landingOutputs = [
+  { lang: 'zh', path: 'index.html', label: 'root' },
+  ...publicLocales.map((lang) => ({ lang, path: `${lang}/index.html`, label: lang })),
+];
+let landingActionCount = 0;
+for (const landing of landingOutputs) {
+  const html = read(landing.path);
+  const technicalGroupCount = (html.match(/data-home-technical="true"/g) ?? []).length;
+  const technicalLinkCount = (html.match(/data-home-technical-link="true"/g) ?? []).length;
+  if (technicalGroupCount !== 1) {
+    errors.push(`${landing.label} landing has ${technicalGroupCount} technical-guide groups, expected 1`);
+    continue;
+  }
+  if (technicalLinkCount !== 2) {
+    errors.push(`${landing.label} landing has ${technicalLinkCount} technical-guide links, expected 2`);
+    continue;
+  }
+  for (const route of ['integration', 'deploy-and-dev']) {
+    if (!html.includes(`href="/${landing.lang}/docs/${route}/"`)) {
+      errors.push(`${landing.label} landing omits /${landing.lang}/docs/${route}/`);
+    }
+  }
+  const platformAnchors = html.match(/<a\b[^>]*href="https:\/\/lca\.tiangong\.earth\/"[^>]*>/g) ?? [];
+  if (platformAnchors.length !== 1) {
+    errors.push(`${landing.label} landing has ${platformAnchors.length} platform actions, expected 1`);
+    continue;
+  }
+  const platformAnchor = platformAnchors[0];
+  if (!platformAnchor.includes('target="_blank"')) {
+    errors.push(`${landing.label} platform action does not open externally`);
+    continue;
+  }
+  const relTokens = new Set((platformAnchor.match(/rel="([^"]*)"/)?.[1] ?? '').split(/\s+/).filter(Boolean));
+  if (!relTokens.has('noreferrer') || !relTokens.has('noopener')) {
+    errors.push(`${landing.label} platform action omits safe external-link rel attributes`);
+    continue;
+  }
+  landingActionCount += 1;
+}
+if (landingActionCount === landingOutputs.length) {
+  passed.push(`${landingActionCount} landing pages with technical guides and safe platform actions`);
+}
+
 // --- summary ---
 console.log(`\n[verify-out] ${passed.length} checks passed:`);
 for (const p of passed) console.log(`  ✓ ${p}`);

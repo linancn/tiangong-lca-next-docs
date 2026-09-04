@@ -37,8 +37,8 @@ checkPaths:
   - .github/workflows/**
   - .githooks/**
 lastReviewedAt: 2026-09-03
-lastReviewedCommit: e529ffacfd81ad4ed17ca0ea0cce811f6194b662
-lastReviewedNote: "Reviewed for Issue #186: explicit four-locale Knowledge Base MCP documentation retirement moves only the affected routes and exclusive media into negative checks; retained guides, shared assets, source-derived indexes, runtime ownership, and production-only publication boundaries remain intact."
+lastReviewedCommit: c291c272dbc31b8eba76f01fd19544fecd42d392
+lastReviewedNote: "Reviewed for localized TianGong LCA platform-action wording and an explicit external-link icon: navigation ownership, safe new-context behavior, and validation expectations remain unchanged."
 related:
   - .docpact/config.yaml
   - docs/agents/repo-architecture.md

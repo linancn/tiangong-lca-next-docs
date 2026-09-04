@@ -14,9 +14,10 @@ export default async function Page(props: PageProps<'/[lang]/docs/[[...slug]]'>)
   if (!page) notFound();
 
   const MDX = page.data.body;
+  const isDocsRoot = !params.slug || params.slug.length === 0;
 
   return (
-    <DocsPage toc={page.data.toc} footer={{ className: 'docs-pagination' }}>
+    <DocsPage toc={page.data.toc} footer={{ className: 'docs-pagination', enabled: !isDocsRoot }}>
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
