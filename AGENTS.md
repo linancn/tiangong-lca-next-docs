@@ -36,9 +36,9 @@ checkPaths:
   - context7.json
   - .github/workflows/**
   - .githooks/**
-lastReviewedAt: 2026-09-03
-lastReviewedCommit: c291c272dbc31b8eba76f01fd19544fecd42d392
-lastReviewedNote: "Reviewed for localized TianGong LCA platform-action wording and an explicit external-link icon: navigation ownership, safe new-context behavior, and validation expectations remain unchanged."
+lastReviewedAt: 2026-09-05
+lastReviewedCommit: 6c79d430d292e06111f27878c75ad194395d7e84
+lastReviewedNote: "Reviewed for Issue #189: native TIDAS guides use verified v0.2.1 and four supported archives; macOS Intel retirement preserves Linux/Windows x64, four-locale links, unchanged CLI/Skills onboarding, and repository-owned validation."
 related:
   - .docpact/config.yaml
   - docs/agents/repo-architecture.md
@@ -94,6 +94,7 @@ This repository does not own shipped product behavior, route truth, API semantic
 - Public AI retrieval is derived at build time through `/llms.txt` and `/search-records.json`; internal governance files remain excluded by `context7.json`.
 - `lib/public-doc-inventory.mjs` derives complete HTML, search, sitemap, and AI expectations from four-language MDX using the runtime locale/category policies. Ordinary additions do not change the retained route/deny baselines or hard-coded page counts. An explicitly requested retirement must remove only the retired positive routes, add every locale URL and exclusive asset to the deny contract, and prove their absence from sources, search, static output, and the deployed site. All unrelated baseline requirements remain intact.
 - The four CLI, remote LCA MCP, account-profile, and TIDAS-import locale families share one OAuth contract: human browser authorization, exact registered clients/callbacks, PKCE, client-local refresh rotation, direct Supabase access JWTs, downstream `auth.uid()` plus `client_id` authorization, local/connected-app revoke distinction, explicit headless limits, and no broker/Redis session, password/code/token/API-key handoff to AI. Codex uses the top-level callback base and listener port plus its deterministic MCP-server callback ID; its resulting redirect must equal the Supabase registration.
+- Native TIDAS guides use official v0.2.1 with Linux glibc x64/arm64, macOS Apple Silicon arm64 and Windows x64 archives. macOS Intel, Linux musl and Windows arm64 are unsupported; active instructions never recommend a historical Intel release.
 - Official Production CLI onboarding starts with pinned published CLI 0.1.8 and no public environment setup. The CLI owns the public URL/key/client/callback profile; docs and Skills must not copy its values. Only complete custom environments may override it; a headless token always requires an explicit destination/key. CLI defaults do not change remote MCP registrations or local publish approval gates.
 - Reconciliation has two trust boundaries: production validates indexability and then enters the GitHub production environment for Algolia/Context7 mutation; preview validates `noindex`/robots plus production-canonical policy in a separate job path that cannot access those mutation steps.
 

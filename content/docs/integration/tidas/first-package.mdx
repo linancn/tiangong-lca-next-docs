@@ -3,7 +3,7 @@ title: "验证并转换第一个数据包"
 description: "用可下载的教学文件完成本地验证、eILCD 转换和往返复验，并理解报告边界。"
 ---
 
-你将把一个完整的 Flow JSON 转换为 eILCD XML，再转回 TIDAS 并验证。先完成[安装](/zh/docs/integration/tidas/installation/)，确认 `tidas --version` 为 `tidas 0.2.0`。后面的操作都在同一个新建练习文件夹中进行。
+你将把一个完整的 Flow JSON 转换为 eILCD XML，再转回 TIDAS 并验证。先完成[安装](/zh/docs/integration/tidas/installation/)，确认 `tidas --version` 为 `tidas 0.2.1`。后面的操作都在同一个新建练习文件夹中进行。
 
 ## 1. 下载教学文件
 
@@ -90,7 +90,7 @@ tidas validate roundtrip/data --input-format tidas-json --format json
 | --- | --- |
 | 文档数是 `0` | 检查输入路径和 `flows` 子目录，不要把空扫描视为完成任务 |
 | `completed-with-issues`，退出码 `2` | 查看错误路径与诊断，修复源文件再运行 |
-| `failed`，退出码 `74` | 检查文件存在、写入权限及输出路径；`0.2.0` 请使用 `./converted` 这样的明确目录路径 |
+| `failed`，退出码 `74` | 检查文件存在、写入权限及输出路径；`0.2.1` 请使用 `./converted` 这样的明确目录路径 |
 | 输出目录已存在 | 选择新的目录，不要覆盖此前的输入或成果 |
 
 需要保存完整问题清单、导入其他格式或接入脚本时，继续阅读[命令与报告参考](/zh/docs/integration/tidas/reference/)。

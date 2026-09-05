@@ -1,15 +1,15 @@
 ---
 title: "tidas installieren und prüfen"
-description: "Die offizielle Version 0.2.0 installieren und Plattform, Prüfsumme sowie Befehlspfad prüfen."
+description: "Die offizielle Version 0.2.1 installieren und Plattform, Prüfsumme sowie Befehlspfad prüfen."
 ---
 
-Verwenden Sie die vorgefertigten Programme der [offiziellen Version v0.2.0](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.2.0). Die Installationsskripte laden das passende Versionsarchiv und seine `.sha256` herunter und installieren erst nach erfolgreicher Prüfung. Sie können das Skript vor der Ausführung herunterladen und prüfen.
+Verwenden Sie die vorgefertigten Programme der [offiziellen Version v0.2.1](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.2.1). Die Installationsskripte laden das passende Versionsarchiv und seine `.sha256` herunter und installieren erst nach erfolgreicher Prüfung. Sie können das Skript vor der Ausführung herunterladen und prüfen.
 
 ## macOS und Linux
 
 ```bash
-curl --proto '=https' --tlsv1.2 -fsSLO https://github.com/tiangong-lca/tidas-tools/releases/download/v0.2.0/install.sh
-sh install.sh --version 0.2.0 --prefix "$HOME/.local"
+curl --proto '=https' --tlsv1.2 -fsSLO https://github.com/tiangong-lca/tidas-tools/releases/download/v0.2.1/install.sh
+sh install.sh --version 0.2.1 --prefix "$HOME/.local"
 "$HOME/.local/bin/tidas" --version
 ```
 
@@ -25,8 +25,8 @@ Dieses `export` gilt nur im aktuellen Terminal. Für dauerhafte Nutzung überneh
 ## Windows PowerShell
 
 ```powershell
-Invoke-WebRequest https://github.com/tiangong-lca/tidas-tools/releases/download/v0.2.0/install.ps1 -OutFile install.ps1
-.\install.ps1 -Version 0.2.0
+Invoke-WebRequest https://github.com/tiangong-lca/tidas-tools/releases/download/v0.2.1/install.ps1 -OutFile install.ps1
+.\install.ps1 -Version 0.2.1
 & "$env:LOCALAPPDATA\Programs\tidas\bin\tidas.exe" --version
 ```
 
@@ -45,9 +45,10 @@ Für dauerhafte Nutzung nehmen Sie dasselbe `bin`-Verzeichnis in die Windows-Ben
 | --- | --- | --- |
 | Linux | x86_64 | `x86_64-unknown-linux-gnu.tar.gz` |
 | Linux | ARM64 | `aarch64-unknown-linux-gnu.tar.gz` |
-| macOS | Intel | `x86_64-apple-darwin.tar.gz` |
 | macOS | Apple Silicon | `aarch64-apple-darwin.tar.gz` |
 | Windows | x86_64 | `x86_64-pc-windows-msvc.zip` |
+
+Unter macOS wird nur Apple Silicon (ARM64) unterstützt. Intel-Macs werden vom Installationsskript vor dem Download eines Programmarchivs abgewiesen. Linux benötigt glibc; Linux musl wird nicht unterstützt.
 
 Windows ARM64 wird in dieser Version nicht mit vorgefertigten Programmen unterstützt. Verwechseln Sie ARM64- und x86_64-Archive nicht. Die Veröffentlichung enthält außerdem SHA-256-Prüfsummen, SPDX-SBOMs, eine Homebrew-Formel und Winget-Manifeste. Letztere bedeuten nicht, dass externe Paketquellen sie bereits anbieten.
 
@@ -59,6 +60,6 @@ tidas version --format json
 tidas --help
 ```
 
-`tidas --version` muss `tidas 0.2.0` ausgeben. `tidas version --format json` zeigt maschinenlesbare Versionsangaben, `tidas --help` die Befehle. Wird der Befehl nicht gefunden, testen Sie zuerst den vollständigen Installationspfad.
+`tidas --version` muss `tidas 0.2.1` ausgeben. `tidas version --format json` zeigt maschinenlesbare Versionsangaben, `tidas --help` die Befehle. Wird der Befehl nicht gefunden, testen Sie zuerst den vollständigen Installationspfad.
 
 Weiter: [Das erste Paket prüfen und konvertieren](/de/docs/integration/tidas/first-package/).

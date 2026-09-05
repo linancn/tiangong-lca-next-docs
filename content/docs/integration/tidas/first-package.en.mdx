@@ -3,7 +3,7 @@ title: "Validate and convert your first package"
 description: "Use a downloadable teaching file for validation, eILCD conversion, and round-trip checks, and understand what the reports prove."
 ---
 
-You will convert one complete Flow JSON into eILCD XML, convert it back, and validate it. First [install tidas](/en/docs/integration/tidas/installation/) and confirm `tidas --version` prints `tidas 0.2.0`. Perform all steps in the same new practice folder.
+You will convert one complete Flow JSON into eILCD XML, convert it back, and validate it. First [install tidas](/en/docs/integration/tidas/installation/) and confirm `tidas --version` prints `tidas 0.2.1`. Perform all steps in the same new practice folder.
 
 ## 1. Download the teaching file
 
@@ -90,7 +90,7 @@ Success proves that this document meets the tool’s structural and semantic rul
 | --- | --- |
 | Document count is `0` | Check the input path and `flows` directory; an empty scan does not complete this task |
 | `completed-with-issues`, exit `2` | Read issue paths and diagnostics, repair the source, and rerun |
-| `failed`, exit `74` | Check file existence, write permissions, and output path; with `0.2.0`, use an explicit directory path such as `./converted` |
+| `failed`, exit `74` | Check file existence, write permissions, and output path; with `0.2.1`, use an explicit directory path such as `./converted` |
 | Output directory already exists | Choose a new directory; do not overwrite earlier inputs or results |
 
 For complete issue lists, other import formats, and scripting, read the [Command and report reference](/en/docs/integration/tidas/reference/).
