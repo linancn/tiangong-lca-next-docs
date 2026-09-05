@@ -77,6 +77,11 @@ test('local tidas examples use the published native version and do not require p
     assert.match(install, /Intel/u);
     assert.match(install, /musl/u);
     for (const slug of sections.tidas) assert.doesNotMatch(read(page('tidas', slug, locale.suffix)), /0\.2\.0/u);
+    for (const stem of ['user-guide/tidas-zip-workflows', 'openapi/tidas-package-import']) {
+      const workflow = read(`content/docs/${stem}${locale.suffix}.mdx`);
+      assert.match(workflow, /\[`tidas` 0\.2\.1/u);
+      assert.doesNotMatch(workflow, /0\.2\.0/u);
+    }
     const tutorial = read(page('tidas', 'first-package', locale.suffix));
     assert.match(tutorial, /tidas validate sample --input-format tidas-json/u);
     assert.match(tutorial, /tidas convert sample --output \.\/converted --to ilcd/u);

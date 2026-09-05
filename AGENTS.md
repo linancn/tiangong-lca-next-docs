@@ -37,8 +37,8 @@ checkPaths:
   - .github/workflows/**
   - .githooks/**
 lastReviewedAt: 2026-09-05
-lastReviewedCommit: 6c79d430d292e06111f27878c75ad194395d7e84
-lastReviewedNote: "Reviewed for Issue #189: native TIDAS guides use verified v0.2.1 and four supported archives; macOS Intel retirement preserves Linux/Windows x64, four-locale links, unchanged CLI/Skills onboarding, and repository-owned validation."
+lastReviewedCommit: 7aad51296aa060c29a8f412e5040263894274d6f
+lastReviewedNote: "Reviewed for Issue #191: all eight API and UI TIDAS workflow links now agree with v0.2.1 installation; the existing cross-locale regression covers those entry points without changing OAuth, upload semantics, runtime, navigation or publication."
 related:
   - .docpact/config.yaml
   - docs/agents/repo-architecture.md
