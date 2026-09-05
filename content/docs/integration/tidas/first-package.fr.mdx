@@ -3,7 +3,7 @@ title: "Valider et convertir votre premier paquet"
 description: "Utiliser un fichier pédagogique pour la validation, la conversion eILCD et le retour en TIDAS, puis comprendre les rapports."
 ---
 
-Vous allez convertir un Flow JSON complet en eILCD XML, le reconvertir puis le valider. [Installez d’abord tidas](/fr/docs/integration/tidas/installation/) et confirmez `tidas 0.2.0` avec `tidas --version`. Réalisez toutes les étapes dans un même dossier d’exercice neuf.
+Vous allez convertir un Flow JSON complet en eILCD XML, le reconvertir puis le valider. [Installez d’abord tidas](/fr/docs/integration/tidas/installation/) et confirmez `tidas 0.2.1` avec `tidas --version`. Réalisez toutes les étapes dans un même dossier d’exercice neuf.
 
 ## 1. Télécharger le fichier pédagogique
 
@@ -90,7 +90,7 @@ La réussite prouve que ce document satisfait les règles structurelles et séma
 | --- | --- |
 | Nombre de documents `0` | Vérifier chemin d’entrée et dossier `flows` ; un parcours vide ne termine pas cette tâche |
 | `completed-with-issues`, code `2` | Lire chemins et diagnostics, corriger la source puis relancer |
-| `failed`, code `74` | Vérifier fichiers, droits d’écriture et sortie ; avec `0.2.0`, utiliser un chemin explicite comme `./converted` |
+| `failed`, code `74` | Vérifier fichiers, droits d’écriture et sortie ; avec `0.2.1`, utiliser un chemin explicite comme `./converted` |
 | Dossier de sortie existant | Choisir un nouveau dossier, sans écraser les entrées ou résultats précédents |
 
 Pour les listes complètes de problèmes, d’autres formats et les scripts, lisez la [Référence des commandes et rapports](/fr/docs/integration/tidas/reference/).

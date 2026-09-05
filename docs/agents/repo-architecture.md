@@ -33,9 +33,9 @@ checkPaths:
   - edgeone.json
   - context7.json
   - .github/workflows/**
-lastReviewedAt: 2026-09-03
-lastReviewedCommit: c291c272dbc31b8eba76f01fd19544fecd42d392
-lastReviewedNote: "Reviewed for localized TianGong LCA platform-action wording and an explicit external-link icon: navigation ownership, safe new-context behavior, and validation expectations remain unchanged."
+lastReviewedAt: 2026-09-05
+lastReviewedCommit: 6c79d430d292e06111f27878c75ad194395d7e84
+lastReviewedNote: "Reviewed for Issue #189: native TIDAS guides use verified v0.2.1 and four supported archives; macOS Intel retirement preserves Linux/Windows x64, four-locale links, unchanged CLI/Skills onboarding, and repository-owned validation."
 related:
   - AGENTS.md
   - .docpact/config.yaml

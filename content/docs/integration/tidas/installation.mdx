@@ -1,15 +1,15 @@
 ---
 title: "安装与检查 tidas"
-description: "从官方发布下载 tidas 0.2.0，核对平台、校验和与命令路径。"
+description: "从官方发布下载 tidas 0.2.1，核对平台、校验和与命令路径。"
 ---
 
-推荐使用[官方 v0.2.0 发布](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.2.0)提供的预编译程序。安装脚本会下载对应平台的固定版本归档及 `.sha256`，校验通过后才安装。你可以先下载并检查脚本，再执行。
+推荐使用[官方 v0.2.1 发布](https://github.com/tiangong-lca/tidas-tools/releases/tag/v0.2.1)提供的预编译程序。安装脚本会下载对应平台的固定版本归档及 `.sha256`，校验通过后才安装。你可以先下载并检查脚本，再执行。
 
 ## macOS 与 Linux
 
 ```bash
-curl --proto '=https' --tlsv1.2 -fsSLO https://github.com/tiangong-lca/tidas-tools/releases/download/v0.2.0/install.sh
-sh install.sh --version 0.2.0 --prefix "$HOME/.local"
+curl --proto '=https' --tlsv1.2 -fsSLO https://github.com/tiangong-lca/tidas-tools/releases/download/v0.2.1/install.sh
+sh install.sh --version 0.2.1 --prefix "$HOME/.local"
 "$HOME/.local/bin/tidas" --version
 ```
 
@@ -25,8 +25,8 @@ tidas --version
 ## Windows PowerShell
 
 ```powershell
-Invoke-WebRequest https://github.com/tiangong-lca/tidas-tools/releases/download/v0.2.0/install.ps1 -OutFile install.ps1
-.\install.ps1 -Version 0.2.0
+Invoke-WebRequest https://github.com/tiangong-lca/tidas-tools/releases/download/v0.2.1/install.ps1 -OutFile install.ps1
+.\install.ps1 -Version 0.2.1
 & "$env:LOCALAPPDATA\Programs\tidas\bin\tidas.exe" --version
 ```
 
@@ -45,9 +45,10 @@ tidas --version
 | --- | --- | --- |
 | Linux | x86_64 | `x86_64-unknown-linux-gnu.tar.gz` |
 | Linux | ARM64 | `aarch64-unknown-linux-gnu.tar.gz` |
-| macOS | Intel | `x86_64-apple-darwin.tar.gz` |
 | macOS | Apple Silicon | `aarch64-apple-darwin.tar.gz` |
 | Windows | x86_64 | `x86_64-pc-windows-msvc.zip` |
+
+macOS 仅支持 Apple Silicon（ARM64）；Intel Mac 不受支持，安装器会在下载程序归档前拒绝该平台。Linux 需要 glibc，Linux musl 不受支持。
 
 Windows ARM64 不在当前预编译支持范围内。不要把 ARM64 和 x86_64 归档混用。发布页还提供 SHA-256、SPDX SBOM、Homebrew formula 和 Winget manifest；后两者的存在不代表已经进入外部软件源。
 
@@ -59,6 +60,6 @@ tidas version --format json
 tidas --help
 ```
 
-`tidas --version` 应输出 `tidas 0.2.0`。`tidas version --format json` 输出机器可读版本信息；`tidas --help` 应列出命令。如果仍提示找不到命令，先用安装目录中的完整路径运行，排除 PATH 问题。
+`tidas --version` 应输出 `tidas 0.2.1`。`tidas version --format json` 输出机器可读版本信息；`tidas --help` 应列出命令。如果仍提示找不到命令，先用安装目录中的完整路径运行，排除 PATH 问题。
 
 接下来：[验证并转换第一个数据包](/zh/docs/integration/tidas/first-package/)。

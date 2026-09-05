@@ -67,9 +67,16 @@ test('Skills introduction installs one proven package and distinguishes Codex/Op
 test('local tidas examples use the published native version and do not require platform auth', () => {
   for (const locale of locales) {
     const install = read(page('tidas', 'installation', locale.suffix));
-    assert.match(install, /releases\/download\/v0\.2\.0\/install\.sh/u);
-    assert.match(install, /install\.sh --version 0\.2\.0/u);
-    assert.match(install, /install\.ps1 -Version 0\.2\.0/u);
+    assert.match(install, /releases\/download\/v0\.2\.1\/install\.sh/u);
+    assert.match(install, /install\.sh --version 0\.2\.1/u);
+    assert.match(install, /install\.ps1 -Version 0\.2\.1/u);
+    for (const target of ['x86_64-unknown-linux-gnu.tar.gz', 'aarch64-unknown-linux-gnu.tar.gz', 'aarch64-apple-darwin.tar.gz', 'x86_64-pc-windows-msvc.zip']) {
+      assert.ok(install.includes(target), `${locale.code}: missing supported archive ${target}`);
+    }
+    assert.doesNotMatch(install, /x86_64-apple-darwin|darwin-x64/u);
+    assert.match(install, /Intel/u);
+    assert.match(install, /musl/u);
+    for (const slug of sections.tidas) assert.doesNotMatch(read(page('tidas', slug, locale.suffix)), /0\.2\.0/u);
     const tutorial = read(page('tidas', 'first-package', locale.suffix));
     assert.match(tutorial, /tidas validate sample --input-format tidas-json/u);
     assert.match(tutorial, /tidas convert sample --output \.\/converted --to ilcd/u);
