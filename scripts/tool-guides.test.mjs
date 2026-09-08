@@ -8,7 +8,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const locales = [{ code: 'zh', suffix: '' }, { code: 'en', suffix: '.en' }, { code: 'de', suffix: '.de' }, { code: 'fr', suffix: '.fr' }];
 const sections = {
   cli: ['index', 'getting-started', 'queries', 'data-quality', 'authentication', 'automation', 'publishing', 'maintenance'],
-  skills: ['index', 'getting-started', 'first-task', 'catalog', 'safe-workflows', 'troubleshooting'],
+  skills: ['index', 'getting-started', 'first-task', 'foundry', 'catalog', 'safe-workflows', 'troubleshooting'],
   tidas: ['index', 'installation', 'first-package', 'reference'],
 };
 const read = (relative) => readFileSync(path.join(root, relative), 'utf8');

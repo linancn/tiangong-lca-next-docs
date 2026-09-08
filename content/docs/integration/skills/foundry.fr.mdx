@@ -1,0 +1,81 @@
+---
+title: "Foundry : préparer et reprendre une tâche de données"
+description: "Exécuter Foundry dans un espace de travail distinct, examiner les preuves et respecter autorisation et reprise."
+---
+
+L’entrée habituelle de TianGong Foundry est `foundry-tidas-import`, pour les paquets externes et le développement de données à partir de sources. `foundry-tidas-authoring` intervient à la demande pour un travail sémantique concret. Foundry assure conversion, validation et exécution ; le skill choisit les entrées, interprète les preuves et soumet les décisions sémantiques.
+
+## 1. Préparer un répertoire distinct
+
+Il faut un dossier `foundry-tidas-import` installé au complet, avec le bootstrap POSIX/PowerShell original et son fichier adjacent de confiance `bootstrap-lock.json`. Ils doivent provenir de la même distribution qualifiée. Ne composez pas un fichier de remplacement à partir d’artefacts de tâche ou d’adresses de téléchargement provisoires. Réparez d’abord toute installation incomplète ou non vérifiée.
+
+Cet environnement géré ne nécessite pas de Node, pnpm ou Git global. Il prend en charge Linux x64/ARM64 avec glibc, macOS Apple Silicon et Windows x64. macOS Intel, Windows ARM64 et Linux musl ne sont pas pris en charge. Le premier lancement télécharge les composants fixés ; les suivants réutilisent un cache vérifié. Un cache présent ne prouve ni connexion ni achèvement.
+
+Choisissez un espace de travail utilisateur accessible en écriture ; les répertoires du skill et de l’environnement installé peuvent être en lecture seule. Enregistrez votre paquet valide sous `inputs/package.zip`. Il s’agit de votre entrée originale, pas d’un jeu d’essai généré par ce tutoriel. Pour les formats natifs et un exemple de conversion locale, consultez [le premier paquet tidas](/fr/docs/integration/tidas/first-package/).
+
+## 2. Enregistrer la spécification
+
+À la racine de l’espace de travail, enregistrez `task-start.json` :
+
+```json
+{
+  "schema": "tiangong-foundry.task-start.v1",
+  "request_id": "first-foundry-package",
+  "actor_id": "local-preparation",
+  "lane": "external-dataset-curated-import",
+  "profile_id": "generic",
+  "target_entities": [
+    "process"
+  ],
+  "sources": [
+    {
+      "path": "inputs/package.zip"
+    }
+  ],
+  "seed": null,
+  "account_intent": null,
+  "preparation": null
+}
+```
+
+Cet exemple prépare uniquement des candidats locaux. `account_intent: null` ne sélectionne aucun compte distant. Avant tout travail lié au compte, utilisez le parcours OAuth de la CLI de confiance pour établir le projet et l’utilisateur attendus, puis sélectionnez ce compte dans la spécification initiale. Ne devinez pas l’identité ; la connexion n’autorise pas une écriture.
+
+Le travail fondé sur des sources utilise la lane `source-evidence-dataset-development` et un seed JSON de candidats étayés. Ce seed doit aussi figurer dans `sources`. Un article ou un document de transmission n’est pas encore un ensemble de lignes TIDAS valides.
+
+## 3. Démarrer et vérifier
+
+Remplacez les chemins indicatifs par les emplacements réels. Sous POSIX :
+
+```bash
+sh "<skill-dir>/scripts/tiangong-runtime-bootstrap.sh" workspace init --workspace "<workspace>" --json
+```
+
+Sous Windows, utilisez PowerShell système sans contourner sa stratégie d’exécution :
+
+```powershell
+powershell -NoProfile -File "<skill-dir>/scripts/tiangong-runtime-bootstrap.ps1" workspace init --workspace "<workspace>" --json
+```
+
+Pour les appels suivants, conservez le même préfixe bootstrap et ajoutez successivement ces arguments publics. Le chemin de la spécification est résolu depuis l’espace de travail explicitement choisi. Foundry renvoie l’identifiant de tâche.
+
+```text
+doctor --workspace <workspace> --json
+task start --workspace <workspace> --spec task-start.json --json
+task status --workspace <workspace> --task <returned-task-id> --actor local-preparation --json
+task resume --workspace <workspace> --task <returned-task-id> --actor local-preparation --json
+```
+
+Vérifiez immédiatement chaque code de sortie : `echo $?` sous POSIX ou `$LASTEXITCODE` dans PowerShell. Lisez ensemble `status`, `blockers`, `permissions`, `artifacts` et `next_actions`. Un code de sortie ou une sortie vide ne suffit pas à établir le succès. Conservez exactement executable, argv et cwd d’une action de commande courante.
+
+## 4. Continuer selon l’état courant
+
+- `ready` / `running` : suivre l’action courante. Un resume fait avancer une étape enregistrée ; répéter le même appel ne résout pas un blocage inchangé.
+- `needs_input` : lire le travail demandé, le contexte complet et le modèle, puis soumettre une décision ou un patch. Foundry valide, applique et réévalue. Conserver la langue source et ajouter un anglais étayé aux champs multilingues obligatoires.
+- `needs_auth` : OAuth de la CLI ou sélection explicite du compte nécessaire. L’exemple local s’arrête ici ; ne pas annoncer un import terminé.
+- `permissions.state: required` : vérifier tâche, entrée, compte et actions. Réutiliser toute approbation valide ; obtenir l’autorisation manquante pour le périmètre courant.
+- `blocked` / `failed` : conserver erreur et preuves, résoudre la cause indiquée, puis continuer la tâche originale.
+- `completed` : vérifier les preuves d’achèvement et de relecture pour le périmètre actuellement demandé. Une sous-étape terminée n’achève pas toute la tâche.
+
+Une nouvelle sélection d’entrée ou de compte, soumise dans une spécification vérifiée, crée une révision avec historique conservé. Elle ne réinitialise aucun ancien essai. Si la réponse à une écriture est incertaine, utiliser uniquement l’action readback/recovery de la tâche originale. Ne pas répéter directement la mutation, effacer les traces ou créer un autre répertoire pour les contourner.
+
+La préparation locale est démontrée lorsque l’entrée originale, l’identifiant courant, les artefacts réellement produits et une prochaine action ou un blocage précis peuvent être identifiés. L’import complet exige encore travail sémantique, contrôles de compte, autorisation et relecture indépendante. Voir [organiser les tâches en sécurité](/fr/docs/integration/skills/safe-workflows/).
