@@ -149,9 +149,10 @@ curl -i --location --request POST "${BASE_URL}/import_tidas_package" \
   --header 'X-Idempotency-Key: tidas-import-enqueue-001' \
   --data '{
     "action": "enqueue",
+    "import_policy": "root_closure_v2",
     "job_id": "4a56e7b2-8f18-4f0f-a6b4-cf40f343d8b8",
     "source_artifact_id": "9ad0da68-3933-4f7b-a3cb-a494b70ec0a2",
-    "artifact_sha256": "<optional-sha256>",
+    "artifact_sha256": "<sha256-of-uploaded-zip>",
     "artifact_byte_size": 123456,
     "filename": "example-package.zip",
     "content_type": "application/zip"
@@ -203,7 +204,27 @@ curl -i --location --request GET "${BASE_URL}/tidas_package_jobs/<job-id>" \
 如果 `download_status` 不是 `available`，请根据 `download_error_code` 重新创建任务、等待制品就绪，
 或排查对象存储路径 / 签名 URL 问题；不要只依赖 `status=completed` 判断报告已经可下载。
 
-## 导入报告与结果语义
+## 按过程和模型部分导入
+
+在入队请求中设置 `import_policy` 为 `root_closure_v2`。省略该字段时保留旧版 v1 策略，已有任务不会改变策略；不支持的策略会被拒绝。
+
+平台使用现有服务端校验器检查整个 ZIP，校验过程中不查询业务数据库，`state_code=100` 的包内数据也不例外。每条过程和生命周期模型都连同 ZIP 内的全部直接、间接引用独立判断。数据库不能补齐 ZIP 中缺失的引用；版本必须精确匹配，未指定版本时须按现有规则唯一解析。外部附件不作为数据集依赖。
+
+一个分组失败不会阻断独立的有效分组；模型失败也不会自动阻断独立有效的过程。仅导入属于成功分组的数据，孤立的支持数据只记录在报告中。写入时，数据库已存在的数据类型 + ID + version 一律跳过，无论其状态或内容如何，都不覆盖。根数据已存在时，仍可补充该分组中尚未入库的引用数据。
+
+每个分组独立事务提交；后续失败不会回滚已提交分组，共享数据只统计一次。关闭或刷新浏览器不会取消后端任务，轮询超时也不代表导入失败。界面提交后可在任务中心恢复查看进度与结果。
+
+v2 报告的 `report_version=2`。以 `outcome` 判断业务结果：`success`、`partial`、`none` 或 `interrupted`；`ok=true` 仅表示全部根对象成功。根对象状态包括 `imported`、`reused`、`blocked`、`write_failed` 和 `not_attempted`。不含过程或模型的包返回 `NO_IMPORT_ROOTS`，不会导入支持数据。即使全部根对象成功，报告仍可能包含警告和孤立数据的错误。
+
+`summary.imported_count`、`existing_count`、`successful_root_count` 表示实际结果。`roots` 最多展示 100 条根对象结果，`validation_issues` 最多展示 1,000 条问题样本，这些限制不影响导入判定。通过 `artifacts_by_kind.import_details.signed_download_url` 下载完整问题流、引用路径、根对象结果和数据处理明细；ZIP 清单使用文件大小与 SHA-256 绑定内容。`import_report` 提供有大小限制的 JSON 摘要。
+
+最终报告缺失时，`import_progress` 返回已提交分组回执的数量。任务中断后仍可查询这些数量，但不能据此判断校验或执行已完成。复用同一数据源和任务会保留其策略及提交证据；修正数据包后新建任务，先前已导入的精确身份会被跳过。
+
+v2 Worker 的容量上限为 ZIP 512 MiB、解压后 2 GiB、100,000 条数据、2,000 个根对象和 1,000,000 条引用。单文档上限为 16 MiB，单分组为 50,000 条数据及 64 MiB，引用链复验累计访问上限为 2,000,000 条文档。容量超限或证据不完整会明确失败，不会静默截断。
+
+下方旧版示例仅适用于省略 `import_policy` 的请求。
+
+## v1 — 导入报告与结果语义
 
 导入任务成功完成后，`import_report` 的业务结果通常分为以下几类：
 

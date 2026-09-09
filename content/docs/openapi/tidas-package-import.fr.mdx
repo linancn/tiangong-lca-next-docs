@@ -159,9 +159,10 @@ curl -i --location --request POST "${BASE_URL}/import_tidas_package" \
   --header 'X-Idempotency-Key: tidas-import-enqueue-001' \
   --data '{
     "action": "enqueue",
+    "import_policy": "root_closure_v2",
     "job_id": "4a56e7b2-8f18-4f0f-a6b4-cf40f343d8b8",
     "source_artifact_id": "9ad0da68-3933-4f7b-a3cb-a494b70ec0a2",
-    "artifact_sha256": "<optional-sha256>",
+    "artifact_sha256": "<sha256-of-uploaded-zip>",
     "artifact_byte_size": 123456,
     "filename": "example-package.zip",
     "content_type": "application/zip"
@@ -217,7 +218,27 @@ Si `download_status` n'est pas `available`, utilisez `download_error_code` pour 
 de créer une nouvelle tâche, d'attendre l'artefact ou d'examiner le chemin de stockage / l'URL signée.
 Ne considérez pas `status=completed` seul comme une preuve que le rapport est téléchargeable.
 
-## Sémantique du rapport d'import
+## Import partiel par processus et modèle
+
+Définissez `import_policy` sur `root_closure_v2` lors de la mise en file. Sans ce champ, la stratégie v1 reste active. Les tâches existantes ne changent pas de stratégie ; une stratégie inconnue est rejetée.
+
+Le validateur serveur existant examine tout le ZIP sans consulter les données métier, y compris pour `state_code=100`. Chaque processus et modèle de cycle de vie est évalué avec toutes ses références directes et indirectes dans le ZIP. La base ne complète aucune référence manquante. Les versions doivent correspondre exactement ; une version omise doit être résolue sans ambiguïté selon les règles existantes. Les pièces jointes externes ne sont pas des dépendances de jeux de données.
+
+Un groupe invalide ne bloque que les groupes dépendants. Un modèle invalide ne bloque pas automatiquement un processus valide indépendant. Seuls les jeux appartenant à un groupe réussi sont importés. Les données de support orphelines restent dans le rapport. Toute identité type + ID + version déjà présente est ignorée, quels que soient son état ou son contenu, sans écrasement. Un groupe dont la racine existe déjà peut ajouter ses dépendances manquantes.
+
+Chaque groupe est enregistré atomiquement. Un échec ultérieur ne supprime pas les groupes précédents. Les jeux partagés ne sont comptés qu’une fois. Fermer ou actualiser le navigateur n’annule pas la tâche ; un délai de consultation dépassé n’est pas un échec d’import. Le centre de tâches permet de retrouver progression et résultats.
+
+Le rapport porte `report_version=2`. `outcome` distingue `success`, `partial`, `none` et `interrupted` ; `ok=true` signifie que toutes les racines ont réussi. États des racines : `imported`, `reused`, `blocked`, `write_failed`, `not_attempted`. Sans processus ni modèle, le résultat est `NO_IMPORT_ROOTS`, sans insertion de données de support. Des avertissements ou erreurs sur des données orphelines peuvent subsister malgré la réussite de toutes les racines.
+
+`summary.imported_count`, `existing_count` et `successful_root_count` indiquent les résultats réels. Au plus 100 racines et 1 000 problèmes sont affichés ; ces limites ne modifient aucune décision. `artifacts_by_kind.import_details.signed_download_url` fournit les problèmes complets, chemins de références, résultats par racine et décisions par jeu. Le manifeste ZIP lie chaque fichier à sa taille et son SHA-256 ; `import_report` contient le résumé JSON borné.
+
+Si le rapport final manque, `import_progress` expose les nombres issus des reçus des groupes enregistrés. Ils restent disponibles après une interruption mais ne prouvent pas que la validation ou l’exécution est terminée. Une même tâche conserve sa stratégie et ses reçus. Un package corrigé crée une nouvelle tâche ; les identités exactes déjà présentes sont ignorées.
+
+Limites : ZIP 512 MiB, extraction 2 GiB, 100 000 jeux, 2 000 racines et 1 000 000 références ; document 16 MiB ; groupe 50 000 jeux et 64 MiB ; 2 000 000 visites cumulées de documents pendant les validations de groupes. Les dépassements de capacité ou preuves incomplètes produisent un échec explicite, jamais une troncature silencieuse.
+
+Les exemples v1 ci-dessous s’appliquent uniquement sans `import_policy`.
+
+## v1 — Sémantique du rapport d'import
 
 Une fois la tâche d'import terminée, la charge utile `import_report` appartient généralement à
 l'une de ces classes de résultats :

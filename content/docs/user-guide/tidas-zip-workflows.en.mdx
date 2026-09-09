@@ -34,61 +34,28 @@ If you need the broader control map first, start with
 - Migrate processes, models, flows, and dependencies in bulk
 - Exchange data with other TIDAS-compatible tooling
 
-### Rules
+### Rules and results
 
-- The UI accepts **one `.zip` file**
-- Non-ZIP files are rejected immediately
-- The system validates structure, references, and conflicts before import
-- Validation covers TIDAS JSON; when the package contains eILCD/ILCD XML, the XML is checked
-  against the packaged schemas
-- Flow records with CAS numbers also validate the CAS check digit, so a structurally valid CAS
-  number with the wrong check digit is still reported as a validation issue
+The UI accepts one `.zip` file. The existing server validator checks every dataset in the ZIP, including published data. Validation never uses database records to satisfy missing ZIP references.
+
+Every process and lifecycle model is evaluated with its complete reference chain. A group imports only when every member passes. Invalid groups are reported while independent valid groups can succeed. Existing type + ID + version combinations are skipped without overwriting any content, regardless of data state. Only successful groups contribute new data; shared references are inserted once.
 
 ### Import steps
 
 1. Click **Import TIDAS ZIP Package** in the top bar.
-2. Drag or select a single `.zip` file.
-3. Click **Import**.
-4. Review the result returned by the modal.
+2. Select or drag one `.zip` file.
+3. Click **Import** and wait for the submission confirmation.
+4. Open **Task Center** to follow progress and inspect the result.
+
+### Review the result
+
+Task Center distinguishes complete success, partial success, no successful group, and interruption. Earlier committed groups remain available if a later group fails. A root already present may add missing dependencies, so successful groups and newly inserted records are separate counts.
+
+Open the import task details to view counts and affected root reference paths. Download the JSON summary or complete ZIP details for every issue and record disposition. The visible sample is bounded; it never limits validation. Correct the package and submit a new task to retry. Existing exact identities are skipped again.
+
+Closing or refreshing the browser does not cancel the backend task. If polling or report loading fails, refresh Task Center; a connection timeout does not prove that import failed. Committed-group counts remain readable even when the final report is unavailable.
 
 ![Import TIDAS ZIP modal](/assets/docs/7a1e01b2/tidas-zip-import-modal.png)
-
-In the screenshot, `1` marks the ZIP upload zone, `2` marks the API-import documentation link, and
-`3` marks the button that submits the import.
-
-### Possible outcomes
-
-#### Successful import
-
-The platform confirms that the package has been imported successfully.
-
-#### Success with skipped open data
-
-If the ZIP contains open datasets that should not be duplicated, the system reports that some open
-datasets were skipped.
-
-#### Validation blocked
-
-If required fields, references, or package structure fail validation, the import is blocked and the
-modal explains the issues.
-Common causes include schema mismatches, missing references, eILCD/ILCD XML that does not match the
-packaged schemas, or an invalid CAS number check digit.
-
-#### Conflict rejection
-
-If the package conflicts with objects already present in the environment, the import is rejected
-until those conflicts are resolved.
-
-### How to troubleshoot
-
-The import modal can provide a downloadable JSON report. Treat that file as the primary
-troubleshooting artifact. It helps answer:
-
-- Which objects failed validation
-- Which references could not be resolved
-- Whether any CAS numbers have invalid check digits
-- Which objects conflict with existing records
-- Which open datasets were skipped
 
 ### Prepare a ZIP from an external format with `tidas`
 
@@ -154,9 +121,9 @@ to download the final ZIP file.
 
 The visible export scope depends on your role:
 
-| Role scope | Available options |
-| --- | --- |
-| Standard user | Current user data |
+| Role scope           | Available options                                           |
+| -------------------- | ----------------------------------------------------------- |
+| Standard user        | Current user data                                           |
 | System admin / owner | Current user data, Open data, Current user data + open data |
 
 ### Export steps
@@ -187,8 +154,7 @@ Task Center is the shared background-job panel in the top bar. It now combines s
 - **TIDAS Import** tasks
 - **Review Submit** tasks
 
-The import modal still returns the current operation result. When import work enters the background
-task flow, Task Center shows the validation, import, and report stages.
+Import submission returns immediately after enqueue; Task Center owns validation progress, import outcomes and report downloads.
 
 ### Common actions
 
