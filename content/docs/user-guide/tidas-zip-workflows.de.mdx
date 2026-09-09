@@ -34,59 +34,28 @@ Für die umfassende Steuerungskarte beginnen Sie mit der
 - Prozesse, Modelle, Flüsse und Abhängigkeiten gesammelt migrieren
 - Daten mit anderen TIDAS-kompatiblen Werkzeugen austauschen
 
-### Regeln
+### Regeln und Ergebnisse
 
-- Die UI akzeptiert **eine `.zip`-Datei**
-- Nicht-ZIP-Dateien werden sofort abgelehnt
-- Das System validiert Struktur, Referenzen und Konflikte vor dem Import
-- Die Validierung deckt TIDAS-JSON ab; enthält das Paket eILCD/ILCD-XML, wird das XML gegen die mitgelieferten Schemas geprüft
-- Flussdatensätze mit CAS-Nummern validieren auch die CAS-Prüfziffer; eine strukturell gültige CAS-Nummer mit falscher Prüfziffer wird weiterhin als Validierungsproblem gemeldet
+Die Oberfläche akzeptiert eine `.zip`-Datei. Der bestehende Servervalidator prüft sämtliche ZIP-Datensätze, auch veröffentlichte Daten. Fehlende ZIP-Referenzen werden bei der Prüfung niemals aus der Datenbank ergänzt.
+
+Jeder Prozess und jedes Lebenszyklusmodell wird mit seiner vollständigen Referenzkette geprüft. Nur vollständig gültige Gruppen werden importiert. Fehlerhafte Gruppen erscheinen im Bericht, unabhängige gültige Gruppen können erfolgreich bleiben. Vorhandene Kombinationen aus Typ + ID + version werden unabhängig vom Zustand übersprungen und nicht überschrieben. Nur erfolgreiche Gruppen erzeugen neue Daten; gemeinsame Referenzen werden einmal eingefügt.
 
 ### Importschritte
 
 1. Klicken Sie in der Kopfleiste auf **TIDAS-ZIP-Paket importieren**.
-2. Ziehen Sie eine einzelne `.zip`-Datei hinein oder wählen Sie sie aus.
-3. Klicken Sie auf **Importieren**.
-4. Prüfen Sie das vom Dialogfeld gemeldete Ergebnis.
+2. Wählen Sie eine `.zip`-Datei aus oder ziehen Sie sie hinein.
+3. Klicken Sie auf **Importieren** und warten Sie auf die Auftragsbestätigung.
+4. Öffnen Sie das **Aufgabenzentrum** für Fortschritt und Ergebnisse.
+
+### Ergebnisse prüfen
+
+Das Aufgabenzentrum unterscheidet vollständigen Erfolg, Teilerfolg, keine erfolgreiche Gruppe und Unterbrechung. Bereits gespeicherte Gruppen bleiben bei späteren Fehlern erhalten. Eine vorhandene Wurzel kann fehlende Abhängigkeiten ergänzen; erfolgreiche Gruppen und neue Datensätze werden getrennt gezählt.
+
+Die Auftragsdetails zeigen Zahlen und Referenzpfade betroffener Wurzeln. Laden Sie die JSON-Zusammenfassung oder vollständigen ZIP-Details für sämtliche Probleme und Datensatzentscheidungen herunter. Die begrenzte Anzeige kürzt keine Prüfung. Korrigieren Sie das Paket und erstellen Sie einen neuen Auftrag; vorhandene exakte Identitäten werden wieder übersprungen.
+
+Browser-Schließen oder Aktualisieren beendet die Backend-Aufgabe nicht. Aktualisieren Sie bei Verbindungs- oder Berichtsfehlern das Aufgabenzentrum. Ein Timeout beweist keinen Importfehler. Gespeicherte Gruppen bleiben auch ohne Abschlussbericht zählbar.
 
 ![Dialogfeld des TIDAS-ZIP-Imports](/assets/docs/7a1e01b2/tidas-zip-import-modal.png)
-
-Im Screenshot markiert `1` die ZIP-Upload-Zone, `2` den Link zur API-Import-Dokumentation und `3`
-die Schaltfläche, die den Import absendet.
-
-### Mögliche Ergebnisse
-
-#### Erfolgreicher Import
-
-Die Plattform bestätigt, dass das Paket erfolgreich importiert wurde.
-
-#### Erfolg mit übersprungenen offenen Daten
-
-Enthält das ZIP offene Datensätze, die nicht dupliziert werden sollen, meldet das System, dass
-einige offene Datensätze übersprungen wurden.
-
-#### Validierung blockiert
-
-Schlagen Pflichtfelder, Referenzen oder die Paketstruktur bei der Validierung fehl, wird der Import
-blockiert und das Dialogfeld erläutert die Probleme.
-Häufige Ursachen: Schema-Abweichungen, fehlende Referenzen, eILCD/ILCD-XML, das nicht zu den
-mitgelieferten Schemas passt, oder eine ungültige CAS-Prüfziffer.
-
-#### Konfliktablehnung
-
-Steht das Paket in Konflikt mit bereits vorhandenen Objekten der Umgebung, wird der Import
-abgelehnt, bis die Konflikte gelöst sind.
-
-### Fehlerbehebung
-
-Der Import-Dialog kann einen herunterladbaren JSON-Bericht bereitstellen. Betrachten Sie diese
-Datei als primäres Fehlerbehebungsartefakt. Sie beantwortet:
-
-- Welche Objekte die Validierung nicht bestanden haben
-- Welche Referenzen nicht auflösbar waren
-- Ob CAS-Nummern ungültige Prüfziffern haben
-- Welche Objekte mit bestehenden Datensätzen kollidieren
-- Welche offenen Datensätze übersprungen wurden
 
 ### ZIP aus einem externen Format mit `tidas` vorbereiten
 
@@ -151,9 +120,9 @@ zum **Aufgabenzentrum** zurück, um die fertige ZIP-Datei herunterzuladen.
 
 Der sichtbare Exportbereich hängt von Ihrer Rolle ab:
 
-| Rollenbereich | Verfügbare Optionen |
-| --- | --- |
-| Standardnutzer | Daten des aktuellen Nutzers |
+| Rollenbereich                     | Verfügbare Optionen                                                                   |
+| --------------------------------- | ------------------------------------------------------------------------------------- |
+| Standardnutzer                    | Daten des aktuellen Nutzers                                                           |
 | Systemadministrator / -eigentümer | Daten des aktuellen Nutzers, Offene Daten, Daten des aktuellen Nutzers + offene Daten |
 
 ### Exportschritte
@@ -185,9 +154,7 @@ mehrere Aufgabentypen:
 - **TIDAS-Import**-Aufgaben
 - **Prüfeinreichungs**-Aufgaben
 
-Der Import-Dialog liefert weiterhin das aktuelle Ergebnis der Operation. Gelangt die Importarbeit
-in den Hintergrund-Aufgabenfluss, zeigt das Aufgabenzentrum die Phasen Validierung, Import und
-Bericht.
+Nach dem Einreihen kehrt der Importdialog zurück; das Aufgabenzentrum zeigt Prüfverlauf, Importergebnisse und Berichtsdownloads.
 
 ### Häufige Aktionen
 

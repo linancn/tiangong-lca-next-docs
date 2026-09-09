@@ -34,62 +34,28 @@ Pour la carte complète des contrôles, commencez par la
 - Migrer en masse processus, modèles, flux et dépendances
 - Échanger des données avec d'autres outils compatibles TIDAS
 
-### Règles
+### Règles et résultats
 
-- L'interface accepte **un seul fichier `.zip`**
-- Les fichiers non-ZIP sont rejetés immédiatement
-- Le système valide la structure, les références et les conflits avant l'import
-- La validation couvre le TIDAS JSON ; si le package contient du XML eILCD/ILCD, celui-ci est vérifié
-  par rapport aux schémas empaquetés
-- Les enregistrements de flux avec numéros CAS valident aussi le chiffre de contrôle CAS : un
-  numéro CAS structurellement valide mais au chiffre de contrôle erroné reste signalé comme problème
-  de validation
+L’interface accepte un fichier `.zip`. Le validateur serveur existant examine tous les jeux du ZIP, y compris les données publiées. Il ne complète jamais les références ZIP manquantes à partir de la base.
 
-### Étapes d'import
+Chaque processus et modèle de cycle de vie est vérifié avec toute sa chaîne de références. Seuls les groupes entièrement valides sont importés. Les groupes invalides figurent dans le rapport, tandis que les groupes valides indépendants peuvent réussir. Les identités type + ID + version existantes sont ignorées sans écrasement, quel que soit leur état. Seuls les groupes réussis ajoutent des données ; les références partagées sont insérées une fois.
+
+### Étapes d’import
 
 1. Cliquez sur **Importer un package TIDAS ZIP** dans la barre supérieure.
-2. Glissez ou sélectionnez un fichier `.zip` unique.
-3. Cliquez sur **Importer**.
-4. Examinez le résultat renvoyé par la fenêtre modale.
+2. Sélectionnez ou glissez un fichier `.zip`.
+3. Cliquez sur **Importer** et attendez la confirmation de soumission.
+4. Ouvrez le **Centre de tâches** pour consulter progression et résultats.
+
+### Consulter les résultats
+
+Le centre distingue réussite complète, réussite partielle, aucun groupe réussi et interruption. Les groupes déjà enregistrés sont conservés après un échec ultérieur. Une racine existante peut ajouter des dépendances manquantes ; groupes réussis et nouveaux jeux sont donc comptés séparément.
+
+Les détails présentent les nombres et les chemins de références des racines concernées. Téléchargez le résumé JSON ou les détails ZIP complets pour tous les problèmes et décisions par jeu. L’affichage borné ne limite jamais la validation. Corrigez le package et soumettez une nouvelle tâche ; les identités exactes déjà présentes seront ignorées.
+
+Fermer ou actualiser le navigateur n’annule pas la tâche serveur. En cas d’erreur de consultation ou de rapport, actualisez le centre. Un timeout ne prouve pas un échec d’import. Les nombres de groupes enregistrés restent accessibles même sans rapport final.
 
 ![Fenêtre d'import TIDAS ZIP](/assets/docs/7a1e01b2/tidas-zip-import-modal.png)
-
-Sur la capture, `1` marque la zone de téléversement ZIP, `2` le lien vers la documentation d'import
-API et `3` le bouton de soumission de l'import.
-
-### Résultats possibles
-
-#### Import réussi
-
-La plateforme confirme que le package a été importé avec succès.
-
-#### Succès avec données ouvertes ignorées
-
-Si le ZIP contient des jeux de données ouverts qui ne doivent pas être dupliqués, le système
-signale que certains jeux ouverts ont été ignorés.
-
-#### Validation bloquée
-
-Si des champs obligatoires, des références ou la structure du package échouent à la validation,
-l'import est bloqué et la fenêtre explique les problèmes.
-Causes fréquentes : écarts de schéma, références manquantes, XML eILCD/ILCD non conforme aux
-schémas empaquetés, ou chiffre de contrôle CAS invalide.
-
-#### Rejet pour conflit
-
-Si le package entre en conflit avec des objets déjà présents dans l'environnement, l'import est
-rejeté jusqu'à la résolution de ces conflits.
-
-## Dépannage
-
-La fenêtre d'import peut fournir un rapport JSON téléchargeable. Considérez ce fichier comme
-l'artefact principal de dépannage. Il aide à déterminer :
-
-- Quels objets ont échoué à la validation
-- Quelles références n'ont pas pu être résolues
-- Si des numéros CAS ont des chiffres de contrôle invalides
-- Quels objets entrent en conflit avec des enregistrements existants
-- Quels jeux ouverts ont été ignorés
 
 ### Préparer un ZIP depuis un format externe avec `tidas`
 
@@ -155,9 +121,9 @@ L'export est asynchrone. Le système crée d'abord une tâche d'export ; vous re
 
 Le périmètre d'export visible dépend de votre rôle :
 
-| Périmètre de rôle | Options disponibles |
-| --- | --- |
-| Utilisateur standard | Données de l'utilisateur courant |
+| Périmètre de rôle            | Options disponibles                                                                                     |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Utilisateur standard         | Données de l'utilisateur courant                                                                        |
 | Admin / propriétaire système | Données de l'utilisateur courant, Données ouvertes, Données de l'utilisateur courant + données ouvertes |
 
 ### Étapes d'export
@@ -189,9 +155,7 @@ regroupe désormais plusieurs types de tâches :
 - Tâches **TIDAS Import**
 - Tâches **Review Submit** (envoi en revue)
 
-La fenêtre d'import renvoie toujours le résultat de l'opération courante. Lorsque le travail d'import
-entre dans le flux de tâches en arrière-plan, le centre affiche les étapes de validation, d'import
-et de rapport.
+Après la mise en file, la fenêtre rend la main ; le centre de tâches présente validation, résultats et téléchargements des rapports.
 
 ### Actions courantes
 

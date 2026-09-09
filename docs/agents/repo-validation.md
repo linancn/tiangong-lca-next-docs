@@ -31,9 +31,9 @@ checkPaths:
   - context7.json
   - .github/workflows/**
   - .githooks/**
-lastReviewedAt: 2026-09-05
-lastReviewedCommit: 7aad51296aa060c29a8f412e5040263894274d6f
-lastReviewedNote: "Reviewed for Issue #191: all eight API and UI TIDAS workflow links now agree with v0.2.1 installation; the existing cross-locale regression covers those entry points without changing OAuth, upload semantics, runtime, navigation or publication."
+lastReviewedAt: "2026-09-09"
+lastReviewedCommit: "70dd0c3c9000d84070fc66756535f07dda768444"
+lastReviewedNote: "Docs #194: reviewed four-locale partial ZIP import workflow, versioned API policy, existing-identity skip and Task Center recovery; OAuth, installation and site routes remain unchanged."
 related:
   - AGENTS.md
   - .docpact/config.yaml

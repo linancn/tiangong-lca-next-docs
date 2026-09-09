@@ -159,9 +159,10 @@ curl -i --location --request POST "${BASE_URL}/import_tidas_package" \
   --header 'X-Idempotency-Key: tidas-import-enqueue-001' \
   --data '{
     "action": "enqueue",
+    "import_policy": "root_closure_v2",
     "job_id": "4a56e7b2-8f18-4f0f-a6b4-cf40f343d8b8",
     "source_artifact_id": "9ad0da68-3933-4f7b-a3cb-a494b70ec0a2",
-    "artifact_sha256": "<optional-sha256>",
+    "artifact_sha256": "<sha256-of-uploaded-zip>",
     "artifact_byte_size": 123456,
     "filename": "example-package.zip",
     "content_type": "application/zip"
@@ -219,7 +220,27 @@ neuer Auftrag angelegt, auf das Artefakt gewartet oder der Speicherpfad / die si
 untersucht werden soll. Betrachten Sie `status=completed` allein nicht als Beweis,
 dass der Bericht herunterladbar ist.
 
-## Semantik des Importberichts
+## Teilimport nach Prozess und Modell
+
+Setzen Sie `import_policy` beim Einreihen auf `root_closure_v2`. Ohne dieses Feld gilt weiterhin v1. Bestehende Aufträge wechseln ihre Strategie nicht; unbekannte Strategien werden abgelehnt.
+
+Der bestehende Servervalidator prüft das gesamte ZIP ohne Abfragen von Geschäftsdaten, auch bei `state_code=100`. Jeder Prozess und jedes Lebenszyklusmodell wird mit sämtlichen direkten und indirekten ZIP-Referenzen bewertet. Die Datenbank ergänzt keine fehlenden Referenzen. Versionen müssen exakt passen; fehlende Versionsangaben müssen nach den bisherigen Regeln eindeutig auflösbar sein. Externe Anhänge sind keine Datensatzabhängigkeiten.
+
+Fehler blockieren nur abhängige Gruppen. Ein fehlerhaftes Modell blockiert nicht automatisch einen unabhängig gültigen Prozess. Nur Datensätze erfolgreicher Gruppen werden importiert. Verwaiste Unterstützungsdaten bleiben im Bericht. Bereits vorhandene Kombinationen aus Typ + ID + version werden unabhängig von Status oder Inhalt übersprungen und niemals überschrieben. Bei vorhandenen Wurzeldaten können fehlende Abhängigkeiten noch hinzugefügt werden.
+
+Jede Gruppe wird atomar gespeichert. Spätere Fehler setzen frühere Gruppen nicht zurück. Gemeinsame Datensätze zählen nur einmal. Browser-Schließen oder Aktualisieren beendet den Auftrag nicht; ein Polling-Timeout ist kein Importfehler. Das Aufgabenzentrum stellt Fortschritt und Ergebnisse wieder her.
+
+Der Bericht trägt `report_version=2`. `outcome` unterscheidet `success`, `partial`, `none` und `interrupted`; `ok=true` bedeutet, dass alle Wurzeln erfolgreich waren. Wurzelstatus: `imported`, `reused`, `blocked`, `write_failed`, `not_attempted`. Pakete ohne Prozess oder Modell liefern `NO_IMPORT_ROOTS`, ohne Unterstützungsdaten einzufügen. Warnungen und Fehler verwaister Daten können trotz erfolgreicher Wurzeln enthalten sein.
+
+`summary.imported_count`, `existing_count` und `successful_root_count` zeigen tatsächliche Ergebnisse. Die Anzeige enthält höchstens 100 Wurzeln und 1.000 Validierungsprobleme. Diese Grenzen beeinflussen keine Entscheidung. `artifacts_by_kind.import_details.signed_download_url` liefert vollständige Probleme, Referenzpfade, Wurzelresultate und Datensatzentscheidungen. Das ZIP-Manifest bindet Dateien durch Größe und SHA-256; `import_report` enthält die begrenzte JSON-Zusammenfassung.
+
+Fehlt der Abschlussbericht, zeigt `import_progress` die gespeicherten Gruppenbelege. Die Zahlen bleiben nach Unterbrechungen verfügbar, bestätigen aber keinen vollständigen Prüflauf. Derselbe Auftrag behält Strategie und Commit-Belege. Ein korrigiertes Paket erhält einen neuen Auftrag; bereits vorhandene exakte Identitäten werden übersprungen.
+
+Grenzen: ZIP 512 MiB, entpackt 2 GiB, 100.000 Datensätze, 2.000 Wurzeln, 1.000.000 Referenzen; Dokument 16 MiB; Gruppe 50.000 Datensätze und 64 MiB; insgesamt 2.000.000 Dokumentbesuche bei Gruppenprüfungen. Kapazitätsüberschreitungen oder unvollständige Belege führen zu ausdrücklichen Fehlern, niemals zu stiller Kürzung.
+
+Die folgenden v1-Beispiele gelten nur ohne `import_policy`.
+
+## v1 — Semantik des Importberichts
 
 Nach Abschluss des Importauftrags gehört die `import_report`-Nutzlast in der Regel zu
 einer dieser Ergebnisklassen:

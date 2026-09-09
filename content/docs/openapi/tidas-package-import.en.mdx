@@ -160,9 +160,10 @@ curl -i --location --request POST "${BASE_URL}/import_tidas_package" \
   --header 'X-Idempotency-Key: tidas-import-enqueue-001' \
   --data '{
     "action": "enqueue",
+    "import_policy": "root_closure_v2",
     "job_id": "4a56e7b2-8f18-4f0f-a6b4-cf40f343d8b8",
     "source_artifact_id": "9ad0da68-3933-4f7b-a3cb-a494b70ec0a2",
-    "artifact_sha256": "<optional-sha256>",
+    "artifact_sha256": "<sha256-of-uploaded-zip>",
     "artifact_byte_size": 123456,
     "filename": "example-package.zip",
     "content_type": "application/zip"
@@ -220,7 +221,27 @@ whether to create a new job, wait for the artifact to become ready, or investiga
 the storage path / signed URL. Do not treat `status=completed` alone as proof
 that the report is downloadable.
 
-## Import Report Semantics
+## Partial import by process and model
+
+Set `import_policy` to `root_closure_v2` in the enqueue request. Omitting this field retains the legacy v1 policy; existing jobs never change policy. An unsupported policy is rejected.
+
+The platform validates the whole ZIP using its existing server validator. It does not query business data during validation, including for records marked `state_code=100`. Each process and lifecycle model is evaluated with all direct and transitive dataset references in the ZIP. A missing reference cannot be supplied from the database. Versions must match exactly; an omitted version must resolve unambiguously under the existing reference rules. External attachments are not dataset dependencies.
+
+A failed group does not block independent valid groups. A failed model does not automatically block an independently valid process. Only records belonging to a successful group are imported; orphan support records are retained in the report. During insertion, an existing type + ID + version is skipped regardless of its state or content. Existing data is never overwritten. A group already present may still add missing dependencies.
+
+Each group commits atomically. A later failure does not roll back earlier groups. Shared records are counted once. Refreshing or closing the browser does not cancel the backend job, and a polling timeout is not an import failure. In the product UI, open Task Center to recover progress and results.
+
+The v2 report has `report_version=2`. Read `outcome`: `success`, `partial`, `none`, or `interrupted`; `ok=true` means all roots succeeded. Root statuses are `imported`, `reused`, `blocked`, `write_failed`, and `not_attempted`. No-root packages return `NO_IMPORT_ROOTS` and insert no support records. Warnings and orphan errors may still appear when all roots succeed.
+
+`summary.imported_count`, `existing_count`, and `successful_root_count` describe actual results. `roots` includes at most 100 root results and `validation_issues` at most 1,000 samples; neither limit affects eligibility. Download `artifacts_by_kind.import_details.signed_download_url` for the complete issue stream, reference paths, root results and record dispositions. The ZIP manifest binds each file by size and SHA-256. `import_report` is the bounded JSON summary.
+
+If the final report is missing, `import_progress` returns counts from committed group receipts. These counts remain available after an interruption and do not prove that validation or execution finished. Reusing the same source/job preserves its policy and commit evidence; uploading a corrected package creates a new job, and previously inserted exact identities are skipped.
+
+The v2 worker admits ZIPs up to 512 MiB, 2 GiB extracted, 100,000 documents, 2,000 roots, and 1,000,000 references. A document is limited to 16 MiB; one group to 50,000 records and 64 MiB. Closure validation is limited to 2,000,000 cumulative document visits. Capacity or incomplete-evidence failures are explicit failures, never silent truncation.
+
+The legacy examples below apply only when `import_policy` is omitted.
+
+## v1 — Import Report Semantics
 
 Once the import job completes, the `import_report` payload usually falls into
 one of these result classes:
