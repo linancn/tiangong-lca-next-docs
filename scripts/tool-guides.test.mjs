@@ -108,6 +108,64 @@ test('tutorial JSON examples are parseable and complete shared input assets exis
   assert.ok(sample.flowDataSet);
 });
 
+// Qualified with published Foundry 0.1.7 parseFoundryTaskStartSpec and an actual
+// installed task. Changes require renewed owner-parser qualification; this is
+// the documentation specimen, not another implementation of Foundry's schema.
+const qualifiedFoundryTask = {
+  schema: 'tiangong-foundry.task-start.v1',
+  request_id: 'first-foundry-package',
+  actor_id: 'local-preparation',
+  lane: 'external-dataset-curated-import',
+  profile_id: 'generic',
+  target_entities: ['process'],
+  sources: [{ path: 'inputs/package.zip' }],
+  seed: null,
+  account_intent: null,
+  preparation: null,
+};
+
+function assertQualifiedFoundryTask(spec) {
+  assert.deepEqual(spec, qualifiedFoundryTask, 'Foundry guide must use the qualified public task specimen');
+}
+
+test('all four Foundry task examples preserve the qualified public specimen', () => {
+  for (const locale of locales) {
+    const examples = [...read(page('skills', 'foundry', locale.suffix)).matchAll(/```json\n([\s\S]*?)```/gu)]
+      .map(([, block]) => JSON.parse(block))
+      .filter((value) => Object.hasOwn(value, 'request_id'));
+    assert.equal(examples.length, 1, locale.code);
+    assertQualifiedFoundryTask(examples[0]);
+  }
+});
+
+test('the Foundry specimen gate rejects field drift and incomplete selections', () => {
+  for (const patch of [
+    { schema: 'tiangong-foundry.task-start.v2' },
+    { lane: 'import-typo' },
+    { actor_id: 12 },
+    { actor_id: 'different-locale-actor' },
+    { sources: [{ file: 'inputs/package.zip' }] },
+    { target_entities: [] },
+    { account_intent: {} },
+    { unexpected: true },
+  ]) assert.throws(() => assertQualifiedFoundryTask({ ...qualifiedFoundryTask, ...patch }));
+  const { seed: omitted, ...incomplete } = qualifiedFoundryTask;
+  assert.throws(() => assertQualifiedFoundryTask(incomplete));
+});
+
+test('Foundry installation and catalogues bind the reviewed Skills content', () => {
+  for (const locale of locales) {
+    const guide = read(page('skills', 'foundry', locale.suffix));
+    assert.ok(guide.includes('skills.foundry-tidas-import.computedHash'));
+    assert.ok(guide.includes('b101356d3804455e4a71d34c71d693891399f529c518c27064611a726252a603'));
+    const catalogue = read(page('skills', 'catalog', locale.suffix));
+    assert.ok(catalogue.includes('0a33db1df81f9bd3ce52d356178fa35adc40b67c'));
+    assert.doesNotMatch(catalogue, /29039bcc07a7b246acc3d4009ee641d3a6878d01/u);
+    assert.ok(catalogue.includes('foundry-tidas-import'));
+    assert.ok(catalogue.includes('foundry-tidas-authoring'));
+  }
+});
+
 test('substantive tool-guide entries remain available to public search and AI discovery', async () => {
   const { isCategoryIndex } = await import('../lib/ia.ts');
   for (const section of Object.keys(sections)) {

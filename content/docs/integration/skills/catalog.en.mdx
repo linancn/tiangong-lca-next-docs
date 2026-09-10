@@ -3,7 +3,16 @@ title: "Skill catalogue and prerequisites"
 description: "Choose by task and distinguish standalone search packages, full-repository workflows, and Data Foundry requirements."
 ---
 
-Choose by the input you have and the result you need, then check prerequisites and write risks. These 21 entries come from the [reviewed Skills revision](https://github.com/tiangong-lca/skills/tree/29039bcc07a7b246acc3d4009ee641d3a6878d01). This is not a promise that installing everything makes every workflow ready.
+Choose by the input you have and the result you need, then check prerequisites and write risks. These 23 entries come from the [reviewed Skills revision](https://github.com/tiangong-lca/skills/tree/0a33db1df81f9bd3ce52d356178fa35adc40b67c). This is not a promise that installing everything makes every workflow ready.
+
+## Independently installable: TianGong Foundry
+
+Use the [Foundry guide](/en/docs/integration/skills/foundry/) to install the complete entry and check its fingerprint. Its shipped trusted lock manages runtime components without global Node/pnpm/Git.
+
+| Skill | Input → result | Prerequisite or boundary |
+| --- | --- | --- |
+| `foundry-tidas-import` | External data or source evidence → Foundry task in a separate workspace | Ordinary entry; account and write authorization are requested at the relevant stage |
+| `foundry-tidas-authoring` | A concrete semantic work item returned by Foundry → validated decision/patch | Internal on-demand role; does not launch a separate runtime or inherit write permission |
 
 ## Independently installable: three search skills
 

@@ -37,8 +37,8 @@ checkPaths:
   - .github/workflows/**
   - .githooks/**
 lastReviewedAt: 2026-09-10
-lastReviewedCommit: 99eed08f0f879759a8d247057d27a8d871eb0ce6
-lastReviewedNote: "Reviewed for Next Docs #193: four-locale guides bind qualified F1.7/C1.13/Skills0a33, current installer fingerprints, conservative migration and read-only rollback limits. Actual installer and documented public local task steps pass; lint/types/build/link/search/output gates pass. All 32 locale/viewport/theme browser cases and eight linked pages pass; representative desktop/light and mobile/dark renders were visually reviewed. Source/root delivery remains separately tracked."
+lastReviewedCommit: cfa82ac04c49840f9656fffe41764ed922f0e4b3
+lastReviewedNote: "Reviewed for Next Docs #197: four locale Foundry fingerprints and all23 catalogue entries bind Skills0a33; CI locks task examples to the exact published-parser-qualified specimen and rejects drift. Stale pre-release claims are replaced by actual source/integration boundaries. Owner parser four positive/nine negative cases, lint/types and full build pass; no dependency or runtime behavior change."
 related:
   - .docpact/config.yaml
   - docs/agents/repo-architecture.md
