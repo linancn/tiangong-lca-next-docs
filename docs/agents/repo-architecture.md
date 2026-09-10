@@ -34,8 +34,8 @@ checkPaths:
   - context7.json
   - .github/workflows/**
 lastReviewedAt: 2026-09-10
-lastReviewedCommit: 99eed08f0f879759a8d247057d27a8d871eb0ce6
-lastReviewedNote: "Reviewed for Next Docs #193: four-locale guides bind qualified F1.7/C1.13/Skills0a33, current installer fingerprints, conservative migration and read-only rollback limits. Actual installer and documented public local task steps pass; lint/types/build/link/search/output gates pass. All 32 locale/viewport/theme browser cases and eight linked pages pass; representative desktop/light and mobile/dark renders were visually reviewed. Source/root delivery remains separately tracked."
+lastReviewedCommit: cfa82ac04c49840f9656fffe41764ed922f0e4b3
+lastReviewedNote: "Reviewed for Next Docs #197: four locale Foundry fingerprints and all23 catalogue entries bind Skills0a33; CI locks task examples to the exact published-parser-qualified specimen and rejects drift. Stale pre-release claims are replaced by actual source/integration boundaries. Owner parser four positive/nine negative cases, lint/types and full build pass; no dependency or runtime behavior change."
 related:
   - AGENTS.md
   - .docpact/config.yaml
@@ -128,6 +128,6 @@ EdgeOne Makers builds and deploys from Git. The managed Node runtime supplies pn
 - `tiangong-lca-next-docs` owns the public explanation and site implementation.
 - `lca-workspace` owns the integrated child commit and completion state.
 
-The four `integration/skills/foundry*.mdx` pages add a separate Foundry task-preparation route while preserving the original search tutorial. They describe the shipped-skill bootstrap boundary and public task inputs/status/recovery. Final installation, catalogue pins and first-login/actual-release qualification remain required under #193 before this content ships; a local preparation stopping point does not prove complete import.
+The four `integration/skills/foundry*.mdx` pages add a separate Foundry task-preparation route while preserving the original search tutorial. They describe the shipped-skill bootstrap boundary and public task inputs/status/recovery. Actual installation, catalogue provenance, official OAuth and released-runtime qualification are recorded under #193 and workspace #980. The final reviewed installation is checked by its skill fingerprint; a local preparation stopping point does not prove complete import. Exact source integration and external deployment/search refresh remain separate states.
 
 The managed Foundry guide binds released Foundry 0.1.7 with CLI 0.1.13, Node 24.19.0, TIDAS 0.3.0 and merged Skills 0a33db1. Skills-specific login examples use CLI 0.1.13 and the independently installed current package fingerprint; the separate standalone CLI 0.1.8 and TIDAS 0.2.1 tutorials retain their existing owned baseline. Migration remains conservative for sealed/attempted/unclassified tasks, and task runtime binding can reject older readers even when workspace read compatibility is valid.

@@ -13,6 +13,14 @@ TianGong Foundry 的普通入口是 `foundry-tidas-import`。它编排外部数�
 pnpm dlx skills@1.5.23 add tiangong-lca/skills --skill foundry-tidas-import --agent codex --copy --yes
 ```
 
+安装后，在项目的 `skills-lock.json` 中检查 `skills.foundry-tidas-import.computedHash`，应与下值一致。这是已核对安装内容的指纹，不是签名。仓库可能继续更新；若值不同或缺失，先停止执行 bootstrap，核对新的来源、完整 lock 和资格证据。不要把哈希改成预期值来绕过检查。
+
+```json
+{
+  "computedHash": "b101356d3804455e4a71d34c71d693891399f529c518c27064611a726252a603"
+}
+```
+
 OpenClaw 将 `--agent codex` 改为 `--agent openclaw`。这些工具只属于该命令行安装方式；安装完整技能后，Foundry 的受控运行环境自行准备所需组件。
 
 需要完整安装的 `foundry-tidas-import` 技能目录，其中包含原版 POSIX/PowerShell bootstrap 和相邻的可信 `bootstrap-lock.json`。两者必须来自同一份合格分发，不能从任务文件或临时下载地址拼接。锁缺失或校验失败时先修复安装。

@@ -13,6 +13,14 @@ Die geprüfte Kombination umfasst [Foundry 0.1.7](https://github.com/tiangong-lc
 pnpm dlx skills@1.5.23 add tiangong-lca/skills --skill foundry-tidas-import --agent codex --copy --yes
 ```
 
+Prüfen Sie nach der Installation `skills.foundry-tidas-import.computedHash` in der projektbezogenen `skills-lock.json` gegen den folgenden Wert. Dies ist der geprüfte Installationsfingerabdruck, keine Signatur. Das Repository kann sich weiterentwickeln. Bei abweichendem oder fehlendem Wert den Bootstrap noch nicht ausführen, sondern neue Quelle, vollständigen Lock und Qualifikationsnachweise prüfen. Den Hash niemals zum Bestehen der Prüfung ändern.
+
+```json
+{
+  "computedHash": "b101356d3804455e4a71d34c71d693891399f529c518c27064611a726252a603"
+}
+```
+
 Für OpenClaw `--agent codex` durch `--agent openclaw` ersetzen. Diese Werkzeuge gehören zu dieser Installationsmethode; nach vollständiger Skill-Installation bereitet die verwaltete Foundry-Laufzeit ihre Komponenten selbst vor.
 
 Erforderlich ist ein vollständig installierter Ordner `foundry-tidas-import` mit dem unveränderten POSIX/PowerShell-Bootstrap und der benachbarten vertrauenswürdigen Datei `bootstrap-lock.json`. Beide müssen aus derselben qualifizierten Distribution stammen. Keine Ersatzdatei aus Aufgabenartefakten oder vorläufigen Downloadadressen zusammensetzen. Fehlende oder ungültige Sperrdaten zuerst durch eine vollständige Installation beheben.

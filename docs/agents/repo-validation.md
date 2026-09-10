@@ -32,8 +32,8 @@ checkPaths:
   - .github/workflows/**
   - .githooks/**
 lastReviewedAt: 2026-09-10
-lastReviewedCommit: 99eed08f0f879759a8d247057d27a8d871eb0ce6
-lastReviewedNote: "Reviewed for Next Docs #193: four-locale guides bind qualified F1.7/C1.13/Skills0a33, current installer fingerprints, conservative migration and read-only rollback limits. Actual installer and documented public local task steps pass; lint/types/build/link/search/output gates pass. All 32 locale/viewport/theme browser cases and eight linked pages pass; representative desktop/light and mobile/dark renders were visually reviewed. Source/root delivery remains separately tracked."
+lastReviewedCommit: cfa82ac04c49840f9656fffe41764ed922f0e4b3
+lastReviewedNote: "Reviewed for Next Docs #197: four locale Foundry fingerprints and all23 catalogue entries bind Skills0a33; CI locks task examples to the exact published-parser-qualified specimen and rejects drift. Stale pre-release claims are replaced by actual source/integration boundaries. Owner parser four positive/nine negative cases, lint/types and full build pass; no dependency or runtime behavior change."
 related:
   - AGENTS.md
   - .docpact/config.yaml
@@ -93,6 +93,6 @@ Use an absolute root when invoked outside the repository. Save a report only whe
 
 The hook runs strict configuration validation and enforced documentation-governance lint against `origin/main` by default.
 
-Foundry guide validation checks all four localized navigation entries and identical parseable task-start examples against the current Foundry public schema. The full build must include the new routes in static output, links, search/llms and sitemap. Review the rendered preparation pages and separately verify final F1/C1/Skills installation, first login and end-to-end task evidence before #193 completes.
+Foundry guide CI checks all four localized navigation entries and requires every task-start example to equal the exact qualified public specimen. Maintainer qualification parses that specimen through the published Foundry 0.1.7 public parseFoundryTaskStartSpec export; changing the specimen requires repeating that owner-parser check. CI rejects any locale or field drift without copying the runtime validator. The full build must include the new routes in static output, links, search/llms and sitemap. Rendered preparation pages, actual F1/C1/Skills installation, official login and bounded end-to-end task evidence are recorded in #193 and workspace #980; new changes rerun affected checks.
 
 The managed Foundry guide binds released Foundry 0.1.7 with CLI 0.1.13, Node 24.19.0, TIDAS 0.3.0 and merged Skills 0a33db1. Skills-specific login examples use CLI 0.1.13 and the independently installed current package fingerprint; the separate standalone CLI 0.1.8 and TIDAS 0.2.1 tutorials retain their existing owned baseline. Migration remains conservative for sealed/attempted/unclassified tasks, and task runtime binding can reject older readers even when workspace read compatibility is valid.

@@ -3,7 +3,16 @@ title: "技能目录与前置条件"
 description: "按任务选择技能，区分独立检索包、完整仓库工作流和 Data Foundry 专用任务。"
 ---
 
-选择技能时，先看“我有什么输入、想得到什么”，再看运行条件和写入风险。这里列出 [Skills 已核对版本](https://github.com/tiangong-lca/skills/tree/29039bcc07a7b246acc3d4009ee641d3a6878d01)中的 21 个技能；目录不是一份“全部安装即可使用”的承诺。
+选择技能时，先看“我有什么输入、想得到什么”，再看运行条件和写入风险。这里列出 [Skills 已核对版本](https://github.com/tiangong-lca/skills/tree/0a33db1df81f9bd3ce52d356178fa35adc40b67c)中的 23 个技能；目录不是一份“全部安装即可使用”的承诺。
+
+## 可独立安装：TianGong Foundry
+
+按 [Foundry 指南](/zh/docs/integration/skills/foundry/)安装完整入口并核对安装指纹。其运行组件由随包可信 lock 管理，无需全局 Node/pnpm/Git。
+
+| 技能名 | 输入 → 结果 | 前置条件或边界 |
+| --- | --- | --- |
+| `foundry-tidas-import` | 外部数据或来源证据 → 独立工作区中的 Foundry 任务 | 普通入口；账户与写入授权按任务阶段取得 |
+| `foundry-tidas-authoring` | Foundry 返回的具体语义工作项 → 经校验的 decision/patch | 内部按需角色；不单独启动运行时或继承写权限 |
 
 ## 可单独安装：三个检索技能
 
