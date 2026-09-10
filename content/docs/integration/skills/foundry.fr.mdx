@@ -7,6 +7,14 @@ L’entrée habituelle de TianGong Foundry est `foundry-tidas-import`, pour les 
 
 ## 1. Préparer un répertoire distinct
 
+La combinaison vérifiée comprend [Foundry 0.1.7](https://github.com/tiangong-lca/data-foundry/releases/tag/foundry-runtime-v0.1.7), CLI 0.1.13, Node 24.19.0 et TIDAS 0.3.0, distribués par l’entrée complète de [Skills 0a33db1](https://github.com/tiangong-lca/skills/commit/0a33db1df81f9bd3ce52d356178fa35adc40b67c). Dans l’installateur Skills du client, choisissez `foundry-tidas-import` depuis `tiangong-lca/skills`. Si Node/pnpm/Git sont déjà disponibles et que vous utilisez l’installateur en ligne de commande :
+
+```bash
+pnpm dlx skills@1.5.23 add tiangong-lca/skills --skill foundry-tidas-import --agent codex --copy --yes
+```
+
+Pour OpenClaw, remplacez `--agent codex` par `--agent openclaw`. Ces outils concernent cette méthode d’installation ; une fois le skill complet installé, l’environnement Foundry géré prépare lui-même ses composants.
+
 Il faut un dossier `foundry-tidas-import` installé au complet, avec le bootstrap POSIX/PowerShell original et son fichier adjacent de confiance `bootstrap-lock.json`. Ils doivent provenir de la même distribution qualifiée. Ne composez pas un fichier de remplacement à partir d’artefacts de tâche ou d’adresses de téléchargement provisoires. Réparez d’abord toute installation incomplète ou non vérifiée.
 
 Cet environnement géré ne nécessite pas de Node, pnpm ou Git global. Il prend en charge Linux x64/ARM64 avec glibc, macOS Apple Silicon et Windows x64. macOS Intel, Windows ARM64 et Linux musl ne sont pas pris en charge. Le premier lancement télécharge les composants fixés ; les suivants réutilisent un cache vérifié. Un cache présent ne prouve ni connexion ni achèvement.
@@ -50,10 +58,10 @@ Remplacez les chemins indicatifs par les emplacements réels. Sous POSIX :
 sh "<skill-dir>/scripts/tiangong-runtime-bootstrap.sh" workspace init --workspace "<workspace>" --json
 ```
 
-Sous Windows, utilisez PowerShell système sans contourner sa stratégie d’exécution :
+Sous Windows, utilisez PowerShell 7 qualifié sans contourner sa stratégie d’exécution :
 
 ```powershell
-powershell -NoProfile -File "<skill-dir>/scripts/tiangong-runtime-bootstrap.ps1" workspace init --workspace "<workspace>" --json
+pwsh -NoProfile -File "<skill-dir>/scripts/tiangong-runtime-bootstrap.ps1" workspace init --workspace "<workspace>" --json
 ```
 
 Pour les appels suivants, conservez le même préfixe bootstrap et ajoutez successivement ces arguments publics. Le chemin de la spécification est résolu depuis l’espace de travail explicitement choisi. Foundry renvoie l’identifiant de tâche.
@@ -79,3 +87,13 @@ Vérifiez immédiatement chaque code de sortie : `echo $?` sous POSIX ou `$LASTE
 Une nouvelle sélection d’entrée ou de compte, soumise dans une spécification vérifiée, crée une révision avec historique conservé. Elle ne réinitialise aucun ancien essai. Si la réponse à une écriture est incertaine, utiliser uniquement l’action readback/recovery de la tâche originale. Ne pas répéter directement la mutation, effacer les traces ou créer un autre répertoire pour les contourner.
 
 La préparation locale est démontrée lorsque l’entrée originale, l’identifiant courant, les artefacts réellement produits et une prochaine action ou un blocage précis peuvent être identifiés. L’import complet exige encore travail sémantique, contrôles de compte, autorisation et relecture indépendante. Voir [organiser les tâches en sécurité](/fr/docs/integration/skills/safe-workflows/).
+
+## 5. Mise à jour, migration et retour en lecture seule
+
+Pour `task_runtime_changed`, conservez l’ancien espace et examinez-le d’abord avec `workspace migrate --workspace <workspace> --dry-run --json`. La migration exige source, destination, acteur, requête et entrées explicites, puis l’examen du plan, du stage, de l’aperçu d’adoption, de l’application et de l’audit. Ne réécrivez pas directement l’historique.
+
+Seules les tâches locales connues, avec preuves complètes et sans tentative d’écriture, peuvent être préparées à nouveau par le propriétaire actuel. Un historique scellé, déjà tenté ou incomplètement classifié peut rester `owner-readback-only`, sans nouvelle tâche exécutable. Ne le requalifiez jamais en « non tenté » et ne rejouez pas le même périmètre depuis un autre répertoire.
+
+Les compatibilités de lecture et d’écriture sont distinctes. Choisir un ancien environnement en lecture seule via le host/gestionnaire CLI de confiance n’annule aucune écriture distante et n’accorde aucun droit d’écriture. Reconstruction du cache, migration de tâche et déconnexion sont séparées ; conservez l’espace, les preuves originales et les marqueurs de tentatives consommées.
+
+La compatibilité de lecture de l’espace ne garantit pas qu’un ancien environnement puisse lire une tâche plus récente ; conservez les traces et restaurez la version correspondante si la liaison de tâche diffère.

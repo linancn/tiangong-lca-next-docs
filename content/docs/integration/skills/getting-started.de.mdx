@@ -51,11 +51,11 @@ Listen Sie die Installationsnachweise des Projekts mit dem folgenden Befehl auf.
 pnpm dlx skills@1.5.23 list --json
 ```
 
-Die geprüfte Installation entspricht Skills-Commit `29039bcc07a7b246acc3d4009ee641d3a6878d01`. Mit diesem Installer muss `skills.flow-hybrid-search.computedHash` in `skills-lock.json` dem folgenden Wert entsprechen. Dies ist ein Installationsfingerabdruck, keine Signatur. Bei Abweichung Quelle und Voraussetzungen erneut prüfen und einen Probelauf ausführen, bevor Sie die verifizierten Aussagen übernehmen.
+Die geprüfte Installation entspricht Skills-Commit `0a33db1df81f9bd3ce52d356178fa35adc40b67c`. Mit diesem Installer muss `skills.flow-hybrid-search.computedHash` in `skills-lock.json` dem folgenden Wert entsprechen. Dies ist ein Installationsfingerabdruck, keine Signatur. Bei Abweichung Quelle und Voraussetzungen erneut prüfen und einen Probelauf ausführen, bevor Sie die verifizierten Aussagen übernehmen.
 
 ```json
 {
-  "computedHash": "3f682fcb97616cf20b97ee7f70120616e58f9ff2bf65bead54d9728d94da4c59"
+  "computedHash": "e75673431b0adaae42c96a009bc52f82f82c22a1d269ca798158ab8b11eccd4b"
 }
 ```
 
@@ -75,9 +75,9 @@ Fehlt ein Leseeintrag oder bleibt die Erkennung erfolglos, hängen Sie die passe
 Die Remote-Suche verwendet die private lokale CLI-Sitzung. Zuerst Status prüfen; bei `login-required` selbst im vertrauenswürdigen Terminal anmelden und im Browser autorisieren. Passwort oder Token nicht an die KI senden.
 
 ```bash
-pnpm dlx --package=@tiangong-lca/cli@0.1.8 tiangong-lca auth status --json
-pnpm dlx --package=@tiangong-lca/cli@0.1.8 tiangong-lca auth login
-pnpm dlx --package=@tiangong-lca/cli@0.1.8 tiangong-lca auth doctor-auth --json
+pnpm dlx --package=@tiangong-lca/cli@0.1.13 tiangong-lca auth status --json
+pnpm dlx --package=@tiangong-lca/cli@0.1.13 tiangong-lca auth login
+pnpm dlx --package=@tiangong-lca/cli@0.1.13 tiangong-lca auth doctor-auth --json
 ```
 
 Systemnutzer und Umgebung des Skripts müssen denselben Anmeldekontext verwenden können. Production benötigt keine `.env`, öffentliche Client-ID oder lokalen CLI-Quellcode. Nur eigene Umgebungen erfordern [vollständige passende Konfiguration](/de/docs/integration/cli/authentication/). Skills speichern keine zweite OAuth-Sitzung.

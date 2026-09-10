@@ -7,6 +7,14 @@ TianGong Foundry 的普通入口是 `foundry-tidas-import`。它编排外部数�
 
 ## 1. 准备独立目录
 
+当前验证组合为 [Foundry 0.1.7](https://github.com/tiangong-lca/data-foundry/releases/tag/foundry-runtime-v0.1.7)、CLI 0.1.13、Node 24.19.0 和 TIDAS 0.3.0，由 [Skills 0a33db1](https://github.com/tiangong-lca/skills/commit/0a33db1df81f9bd3ce52d356178fa35adc40b67c) 的完整入口分发。通过客户端的 Skills 安装功能选择 `tiangong-lca/skills` 中的 `foundry-tidas-import`。若已有 Node/pnpm/Git 并使用命令行安装器，可执行：
+
+```bash
+pnpm dlx skills@1.5.23 add tiangong-lca/skills --skill foundry-tidas-import --agent codex --copy --yes
+```
+
+OpenClaw 将 `--agent codex` 改为 `--agent openclaw`。这些工具只属于该命令行安装方式；安装完整技能后，Foundry 的受控运行环境自行准备所需组件。
+
 需要完整安装的 `foundry-tidas-import` 技能目录，其中包含原版 POSIX/PowerShell bootstrap 和相邻的可信 `bootstrap-lock.json`。两者必须来自同一份合格分发，不能从任务文件或临时下载地址拼接。锁缺失或校验失败时先修复安装。
 
 此受控运行环境不要求全局 Node、pnpm 或 Git。支持 Linux x64/ARM64（glibc）、macOS Apple Silicon 和 Windows x64；不支持 macOS Intel、Windows ARM64 或 Linux musl。首次运行需要下载已锁定组件，后续复用经过验证的缓存。缓存命中不代表登录或任务完成。
@@ -50,10 +58,10 @@ source-evidence 工作使用 `source-evidence-dataset-development` lane，并提
 sh "<skill-dir>/scripts/tiangong-runtime-bootstrap.sh" workspace init --workspace "<workspace>" --json
 ```
 
-Windows 使用系统 PowerShell，不添加 execution-policy bypass：
+Windows 使用已验证的 PowerShell 7，不添加 execution-policy bypass：
 
 ```powershell
-powershell -NoProfile -File "<skill-dir>/scripts/tiangong-runtime-bootstrap.ps1" workspace init --workspace "<workspace>" --json
+pwsh -NoProfile -File "<skill-dir>/scripts/tiangong-runtime-bootstrap.ps1" workspace init --workspace "<workspace>" --json
 ```
 
 后续调用使用同一 bootstrap 前缀，并依次传入下面的公开参数。说明文件相对于显式 workspace 解析；运行结果中的 task ID 由 Foundry 返回。
@@ -79,3 +87,13 @@ task resume --workspace <workspace> --task <returned-task-id> --actor local-prep
 输入或账户选择发生变化时，重新提交经过检查的 task-start 说明会产生保留历史的新 revision；它不会重置旧 attempt。写入后响应不确定时只能通过原任务的 readback/recovery 继续，不能直接重试 mutation、清空记录或另建目录绕过它。
 
 本地准备的验收点是：能够指出选定的原始输入、当前 task ID、已经产生的阶段工件和明确的下一步或 blocker。完整导入还需要后续语义、账户、授权及独立回读。见 [安全组织任务](/zh/docs/integration/skills/safe-workflows/)。
+
+## 5. 更新、迁移与只读回退
+
+遇到 `task_runtime_changed` 时保留旧 workspace，先用 `workspace migrate --workspace <workspace> --dry-run --json` 检查状态。迁移需要明确的源、目标、actor、request 和输入选择，并依次审阅 plan、stage、adoption preview、apply 与 audit；不要直接改写旧记录。
+
+只有证据完整且未尝试写入的已知本地任务才能由当前 owner 重新准备。已封存、已尝试或无法完整分类的历史可能保留为 `owner-readback-only`，不会生成新的可执行任务；不能把它重新标为“未尝试”或另建目录重放同一 scope。
+
+读兼容与写兼容分别校验。通过可信 host/CLI manager 选择旧版只读运行环境，不会撤销远端写入，也不会赋予写权限。缓存重建、任务迁移和账户退出是不同操作；保留 workspace、原始证据和已尝试标记。
+
+工作区的读兼容不保证旧版能读取新版任务；任务运行时绑定不匹配时，继续保留原记录并恢复匹配版本。

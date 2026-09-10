@@ -127,7 +127,7 @@ test('reader recovery explains immediate exit checks, stderr, and the installed 
     assert.match(first, /https:\/\/lca\.tiangong\.earth\//u);
     const skills = read(page('skills', 'getting-started', locale.suffix));
     assert.match(skills, /skills\.flow-hybrid-search\.computedHash/u);
-    assert.match(skills, /3f682fcb97616cf20b97ee7f70120616e58f9ff2bf65bead54d9728d94da4c59/u);
+    assert.match(skills, /e75673431b0adaae42c96a009bc52f82f82c22a1d269ca798158ab8b11eccd4b/u);
     const native = read(page('tidas', 'first-package', locale.suffix));
     assert.match(native, /mkdir tidas-practice\ncd tidas-practice/u);
     assert.ok(native.includes('$LASTEXITCODE'));
