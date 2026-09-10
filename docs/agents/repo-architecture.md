@@ -33,9 +33,9 @@ checkPaths:
   - edgeone.json
   - context7.json
   - .github/workflows/**
-lastReviewedAt: 2026-09-05
-lastReviewedCommit: 7aad51296aa060c29a8f412e5040263894274d6f
-lastReviewedNote: "Reviewed for Issue #191: all eight API and UI TIDAS workflow links now agree with v0.2.1 installation; the existing cross-locale regression covers those entry points without changing OAuth, upload semantics, runtime, navigation or publication."
+lastReviewedAt: 2026-09-10
+lastReviewedCommit: 99eed08f0f879759a8d247057d27a8d871eb0ce6
+lastReviewedNote: "Reviewed for Next Docs #193: four-locale guides bind qualified F1.7/C1.13/Skills0a33, current installer fingerprints, conservative migration and read-only rollback limits. Actual installer and documented public local task steps pass; lint/types/build/link/search/output gates pass. All 32 locale/viewport/theme browser cases and eight linked pages pass; representative desktop/light and mobile/dark renders were visually reviewed. Source/root delivery remains separately tracked."
 related:
   - AGENTS.md
   - .docpact/config.yaml
@@ -100,7 +100,7 @@ The CLI integration pages pin `@tiangong-lca/cli@0.1.8` and place a public-confi
 
 `integration/cli/index*.mdx` preserves the existing CLI entry URL and leads to installation, a real read-only query, result interpretation, and local validation before advanced authentication, automation, publishing, and maintenance. `integration/skills/` explains task instructions versus CLI execution, one independently installed search skill, a real task, catalogue prerequisites, safe operation, and troubleshooting. `integration/tidas/` owns native local installation, complete sample validation/conversion/roundtrip, and command/report reference; native package work is not a platform login workflow.
 
-All 18 logical guide pages have complete zh/en/de/fr siblings and ordered locale metadata. Guide indexes have substantive reader content and remain in search/llms; only the existing generic category roots are excluded by `lib/ia.ts`. `DocsPortal` provides direct links to all three guides. Shared tutorial JSON lives under `public/assets/docs/tool-guides-v1/`; synthetic data is explicitly non-production and contains fictional references.
+All 19 logical guide pages have complete zh/en/de/fr siblings and ordered locale metadata. Guide indexes have substantive reader content and remain in search/llms; only the existing generic category roots are excluded by `lib/ia.ts`. `DocsPortal` provides direct links to all three guides. Shared tutorial JSON lives under `public/assets/docs/tool-guides-v1/`; synthetic data is explicitly non-production and contains fictional references.
 
 `lib/public-doc-inventory.mjs` derives route and index expectations from MDX filenames plus runtime i18n/category policy, rejects duplicate flat/folder-index URLs, and supplies explicit guide coverage. The build checks the retained minimum route/deny contracts as well as all current source routes, complete search/llms/sitemap sets, static search inclusion, and nested guide directories. Publication counts are not manually maintained.
 
@@ -127,3 +127,7 @@ EdgeOne Makers builds and deploys from Git. The managed Node runtime supplies pn
 - `tiangong-lca-next` owns product behavior, route truth, API semantics, and user-interface behavior.
 - `tiangong-lca-next-docs` owns the public explanation and site implementation.
 - `lca-workspace` owns the integrated child commit and completion state.
+
+The four `integration/skills/foundry*.mdx` pages add a separate Foundry task-preparation route while preserving the original search tutorial. They describe the shipped-skill bootstrap boundary and public task inputs/status/recovery. Final installation, catalogue pins and first-login/actual-release qualification remain required under #193 before this content ships; a local preparation stopping point does not prove complete import.
+
+The managed Foundry guide binds released Foundry 0.1.7 with CLI 0.1.13, Node 24.19.0, TIDAS 0.3.0 and merged Skills 0a33db1. Skills-specific login examples use CLI 0.1.13 and the independently installed current package fingerprint; the separate standalone CLI 0.1.8 and TIDAS 0.2.1 tutorials retain their existing owned baseline. Migration remains conservative for sealed/attempted/unclassified tasks, and task runtime binding can reject older readers even when workspace read compatibility is valid.

@@ -51,11 +51,11 @@ Listez les installations du projet avec la commande suivante. Ouvrez ensuite le 
 pnpm dlx skills@1.5.23 list --json
 ```
 
-L’installation vérifiée correspond au commit Skills `29039bcc07a7b246acc3d4009ee641d3a6878d01`. Avec cet installateur, `skills.flow-hybrid-search.computedHash` dans `skills-lock.json` doit correspondre à la valeur ci-dessous. C’est une empreinte d’installation, pas une signature. Si elle diffère, revérifiez source et prérequis puis faites une simulation avant de reprendre les conclusions vérifiées de ce guide.
+L’installation vérifiée correspond au commit Skills `0a33db1df81f9bd3ce52d356178fa35adc40b67c`. Avec cet installateur, `skills.flow-hybrid-search.computedHash` dans `skills-lock.json` doit correspondre à la valeur ci-dessous. C’est une empreinte d’installation, pas une signature. Si elle diffère, revérifiez source et prérequis puis faites une simulation avant de reprendre les conclusions vérifiées de ce guide.
 
 ```json
 {
-  "computedHash": "3f682fcb97616cf20b97ee7f70120616e58f9ff2bf65bead54d9728d94da4c59"
+  "computedHash": "e75673431b0adaae42c96a009bc52f82f82c22a1d269ca798158ab8b11eccd4b"
 }
 ```
 
@@ -75,9 +75,9 @@ Sans trace de lecture ou si la découverte échoue encore, joignez explicitement
 La recherche distante utilise la session locale privée du CLI. Vérifiez d’abord le statut. Pour `login-required`, connectez-vous dans un terminal de confiance et autorisez dans le navigateur ; ne transmettez pas de mot de passe ou de jeton à l’IA.
 
 ```bash
-pnpm dlx --package=@tiangong-lca/cli@0.1.8 tiangong-lca auth status --json
-pnpm dlx --package=@tiangong-lca/cli@0.1.8 tiangong-lca auth login
-pnpm dlx --package=@tiangong-lca/cli@0.1.8 tiangong-lca auth doctor-auth --json
+pnpm dlx --package=@tiangong-lca/cli@0.1.13 tiangong-lca auth status --json
+pnpm dlx --package=@tiangong-lca/cli@0.1.13 tiangong-lca auth login
+pnpm dlx --package=@tiangong-lca/cli@0.1.13 tiangong-lca auth doctor-auth --json
 ```
 
 L’utilisateur système et l’environnement du script doivent accéder au même contexte de connexion. La Production officielle ne demande ni `.env`, ni identifiant client public, ni source CLI locale. Seuls les environnements personnalisés exigent une [configuration complète et cohérente](/fr/docs/integration/cli/authentication/). Les Skills ne conservent pas une seconde session OAuth.

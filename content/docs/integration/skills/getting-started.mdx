@@ -51,11 +51,11 @@ pnpm dlx skills@1.5.23 add tiangong-lca/skills --skill flow-hybrid-search --agen
 pnpm dlx skills@1.5.23 list --json
 ```
 
-本指南核对的安装内容来自 Skills 提交 `29039bcc07a7b246acc3d4009ee641d3a6878d01`。用此安装器安装后，`skills-lock.json` 中 `skills.flow-hybrid-search.computedHash` 应为下列值。这是安装记录指纹，不是签名；若不同，说明内容已变化，先复核来源与运行条件并跑预检，不要直接沿用本页的已验证结论。
+本指南核对的安装内容来自 Skills 提交 `0a33db1df81f9bd3ce52d356178fa35adc40b67c`。用此安装器安装后，`skills-lock.json` 中 `skills.flow-hybrid-search.computedHash` 应为下列值。这是安装记录指纹，不是签名；若不同，说明内容已变化，先复核来源与运行条件并跑预检，不要直接沿用本页的已验证结论。
 
 ```json
 {
-  "computedHash": "3f682fcb97616cf20b97ee7f70120616e58f9ff2bf65bead54d9728d94da4c59"
+  "computedHash": "e75673431b0adaae42c96a009bc52f82f82c22a1d269ca798158ab8b11eccd4b"
 }
 ```
 
@@ -75,9 +75,9 @@ Codex 路径是 .agents/skills/flow-hybrid-search/SKILL.md；OpenClaw 路径是 
 远程检索共用 CLI 的私有本地会话。先查状态；遇到 `login-required` 时，由你本人在可信终端登录并完成浏览器授权，不要把账号密码或 token 发给 AI。
 
 ```bash
-pnpm dlx --package=@tiangong-lca/cli@0.1.8 tiangong-lca auth status --json
-pnpm dlx --package=@tiangong-lca/cli@0.1.8 tiangong-lca auth login
-pnpm dlx --package=@tiangong-lca/cli@0.1.8 tiangong-lca auth doctor-auth --json
+pnpm dlx --package=@tiangong-lca/cli@0.1.13 tiangong-lca auth status --json
+pnpm dlx --package=@tiangong-lca/cli@0.1.13 tiangong-lca auth login
+pnpm dlx --package=@tiangong-lca/cli@0.1.13 tiangong-lca auth doctor-auth --json
 ```
 
 AI 执行脚本的系统用户和环境应能使用同一登录上下文。官方生产环境不需要 `.env`、公开 client ID 或本地 CLI 源码；自定义环境才需要[完整匹配配置](/zh/docs/integration/cli/authentication/)。Skills 不另存一份 OAuth 会话。

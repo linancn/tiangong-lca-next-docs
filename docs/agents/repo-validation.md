@@ -31,9 +31,9 @@ checkPaths:
   - context7.json
   - .github/workflows/**
   - .githooks/**
-lastReviewedAt: 2026-09-05
-lastReviewedCommit: 7aad51296aa060c29a8f412e5040263894274d6f
-lastReviewedNote: "Reviewed for Issue #191: all eight API and UI TIDAS workflow links now agree with v0.2.1 installation; the existing cross-locale regression covers those entry points without changing OAuth, upload semantics, runtime, navigation or publication."
+lastReviewedAt: 2026-09-10
+lastReviewedCommit: 99eed08f0f879759a8d247057d27a8d871eb0ce6
+lastReviewedNote: "Reviewed for Next Docs #193: four-locale guides bind qualified F1.7/C1.13/Skills0a33, current installer fingerprints, conservative migration and read-only rollback limits. Actual installer and documented public local task steps pass; lint/types/build/link/search/output gates pass. All 32 locale/viewport/theme browser cases and eight linked pages pass; representative desktop/light and mobile/dark renders were visually reviewed. Source/root delivery remains separately tracked."
 related:
   - AGENTS.md
   - .docpact/config.yaml
@@ -57,7 +57,7 @@ DEPLOY_ENV=ci CANONICAL_ORIGIN=http://localhost:3000 NEXT_PUBLIC_SEARCH_MODE=sta
 ## Proof by change type
 
 - Public content: update all four locale variants; run lint and the complete build.
-- Reader-first tool guides: `scripts/tool-guides.test.mjs` and `scripts/public-doc-inventory.test.mjs` cover the 18-page/four-language structure, complete JSON inputs, tool separation, published versions, duplicate URL rejection, and search inclusion. Execute published CLI OAuth/list/get/search and independent Skill installation in an isolated session; test positive/negative local CLI validation and native tidas validation/conversion/roundtrip. Record actual outputs and scope without credentials. Reader review must cover installation, client discovery, empty/error states, immediate exit checks, and the distinction between read-only, preflight, write, and readback. Preserve advanced material but remove unsupported command examples.
+- Reader-first tool guides: `scripts/tool-guides.test.mjs` and `scripts/public-doc-inventory.test.mjs` cover the 19-page/four-language structure, complete JSON inputs, tool separation, published versions, duplicate URL rejection, and search inclusion. Execute published CLI OAuth/list/get/search and independent Skill installation in an isolated session; test positive/negative local CLI validation and native tidas validation/conversion/roundtrip. Record actual outputs and scope without credentials. Reader review must cover installation, client discovery, empty/error states, immediate exit checks, and the distinction between read-only, preflight, write, and readback. Preserve advanced material but remove unsupported command examples.
 - CLI first-install onboarding: the first executable `auth login` example must pin verified 0.1.8, precede custom templates, and contain no required public env assignments. Every locale retains the exact CLI loopback callback, explicit headless destination/key/mode, private sessions, and revocation limits. `scripts/oauth-doc-contract.test.mjs` rejects missing/unpinned login examples; release evidence must separately prove the real published CLI and installed Skills.
 - LCA authentication content: run `scripts/oauth-doc-contract.test.mjs`; prove CLI/MCP/account/OpenAPI locale families contain OAuth/PKCE/revoke/headless facts, every remote MCP locale contains direct Supabase access JWT/JWKS, client-local refresh, Claude Code, Codex, Edge `getClaims()`, and `auth.uid()` plus `client_id` RLS. Every Codex example must use top-level `mcp_oauth_callback_url` and `mcp_oauth_callback_port`, a per-server public `oauth.client_id`, and the MCP `oauth_resource` before `codex mcp login`; the documented base plus deterministic server callback ID must equal the registered Supabase redirect. Command-only setup with an unspecified callback is forbidden. Also prove no locale contains the retired broker architecture, LCA API-key assignment, demo, or manual bearer setup; reject the executable zh/en/de/fr forbidden-generation fixtures and six forbidden credential screenshots. Then run lint, links, and the complete build.
 - Toolchain, package manager, environment checker, or CI actions: run a clean frozen install, `pnpm test:env`, `pnpm test:toolchain`, lint, typecheck, and the complete static build. Node must satisfy `>=24.18.0 <25`; EdgeOne must use `24.18.0` plus direct `pnpm install --frozen-lockfile`, local `.nvmrc` must select major `24`, reviewed GitHub workflows remain on `24.19.0`, pnpm stays exactly `11.24.0`, TypeScript exactly `7.0.2`, and markdownlint exactly local `0.23.2`; external actions must use reviewed executable commit SHAs.
@@ -92,3 +92,7 @@ Use an absolute root when invoked outside the repository. Save a report only whe
 ```
 
 The hook runs strict configuration validation and enforced documentation-governance lint against `origin/main` by default.
+
+Foundry guide validation checks all four localized navigation entries and identical parseable task-start examples against the current Foundry public schema. The full build must include the new routes in static output, links, search/llms and sitemap. Review the rendered preparation pages and separately verify final F1/C1/Skills installation, first login and end-to-end task evidence before #193 completes.
+
+The managed Foundry guide binds released Foundry 0.1.7 with CLI 0.1.13, Node 24.19.0, TIDAS 0.3.0 and merged Skills 0a33db1. Skills-specific login examples use CLI 0.1.13 and the independently installed current package fingerprint; the separate standalone CLI 0.1.8 and TIDAS 0.2.1 tutorials retain their existing owned baseline. Migration remains conservative for sealed/attempted/unclassified tasks, and task runtime binding can reject older readers even when workspace read compatibility is valid.

@@ -51,11 +51,11 @@ List the project’s installation records with the command below. Then open the 
 pnpm dlx skills@1.5.23 list --json
 ```
 
-The installation reviewed here corresponds to Skills commit `29039bcc07a7b246acc3d4009ee641d3a6878d01`. With this installer, `skills.flow-hybrid-search.computedHash` in `skills-lock.json` should match the value below. This is an installation fingerprint, not a signature. If it differs, review the changed source and prerequisites and run a preview before relying on this guide’s verified behavior.
+The installation reviewed here corresponds to Skills commit `0a33db1df81f9bd3ce52d356178fa35adc40b67c`. With this installer, `skills.flow-hybrid-search.computedHash` in `skills-lock.json` should match the value below. This is an installation fingerprint, not a signature. If it differs, review the changed source and prerequisites and run a preview before relying on this guide’s verified behavior.
 
 ```json
 {
-  "computedHash": "3f682fcb97616cf20b97ee7f70120616e58f9ff2bf65bead54d9728d94da4c59"
+  "computedHash": "e75673431b0adaae42c96a009bc52f82f82c22a1d269ca798158ab8b11eccd4b"
 }
 ```
 
@@ -75,9 +75,9 @@ If there is no read activity or discovery still fails, explicitly attach the app
 Remote search uses the CLI’s private local session. Check status first. For `login-required`, sign in yourself from a trusted terminal and complete browser authorization; do not send a password or token to the AI.
 
 ```bash
-pnpm dlx --package=@tiangong-lca/cli@0.1.8 tiangong-lca auth status --json
-pnpm dlx --package=@tiangong-lca/cli@0.1.8 tiangong-lca auth login
-pnpm dlx --package=@tiangong-lca/cli@0.1.8 tiangong-lca auth doctor-auth --json
+pnpm dlx --package=@tiangong-lca/cli@0.1.13 tiangong-lca auth status --json
+pnpm dlx --package=@tiangong-lca/cli@0.1.13 tiangong-lca auth login
+pnpm dlx --package=@tiangong-lca/cli@0.1.13 tiangong-lca auth doctor-auth --json
 ```
 
 The script’s OS user and environment must be able to use the same sign-in context. Official Production needs no `.env`, public client ID, or local CLI source. Only custom environments need [complete matching configuration](/en/docs/integration/cli/authentication/). Skills do not store a second OAuth session.

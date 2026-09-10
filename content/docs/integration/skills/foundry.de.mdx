@@ -1,0 +1,99 @@
+---
+title: "Foundry: Datenaufgaben vorbereiten und fortsetzen"
+description: "Foundry in einem eigenen Arbeitsverzeichnis ausführen, Stufennachweise prüfen und Freigabe sowie Wiederaufnahme korrekt behandeln."
+---
+
+Der reguläre Einstieg in TianGong Foundry ist `foundry-tidas-import` für externe Datenpakete und die Entwicklung anhand von Quellen. `foundry-tidas-authoring` wird bei einem konkreten semantischen Arbeitsauftrag nach Bedarf verwendet. Foundry übernimmt Konvertierung, Prüfung und Ausführung; der Skill wählt Eingaben aus, bewertet Belege und reicht semantische Entscheidungen ein.
+
+## 1. Eigenes Arbeitsverzeichnis vorbereiten
+
+Die geprüfte Kombination umfasst [Foundry 0.1.7](https://github.com/tiangong-lca/data-foundry/releases/tag/foundry-runtime-v0.1.7), CLI 0.1.13, Node 24.19.0 und TIDAS 0.3.0 im vollständigen Einstieg aus [Skills 0a33db1](https://github.com/tiangong-lca/skills/commit/0a33db1df81f9bd3ce52d356178fa35adc40b67c). Im Skills-Installer des Clients `foundry-tidas-import` aus `tiangong-lca/skills` auswählen. Sind Node/pnpm/Git bereits vorhanden und wird der Kommandozeilen-Installer verwendet:
+
+```bash
+pnpm dlx skills@1.5.23 add tiangong-lca/skills --skill foundry-tidas-import --agent codex --copy --yes
+```
+
+Für OpenClaw `--agent codex` durch `--agent openclaw` ersetzen. Diese Werkzeuge gehören zu dieser Installationsmethode; nach vollständiger Skill-Installation bereitet die verwaltete Foundry-Laufzeit ihre Komponenten selbst vor.
+
+Erforderlich ist ein vollständig installierter Ordner `foundry-tidas-import` mit dem unveränderten POSIX/PowerShell-Bootstrap und der benachbarten vertrauenswürdigen Datei `bootstrap-lock.json`. Beide müssen aus derselben qualifizierten Distribution stammen. Keine Ersatzdatei aus Aufgabenartefakten oder vorläufigen Downloadadressen zusammensetzen. Fehlende oder ungültige Sperrdaten zuerst durch eine vollständige Installation beheben.
+
+Die verwaltete Laufzeit benötigt kein global installiertes Node, pnpm oder Git. Unterstützt werden Linux x64/ARM64 mit glibc, macOS Apple Silicon und Windows x64. macOS Intel, Windows ARM64 und Linux musl werden nicht unterstützt. Der erste Start lädt festgelegte Komponenten; spätere Starts verwenden geprüfte Cache-Einträge. Ein Cache-Treffer belegt weder Anmeldung noch Aufgabenabschluss.
+
+Ein beschreibbares Benutzerverzeichnis dient als Workspace; die installierten Skill- und Laufzeitverzeichnisse dürfen schreibgeschützt sein. Das eigene gültige Eingangspaket unter `inputs/package.zip` speichern. Es ist eine Originaleingabe des Benutzers, keine vom Tutorial erzeugte Testdatei. Native Formate und ein lokales Konvertierungsbeispiel beschreibt [das erste tidas-Paket](/de/docs/integration/tidas/first-package/).
+
+## 2. Aufgabenbeschreibung speichern
+
+Im Workspace-Stamm `task-start.json` speichern:
+
+```json
+{
+  "schema": "tiangong-foundry.task-start.v1",
+  "request_id": "first-foundry-package",
+  "actor_id": "local-preparation",
+  "lane": "external-dataset-curated-import",
+  "profile_id": "generic",
+  "target_entities": [
+    "process"
+  ],
+  "sources": [
+    {
+      "path": "inputs/package.zip"
+    }
+  ],
+  "seed": null,
+  "account_intent": null,
+  "preparation": null
+}
+```
+
+Dieses Beispiel bereitet ausschließlich lokale Kandidaten vor. `account_intent: null` wählt kein entferntes Konto aus. Vor kontobezogener Arbeit über den vertrauenswürdigen CLI-OAuth-Ablauf das gewünschte Projekt und den Benutzer feststellen und in der Startbeschreibung auswählen. Identitäten nicht raten; eine Anmeldung ist keine Schreibfreigabe.
+
+Quellenbasierte Arbeit verwendet die Lane `source-evidence-dataset-development` und einen belegten JSON-Seed mit Kandidatendaten. Der Seed muss auch in `sources` stehen. Eine Publikation oder Übergabebeschreibung ist noch kein gültiger Satz von TIDAS-Zeilen.
+
+## 3. Starten und Ergebnisse prüfen
+
+Pfadplatzhalter durch tatsächliche Verzeichnisse ersetzen. Unter POSIX:
+
+```bash
+sh "<skill-dir>/scripts/tiangong-runtime-bootstrap.sh" workspace init --workspace "<workspace>" --json
+```
+
+Unter Windows die geprüfte PowerShell 7 ohne Umgehung der Ausführungsrichtlinie verwenden:
+
+```powershell
+pwsh -NoProfile -File "<skill-dir>/scripts/tiangong-runtime-bootstrap.ps1" workspace init --workspace "<workspace>" --json
+```
+
+Bei weiteren Aufrufen denselben Bootstrap-Präfix verwenden und die folgenden öffentlichen Argumente der Reihe nach anhängen. Die Spec-Datei wird relativ zum ausdrücklich gewählten Workspace aufgelöst. Die Task-ID stammt aus der Foundry-Antwort.
+
+```text
+doctor --workspace <workspace> --json
+task start --workspace <workspace> --spec task-start.json --json
+task status --workspace <workspace> --task <returned-task-id> --actor local-preparation --json
+task resume --workspace <workspace> --task <returned-task-id> --actor local-preparation --json
+```
+
+Den Exit-Code sofort nach jedem Aufruf prüfen: `echo $?` unter POSIX oder `$LASTEXITCODE` in PowerShell. Die JSON-Felder `status`, `blockers`, `permissions`, `artifacts` und `next_actions` gemeinsam lesen. Ein Exit-Code oder eine leere Ausgabe allein beweist keinen Erfolg. executable, argv und cwd einer aktuellen Befehlsaktion unverändert übernehmen.
+
+## 4. Nach aktuellem Zustand fortsetzen
+
+- `ready` / `running`: die aktuelle Aktion ausführen. Ein Resume führt genau eine registrierte Stufe weiter; identische Aufrufe beheben keinen unveränderten Blocker.
+- `needs_input`: aktuellen Arbeitsauftrag, vollständigen Kontext und Vorlage lesen und eine Entscheidung oder einen Patch einreichen. Foundry prüft, wendet an und bewertet erneut. Die Quellsprache bewahren und belegtes Englisch für mehrsprachige Pflichtfelder ergänzen.
+- `needs_auth`: CLI-OAuth oder eine ausdrückliche Kontoauswahl ist erforderlich. Das lokale Beispiel endet hier; keinen abgeschlossenen Import behaupten.
+- `permissions.state: required`: Aufgabe, Eingabe, Konto und Aktionen prüfen. Vorhandene gültige Freigaben wiederverwenden; fehlende Freigaben für den konkreten Umfang einholen.
+- `blocked` / `failed`: Fehler und Belege behalten, die angegebene Ursache beheben und die ursprüngliche Aufgabe fortsetzen.
+- `completed`: Abschluss- und Rücklesenachweise für den aktuell angeforderten Umfang prüfen. Eine abgeschlossene Teilstufe ist kein vollständiger Aufgabenabschluss.
+
+Geänderte Eingaben oder Kontoauswahl erzeugen über eine geprüfte Startbeschreibung eine Revision mit erhaltener Historie. Frühere Schreibversuche werden dadurch nicht zurückgesetzt. Bei einer unklaren Schreibantwort nur die Readback-/Recovery-Aktion der ursprünglichen Aufgabe verwenden. Mutation nicht direkt wiederholen, Aufzeichnungen nicht leeren und kein neues Verzeichnis zur Umgehung anlegen.
+
+Die lokale Vorbereitung ist belegt, wenn Originaleingabe, aktuelle Task-ID, tatsächlich erzeugte Stufenartefakte und eine konkrete nächste Aktion oder ein Blocker benannt werden können. Ein vollständiger Import benötigt weiterhin semantische Arbeit, Kontoprüfung, Freigabe und unabhängiges Rücklesen. Siehe [Aufgaben sicher organisieren](/de/docs/integration/skills/safe-workflows/).
+
+## 5. Aktualisierung, Migration und schreibgeschützte Rückkehr
+
+Bei `task_runtime_changed` den alten Workspace behalten und zuerst mit `workspace migrate --workspace <workspace> --dry-run --json` prüfen. Die Migration benötigt ausdrückliche Angaben zu Quelle, Ziel, Akteur, Anfrage und Eingaben sowie die Prüfung von Plan, Stage, Adoption Preview, Apply und Audit. Historische Aufzeichnungen nicht direkt umschreiben.
+
+Nur bekannte lokale Aufgaben mit vollständigen Nachweisen und ohne Schreibversuch dürfen durch den aktuellen Owner neu vorbereitet werden. Versiegelte, bereits versuchte oder unvollständig klassifizierte Historie kann `owner-readback-only` bleiben und erzeugt keine neue ausführbare Aufgabe. Niemals als unversucht umkennzeichnen oder denselben Umfang in einem anderen Verzeichnis erneut ausführen.
+
+Lese- und Schreibkompatibilität werden getrennt geprüft. Eine ältere schreibgeschützte Laufzeit über den vertrauenswürdigen Host/CLI-Manager auszuwählen, macht keine entfernte Änderung rückgängig und erteilt keine Schreibrechte. Cache-Neuaufbau, Aufgabenmigration und Abmeldung sind getrennte Vorgänge; Workspace, ursprüngliche Belege und Markierungen verbrauchter Versuche behalten.
+
+Lesekompatibilität des Workspace garantiert nicht, dass eine ältere Laufzeit eine neuere Aufgabe lesen kann; bei abweichender Aufgabenbindung die Aufzeichnungen behalten und die passende Version wiederherstellen.

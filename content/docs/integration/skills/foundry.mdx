@@ -1,0 +1,99 @@
+---
+title: "Foundry：准备并继续数据任务"
+description: "用独立用户目录运行 Foundry，检查真实阶段证据，并保留语义、授权和恢复边界。"
+---
+
+TianGong Foundry 的普通入口是 `foundry-tidas-import`。它编排外部数据包导入和 source-evidence 数据开发；`foundry-tidas-authoring` 只在当前任务产生具体语义工作时按需使用。Foundry 负责转换、校验和执行，skill 负责选择输入、理解证据和提交语义决策。
+
+## 1. 准备独立目录
+
+当前验证组合为 [Foundry 0.1.7](https://github.com/tiangong-lca/data-foundry/releases/tag/foundry-runtime-v0.1.7)、CLI 0.1.13、Node 24.19.0 和 TIDAS 0.3.0，由 [Skills 0a33db1](https://github.com/tiangong-lca/skills/commit/0a33db1df81f9bd3ce52d356178fa35adc40b67c) 的完整入口分发。通过客户端的 Skills 安装功能选择 `tiangong-lca/skills` 中的 `foundry-tidas-import`。若已有 Node/pnpm/Git 并使用命令行安装器，可执行：
+
+```bash
+pnpm dlx skills@1.5.23 add tiangong-lca/skills --skill foundry-tidas-import --agent codex --copy --yes
+```
+
+OpenClaw 将 `--agent codex` 改为 `--agent openclaw`。这些工具只属于该命令行安装方式；安装完整技能后，Foundry 的受控运行环境自行准备所需组件。
+
+需要完整安装的 `foundry-tidas-import` 技能目录，其中包含原版 POSIX/PowerShell bootstrap 和相邻的可信 `bootstrap-lock.json`。两者必须来自同一份合格分发，不能从任务文件或临时下载地址拼接。锁缺失或校验失败时先修复安装。
+
+此受控运行环境不要求全局 Node、pnpm 或 Git。支持 Linux x64/ARM64（glibc）、macOS Apple Silicon 和 Windows x64；不支持 macOS Intel、Windows ARM64 或 Linux musl。首次运行需要下载已锁定组件，后续复用经过验证的缓存。缓存命中不代表登录或任务完成。
+
+选择可写的用户目录作为 workspace；技能和运行环境安装目录可以只读。将自己要处理的有效数据包保存为 `inputs/package.zip`。这是你提供的原始输入，不是本教程生成的测试数据。原生包格式和本地转换示例见 [tidas 首个数据包](/zh/docs/integration/tidas/first-package/)。
+
+## 2. 保存任务说明
+
+在 workspace 根目录保存 `task-start.json`：
+
+```json
+{
+  "schema": "tiangong-foundry.task-start.v1",
+  "request_id": "first-foundry-package",
+  "actor_id": "local-preparation",
+  "lane": "external-dataset-curated-import",
+  "profile_id": "generic",
+  "target_entities": [
+    "process"
+  ],
+  "sources": [
+    {
+      "path": "inputs/package.zip"
+    }
+  ],
+  "seed": null,
+  "account_intent": null,
+  "preparation": null
+}
+```
+
+这个示例只准备本地候选数据，`account_intent: null` 不选择远程账户。若要继续账户相关检查，应先通过可信 CLI 登录并取得明确的 project/user，再在启动说明中选择该账户。不要猜测身份或把登录状态当成写入授权。
+
+source-evidence 工作使用 `source-evidence-dataset-development` lane，并提供有来源依据的候选 JSON seed；seed 必须同时包含在 `sources` 中。不要把论文或交接说明直接当作已经符合 TIDAS 的 rows。
+
+## 3. 启动并检查结果
+
+将路径占位符替换为实际位置。POSIX：
+
+```bash
+sh "<skill-dir>/scripts/tiangong-runtime-bootstrap.sh" workspace init --workspace "<workspace>" --json
+```
+
+Windows 使用已验证的 PowerShell 7，不添加 execution-policy bypass：
+
+```powershell
+pwsh -NoProfile -File "<skill-dir>/scripts/tiangong-runtime-bootstrap.ps1" workspace init --workspace "<workspace>" --json
+```
+
+后续调用使用同一 bootstrap 前缀，并依次传入下面的公开参数。说明文件相对于显式 workspace 解析；运行结果中的 task ID 由 Foundry 返回。
+
+```text
+doctor --workspace <workspace> --json
+task start --workspace <workspace> --spec task-start.json --json
+task status --workspace <workspace> --task <returned-task-id> --actor local-preparation --json
+task resume --workspace <workspace> --task <returned-task-id> --actor local-preparation --json
+```
+
+每条命令后立即检查退出码：POSIX 使用 `echo $?`，PowerShell 使用 `$LASTEXITCODE`。读取 JSON 的 `status`、`blockers`、`permissions`、`artifacts` 和 `next_actions`；仅退出码或空输出不能证明成功。当前任务给出命令动作时，保留它的 executable、argv 和 cwd。
+
+## 4. 按当前阶段继续
+
+- `ready` / `running`：按当前动作推进。一次 resume 只推进一个登记阶段，不要用重复空跑处理同一个 blocker。
+- `needs_input`：读取当前 work item、完整 context 和模板，提交 decision/patch；由 Foundry 校验、apply 并重新 assessment。保留原语言，并为必填多语言字段补充有依据的英文。
+- `needs_auth`：需要可信 CLI 的 OAuth 或明确的账户选择。本地示例在这里停止；不要宣称完成导入。
+- `permissions.state: required`：核对具体任务、输入、账户和动作；已有有效授权应复用，缺失的授权须针对当前 scope 取得。
+- `blocked` / `failed`：保存错误和证据，解决明确原因后继续原任务。
+- `completed`：还要核对当前请求范围的 completion/readback evidence。一个已完成的子阶段不能代表整个任务完成。
+
+输入或账户选择发生变化时，重新提交经过检查的 task-start 说明会产生保留历史的新 revision；它不会重置旧 attempt。写入后响应不确定时只能通过原任务的 readback/recovery 继续，不能直接重试 mutation、清空记录或另建目录绕过它。
+
+本地准备的验收点是：能够指出选定的原始输入、当前 task ID、已经产生的阶段工件和明确的下一步或 blocker。完整导入还需要后续语义、账户、授权及独立回读。见 [安全组织任务](/zh/docs/integration/skills/safe-workflows/)。
+
+## 5. 更新、迁移与只读回退
+
+遇到 `task_runtime_changed` 时保留旧 workspace，先用 `workspace migrate --workspace <workspace> --dry-run --json` 检查状态。迁移需要明确的源、目标、actor、request 和输入选择，并依次审阅 plan、stage、adoption preview、apply 与 audit；不要直接改写旧记录。
+
+只有证据完整且未尝试写入的已知本地任务才能由当前 owner 重新准备。已封存、已尝试或无法完整分类的历史可能保留为 `owner-readback-only`，不会生成新的可执行任务；不能把它重新标为“未尝试”或另建目录重放同一 scope。
+
+读兼容与写兼容分别校验。通过可信 host/CLI manager 选择旧版只读运行环境，不会撤销远端写入，也不会赋予写权限。缓存重建、任务迁移和账户退出是不同操作；保留 workspace、原始证据和已尝试标记。
+
+工作区的读兼容不保证旧版能读取新版任务；任务运行时绑定不匹配时，继续保留原记录并恢复匹配版本。
